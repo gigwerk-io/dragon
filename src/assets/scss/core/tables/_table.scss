@@ -1,0 +1,175 @@
+//
+// Table
+//
+
+
+// General styles
+
+.table {
+    thead th {
+        padding-top: $table-head-spacer-y;
+        padding-bottom: $table-head-spacer-y;
+        font-size: $table-head-font-size;
+        text-transform: $table-head-text-transform;
+        letter-spacing: $table-head-letter-spacing;
+        border-bottom: $table-border-width solid $table-border-color;
+    }
+
+    th {
+        font-weight: $table-head-font-weight;
+    }
+
+    td {
+        .progress {
+            height: 3px;
+            width: 120px;
+            margin: 0;
+        }
+    }
+
+    td,
+    th {
+        font-size: $table-body-font-size;
+        white-space: nowrap;
+    }
+
+
+    // Vetical align table content
+
+    &.align-items-center {
+        td,
+        th {
+            vertical-align: middle;
+        }
+    }
+
+
+   // Styles for dark table
+
+   .thead-dark {
+        th {
+            background-color: $table-dark-head-bg;
+            color: $table-dark-head-color;
+        }
+    }
+
+
+    // Styles for light table
+
+    .thead-light {
+        th {
+            background-color: $table-head-bg;
+            color: $table-head-color;
+        }
+    }
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  padding: 0.625rem 0.75rem;
+  font-size: 1rem;
+  color: #8898aa;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #cad1d7;
+  border-radius: 10rem;
+  box-shadow: none;
+  -webkit-transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.paginate_button:hover {
+  z-index: 2;
+  color: #8898aa;
+  text-decoration: none;
+  background-color: #dee2e6;
+  border-color: #dee2e6;
+}
+
+.paginate_button {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0 3px;
+  border-radius: 50% !important;
+  width: 36px;
+  height: 36px;
+  font-size: 0.875rem;
+  border: 1px solid #dee2e6!important;
+}
+
+.previous, .next {
+  border-radius: 20px!important;
+  width: unset;
+  border: 0!important;
+}
+
+.previous:hover, .next:hover {
+  background: #dee2e6!important;
+}
+
+.dataTables_wrapper {
+  padding: 15px;
+}
+
+.current {
+  z-index: 1;
+  color: #fff!important;
+  background: #5e72e4!important;
+  border-color: #5e72e4!important;
+}
+
+// Add transition for hover state
+
+.table-hover {
+    tr {
+        @include transition($transition-base);
+    }
+}
+
+
+// Flush tables
+
+.table-flush {
+    td,
+    th {
+        border-left: 0;
+        border-right: 0;
+    }
+
+    tbody {
+        tr {
+            &:first-child {
+                td,
+                th {
+                    border-top: 0;
+                }
+            }
+
+            &:last-child {
+                td,
+                th {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+
+// Tables inside cards
+
+.card {
+    .table {
+        margin-bottom: 0;
+
+        td,
+        th {
+            padding-left: $card-spacer-x;
+            padding-right: $card-spacer-x;
+        }
+    }
+}
