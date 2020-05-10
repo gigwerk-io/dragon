@@ -24,6 +24,9 @@ export interface User {
   progress?: number;
   organization?: string;
   completed_registration?: boolean;
+  freelancerRating?: number;
+  isActive?: boolean;
+  last_seen_at?: string;
 }
 
 export interface Profile {
