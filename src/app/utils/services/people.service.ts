@@ -42,11 +42,11 @@ export class PeopleService extends RESTService {
     return this.getAllUsers().then(allUsers => allUsers.data.filter(user => user.role === Role.CUSTOMER));
   }
 
-  getSingleUser(id: number): Promise<User> {
+  getSingleUser(id: number): Promise<Response<User>> {
     return this.makeHttpRequest(`user/${id}`, 'GET')
       .toPromise()
-      .then((res: Observable<SingleUserResponse>) => {
-        return res.toPromise().then((r: SingleUserResponse) => r.user.pop());
+      .then((res: Observable<Response<User>>) => {
+        return res.toPromise().then((r: Response<User>) => r);
       });
   }
 

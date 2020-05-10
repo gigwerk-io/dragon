@@ -10,6 +10,6 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    console.log(this.router.isActive('/settings', true));
+
   }
 }
