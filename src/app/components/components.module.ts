@@ -13,6 +13,7 @@ import { LeaderboardListComponent } from './lists/leaderboard-list/leaderboard-l
 import { ArrowPercentageComponent } from './arrow-percentage/arrow-percentage.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { FinishAccountSetupModalComponent } from './modal/finish-account-setup-modal/finish-account-setup-modal.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { PaginationComponent } from './pagination/pagination.component';
     LeaderboardListComponent,
     ArrowPercentageComponent,
     StarRatingComponent,
-    PaginationComponent
+    PaginationComponent,
+    FinishAccountSetupModalComponent
   ],
   exports: [
     FooterComponent,
