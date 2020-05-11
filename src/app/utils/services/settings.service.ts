@@ -69,9 +69,9 @@ export class SettingsService extends RESTService {
       .then((res: Observable<SingleTransferResponse>) => res.toPromise().then(r => r.transfer));
   }
 
-  checkMissingSteps(): Promise<MissingSteps> {
+  checkMissingSteps(): Promise<Response<MissingSteps>> {
     return this.makeHttpRequest(`missing-steps`, 'GET')
       .toPromise()
-      .then((res: Observable<MissingSteps>) => res.toPromise());
+      .then((res: Observable<Response<MissingSteps>>) => res.toPromise());
   }
 }
