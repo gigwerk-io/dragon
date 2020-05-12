@@ -25,6 +25,9 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/ngx-toastr/toastr.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
             "scripts": []
@@ -138,6 +141,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "angular-landing-page"
 }

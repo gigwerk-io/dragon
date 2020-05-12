@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, } from '@angular/common';
-import { BrowserModule  } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
-import {CheckAuth} from './utils/providers/CheckAuth';
+import { CheckAuth } from './utils/providers/CheckAuth';
 
 const routes: Routes = [
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [CheckAuth]
   }, {
     path: '',
-    component: AuthLayoutComponent,
+    // component: AuthLayoutComponent,
     children: [
       {
         path: '',
