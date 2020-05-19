@@ -270,11 +270,54 @@
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             <span
-              class="absolute top-0 right-0 block h-3 w-3 rounded-full text-white shadow-lg bg-red-400 text-white"></span>
+            *ngIf="notifications.length"
+              class="absolute top-0 right-0 block h-3 w-3 rounded-full text-white shadow-lg bg-red-600 text-white"></span>
           </button>
 
-          <!-- NOTIFICATIONS -->
-          <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10 "
+         
+          <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10  border-2"
+            *ngIf="showNotifications">
+            <div class="px-2 py-2 bg-text-gray-400" *ngIf="notifications.length  && showNotifications" >
+              <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold">
+                Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded" style="border-radius: 100%;">{{badgeCount}}</span>
+              </h6>
+            </div>
+            <div class="px-7 py-5 " 
+            *ngIf="notifications.length === 0  && showNotifications"
+             >
+              <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold"  *ngIf="notifications.length === 0  && showNotifications">
+                You have 0 new notifications 
+              </h6>
+            </div>
+            <div class="" *ngIf="notifications.length  && showNotifications">
+              <a class="list-group-item list-group-item-action" *ngFor="let unreadNotification of notifications"
+                (click)="markNotificationRead(unreadNotification.id)"
+                [routerLink]="unreadNotification.data.page + '/' + unreadNotification.data.params">
+                <div class=" border-t hover:bg-gray-100 px-4 py-4  bg-cool-gray-50 bg-grey-100 ">
+                  <div class="col">
+                    <div class="px-5">
+                      <div>
+                        <h4 class="font-bold font-sans ">{{unreadNotification.data.title}}</h4>
+                      </div>
+                      <p class="font-sans font-light"> {{unreadNotification.data.message}} </p>
+                      <div class="text-right text-muted"><small>{{unreadNotification.created_at | timeAgo}}</small>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class=" text-center border-t hover:bg-blue-100 p-3  " *ngIf="notifications.length  && showNotifications">
+              <a class="text-blue-500" [routerLink]="['/notifications']">
+                View all
+              </a>
+            </div>
+
+
+
+          </div>
+          <!-- <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10 "
             *ngIf="showNotifications">
             <div class="px-3 py-3">
               <h6 class="text-center">
@@ -306,7 +349,7 @@
               </a>
             </div>
 
-          </div>
+          </div> -->
 
           <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg top-11 right-5 "
             *ngIf="showNotifications">

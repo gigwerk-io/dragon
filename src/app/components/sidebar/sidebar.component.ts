@@ -23,8 +23,8 @@ export class SidebarComponent implements OnInit {
   };
   missingSteps: MissingSteps;
   showModal = false;
-  notifications: Notification[];
-  badgeCount = 999;
+  notifications: Notification[] = [];
+  badgeCount = '';
 
 
   constructor(
@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
     });
 
     this.notificationService.getUnreadNotifications().then(res => {
-      this.badgeCount = res.data.length;
+      this.badgeCount = res.data.length > 9 ? '9+' : String(res.data.length);
       this.notifications = res.data.length > 5 ? res.data.slice(0, 5) : res.data;
     });
   } // end of onInit()
