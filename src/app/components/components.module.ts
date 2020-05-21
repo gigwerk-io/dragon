@@ -44,7 +44,8 @@ import { FinishAccountSetupModalComponent } from './modal/finish-account-setup-m
     NotificationDropdownComponent,
     UserDropdownComponent,
     LeaderboardListComponent,
-    ArrowPercentageComponent
+    ArrowPercentageComponent,
+    PaginationComponent
   ]
 })
 export class ComponentsModule {

@@ -8,6 +8,12 @@ export const environment = {
   version: '0.0.1',
   pusherId: '5a35a484c75eee676b6f'
 };
+// export const environment = {
+//   production: false,
+//   apiUrl: ' https://lumen.askfavr.com',
+//   version: '0.0.1',
+//   pusherId: '5a35a484c75eee676b6f'
+// };
 
 /*
  * For easier debugging in development mode, you can import the following file

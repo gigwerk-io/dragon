@@ -1,0 +1,109 @@
+<ngx-spinner></ngx-spinner>
+
+<div class="flex flex-col" *ngIf="notifications">
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <table class="min-w-full">
+                <thead>
+                    <tr>
+
+                        <th>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <h1 class="text-left ml-5">Notifications</h1>
+                                </div>
+
+                                <div>
+
+                                    <div class="inline-block max-w-50 ml-auto">
+                                        <select (change)="onFilterBy($event.target.value)"
+                                            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+
+                                            <option value='all notifications'>All Notifications</option>
+                                            <option value='unread'>Unread</option>
+                                            <option value='job Needs Attention'>Job Needs Attention</option>
+                                            <option value='Job Requested'>Job Requested</option>
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white" *ngIf="notifications.length">
+                    <tr
+                        *ngFor="let notification of notifications | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index">
+                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                            <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                                <ul>
+                                    <li>
+                                        <a [routerLink]="['/job', notification.data.params]"
+                                            class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out"
+                                            (click)="markNotificationRead(notification.id)">
+                                            <div class="flex items-center px-4 py-4 sm:px-6">
+                                                <div class="min-w-0 flex-1 flex items-center">
+                                                    <div class="flex-shrink-0">
+                                                        <i class="{{typeMap[notification.type]}} text-4xl"></i>
+                                                    </div>
+                                                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                                        <div>
+                                                            <div
+                                                                class="text-sm leading-5 font-medium text-indigo-600 truncate">
+                                                                {{notification.data.title}}</div>
+                                                            <div
+                                                                class="mt-2 flex items-center text-sm leading-5 text-gray-500">
+
+                                                                <span class="truncate">
+                                                                    {{notification.data.message}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="hidden md:block">
+                                                            <div>
+                                                                <div class="text-sm leading-5 text-gray-900 ">
+                                                                    <i class="fas fa-clock text-green-600"> </i>
+                                                                    Date Created
+
+                                                                </div>
+                                                                <div
+                                                                    class="mt-2 flex items-center text-sm leading-5 text-gray-500 text-center">
+                                                                    {{notification.created_at | date:'fullDate' }}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="cursor-pointer">
+                                                    <svg class="h-5 w-5 text-gray-400 " fill="currentColor"
+                                                        viewBox="0 0 20 20">
+                                                        <path fill-rule="evenodd"
+                                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+                <tbody *ngIf="!notifications.length">
+                    <tr>
+                        <td>
+                            <h1 class="ml-5">There are no notifications...</h1>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-pagination *ngIf="notifications.length" (page)="setActivePage($event)" [activePage]="activePage"
+                [maxPage]="maxPage" [maxPages]="maxPages" [pagination]="pagination" [windowSize]="windowSize"
+                [results]="notifications.length"></app-pagination>
+        </div>
+    </div>
+</div>
