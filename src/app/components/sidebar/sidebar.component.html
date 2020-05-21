@@ -269,24 +269,24 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
-            <span
-            *ngIf="notifications.length"
+            <span *ngIf="notifications.length"
               class="absolute top-0 right-0 block h-3 w-3 rounded-full text-white shadow-lg bg-red-600 text-white"></span>
           </button>
 
-         
+
+
           <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10  border-2"
             *ngIf="showNotifications">
-            <div class="px-2 py-2 bg-text-gray-400" *ngIf="notifications.length  && showNotifications" >
+            <div class="px-2 py-2 bg-text-gray-400" *ngIf="notifications.length  && showNotifications">
               <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold">
-                Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded" style="border-radius: 100%;">{{badgeCount}}</span>
+                Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded"
+                  style="border-radius: 100%;">{{badgeCount}}</span>
               </h6>
             </div>
-            <div class="px-7 py-5 " 
-            *ngIf="notifications.length === 0  && showNotifications"
-             >
-              <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold"  *ngIf="notifications.length === 0  && showNotifications">
-                You have 0 new notifications 
+            <div class="px-7 py-5 " *ngIf="notifications.length === 0  && showNotifications">
+              <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold"
+                *ngIf="notifications.length === 0  && showNotifications">
+                You have 0 new notifications
               </h6>
             </div>
             <div class="" *ngIf="notifications.length  && showNotifications">
@@ -308,8 +308,9 @@
                 </div>
               </a>
             </div>
-            <div class=" text-center border-t hover:bg-blue-100 p-3  " *ngIf="notifications.length  && showNotifications">
-              <a class="text-blue-500" [routerLink]="['/notifications']">
+            <div class=" text-center border-t hover:bg-blue-100 p-3  "
+              *ngIf="notifications.length  && showNotifications ">
+              <a class="text-blue-500" [routerLink]="['/notifications']" (click)="showNotifications = false">
                 View all
               </a>
             </div>
