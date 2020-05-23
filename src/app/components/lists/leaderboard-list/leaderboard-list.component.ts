@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../../utils/interfaces/user/User';
+import {User} from '../../../utils/interfaces/User';
 
 @Component({
   selector: 'app-leaderboard-list',

@@ -24,14 +24,14 @@ const routes: Routes = [
     canActivate: [CheckAuth]
   }, {
     path: '',
-    component: AuthLayoutComponent,
+    // component: AuthLayoutComponent,
     children: [
       {
         path: '',
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ],
-    canActivate: [CheckAuth]
+    // canActivate: [CheckAuth]
   }, {
     path: '*',
     redirectTo: 'dashboard'

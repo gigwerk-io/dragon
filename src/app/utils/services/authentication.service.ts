@@ -10,6 +10,7 @@ import { StorageKeys } from '../interfaces/storage/constants';
 import { ValidateTokenResponse } from '../interfaces/auth/ValidateTokenResponse';
 import { GenericResponse, Response } from '../interfaces/api/GenericResponse';
 import { ToastrService } from 'ngx-toastr';
+import {Login} from '../interfaces/Login';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,24 @@ export class AuthenticationService {
     );
   }
 
+  loginNew(body: LoginRequest): Observable<Response<Login>> {
+    return this.http.post<Response<Login>>(`${environment.apiUrl}/login`, body).pipe(
+      tap(async (res: Response<Login>) => {
+        await this.storage.set(StorageKeys.ACCESS_TOKEN, res.data.token);
+        await this.storage.set(StorageKeys.USER, res.data.user);
+        // get owned businesses
+        const businesses = res.data.user.businesses.filter((business) => {
+          return business.owner_id === res.data.user.id;
+        });
+        delete res.data.user.businesses;
+
+        await this.storage.set(StorageKeys.USER, res.data.user);
+        await this.storage.set(StorageKeys.SELECTED_BUSINESS, businesses[0]);
+        await this.storage.set(StorageKeys.BUSINESSES, businesses);
+      })
+    );
+  }
+
   logout(token): Observable<GenericResponse> {
     return this.http.get<GenericResponse>(`${environment.apiUrl}/logout`, token).pipe(
       // @ts-ignore
@@ -56,7 +75,7 @@ export class AuthenticationService {
       this.storage.get(StorageKeys.ACCESS_TOKEN).then(token => {
         const authHeader = {
           headers: {
-            Authorization: (token) ? token : ''
+            Authorization: (token) ? 'Bearer ' + token : ''
           }
         };
         return this.http.get<Response<ValidateTokenResponse>>(`${environment.apiUrl}/validate`, authHeader).toPromise().then((res) => res);

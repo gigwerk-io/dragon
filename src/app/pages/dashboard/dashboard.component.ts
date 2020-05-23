@@ -4,7 +4,7 @@ import {Storage} from '@ionic/storage';
 import {StatsResponse} from '../../utils/interfaces/dashboard/StatsResponse';
 import {Response} from '../../utils/interfaces/api/GenericResponse';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {User} from '../../utils/interfaces/user/User';
+import {User} from '../../utils/interfaces/User';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     await this.getTimeWorkedStat();
     await this.getSalesGraphData();
     await this.getBarChartData();
-    await this.getTopWorkers();
+    await this.getLeaderboard();
     setTimeout(() => {
       this.ngxSpinner.hide();
     }, 1000);
@@ -71,8 +71,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  async getTopWorkers() {
-    this.dashboardService.getTopWorkers().then(res => {
+  async getLeaderboard() {
+    this.dashboardService.getLeaderboard().then(res => {
       this.topWorkers = res.data;
     });
   }

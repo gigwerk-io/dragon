@@ -28,7 +28,8 @@ export class CheckAuth implements CanActivate {
           }
         } else {
           if (!(state.url === '/login')) {
-            this.router.navigateByUrl('/login');
+            console.log('foo')
+            // this.router.navigateByUrl('/login');
             this.toast.error('Please login to access this page!', 'Session error!');
           }
         }
@@ -36,7 +37,8 @@ export class CheckAuth implements CanActivate {
       })
       .catch(error => {
         this.router.navigateByUrl('/login');
-        this.toast.error(error.error, 'Error with session token!');
+        console.log('bar')
+        // this.toast.error(error.error, 'Error with session token!');
         return false;
       });
   }

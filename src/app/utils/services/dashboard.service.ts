@@ -5,7 +5,7 @@ import { StatsResponse } from '../interfaces/dashboard/StatsResponse';
 import { ChartData } from '../interfaces/dashboard/ChartData';
 import { RESTService } from './rest.service';
 import { Response } from '../interfaces/api/GenericResponse';
-import { User } from '../interfaces/user/User';
+import {User} from '../interfaces/User';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +35,7 @@ export class DashboardService extends RESTService {
   }
 
   getSalesGraph(): Promise<Response<ChartData>> {
-    return this.makeHttpRequest(`sales-graph`, `GET`)
+    return this.makeHttpRequest(`payouts-graph`, `GET`)
       .toPromise()
       .then((res) => res.toPromise());
   }
@@ -46,8 +46,8 @@ export class DashboardService extends RESTService {
       .then((res) => res.toPromise());
   }
 
-  getTopWorkers(): Promise<Response<User[]>> {
-    return this.makeHttpRequest(`top-workers`, `GET`)
+  getLeaderboard(): Promise<Response<User[]>> {
+    return this.makeHttpRequest(`leaderboard`, `GET`)
       .toPromise()
       .then((res) => res.toPromise());
   }
