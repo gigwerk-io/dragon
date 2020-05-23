@@ -28,16 +28,19 @@ export class CheckAuth implements CanActivate {
           }
         } else {
           if (!(state.url === '/login')) {
-            // this.router.navigateByUrl('/login');
+            this.router.navigateByUrl('/login');
             this.toast.error('Please login to access this page!', 'Session error!');
           }
         }
         return true;
       })
       .catch(error => {
-        this.router.navigateByUrl('/login');
-        // this.toast.error(error.error, 'Error with session token!');
-        return false;
+        switch (state.url) {
+          case '/login':
+            return true;
+          default:
+            this.router.navigateByUrl('/login');
+        }
       });
   }
 }

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.loginSubscription = this.auth.login(this.loginRequest).subscribe((res) => {
         console.log(res);
-        // this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/dashboard');
       }, error => {
         this.toast.error(error.error.message);
       });
