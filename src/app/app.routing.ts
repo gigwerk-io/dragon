@@ -31,7 +31,7 @@ const routes: Routes = [
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
       }
     ],
-    // canActivate: [CheckAuth]
+    canActivate: [CheckAuth]
   }, {
     path: '*',
     redirectTo: 'dashboard'

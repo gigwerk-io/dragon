@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardService} from '../../utils/services/dashboard.service';
 import {Storage} from '@ionic/storage';
-import {StatsResponse} from '../../utils/interfaces/dashboard/StatsResponse';
-import {Response} from '../../utils/interfaces/api/GenericResponse';
+import {StatsResponse} from '../../utils/interfaces/responses/StatsResponse';
+import {Response} from '../../utils/interfaces/responses/GenericResponse';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {User} from '../../utils/interfaces/User';
+import {User} from '../../utils/interfaces/models/User';
 
 @Component({
   selector: 'app-dashboard',

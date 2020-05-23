@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../../utils/interfaces/storage/constants';
+import {StorageKeys} from '../../utils/interfaces/enum/constants';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../utils/services/authentication.service';
 

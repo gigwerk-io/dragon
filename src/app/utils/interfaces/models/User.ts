@@ -1,4 +1,4 @@
-import {Profile} from './Profile';
+import {UserProfile} from './UserProfile';
 import {Business} from './Business';
 
 export interface User {
@@ -16,11 +16,12 @@ export interface User {
   created_at?: string;
   updated_at?: string;
   isActive?: boolean;
-  profile?: Profile;
+  profile?: UserProfile;
   payouts?: object;
   payments?: object;
   rating?: number;
   amount?: number;
+  role?: string;
   marketplace_proposals?: object;
   marketplace_jobs?: object;
   pivot?: object;

@@ -1,4 +1,4 @@
-export interface Profile {
+export interface UserProfile {
   id?: number;
   user_id?: number;
   image?: string;

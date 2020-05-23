@@ -3,9 +3,8 @@ import {RESTService} from './rest.service';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
 import {Observable} from 'rxjs';
-import {Notification} from '../interfaces/notification/Notification';
-import {Response} from '../interfaces/api/GenericResponse';
-import {Payment} from '../interfaces/finances/credit-codes';
+import {Response} from '../interfaces/responses/GenericResponse';
+import {Notification} from '../interfaces/models/Notification';
 
 @Injectable({
   providedIn: 'root'

@@ -1,3 +1,5 @@
+import {BusinessProfile} from './BusinessProfile';
+
 export interface Business {
   id?: number;
   owner_id?: number;
@@ -8,6 +10,6 @@ export interface Business {
   created_at?: string;
   updated_at?: string;
   pivot?: object;
-  business_profile?: object;
+  business_profile?: BusinessProfile;
   business_location?: object;
 }

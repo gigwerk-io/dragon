@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   onLogin(form: NgForm) {
     this.submitted = form.valid;
     if (form.valid) {
-      this.loginSubscription = this.auth.loginNew(this.loginRequest).subscribe((res) => {
+      this.loginSubscription = this.auth.login(this.loginRequest).subscribe((res) => {
         console.log(res);
         // this.router.navigateByUrl('/dashboard');
       }, error => {

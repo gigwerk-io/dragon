@@ -1,24 +1,20 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Storage} from '@ionic/storage';
-import {Organization} from '../interfaces/favr/Organization';
-import {StorageKeys} from '../interfaces/storage/constants';
+import {StorageKeys} from '../interfaces/enum/constants';
 import {HttpParams} from '@angular/common/http';
 import {from, Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
-import {Business} from '../interfaces/Business';
+import {Business} from '../interfaces/models/Business';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RESTService {
 
-  public organization: Organization;
   public business: Business;
 
   constructor(public http: HttpClient, public storage: Storage) {
-    this.storage.get(StorageKeys.ORGANIZATION)
-      .then(res => this.organization = res);
 
     this.storage.get(StorageKeys.SELECTED_BUSINESS)
       .then(res => this.business = res);
@@ -30,14 +26,6 @@ export class RESTService {
 
   public async getBusiness(): Promise<Business> {
     return new Promise(resolve => resolve(this.business));
-  }
-
-  public async organizationId(): Promise<number> {
-    return await this.getOrganization().then(org => org.id);
-  }
-
-  public async getOrganization(): Promise<Organization> {
-    return new Promise(resolve => resolve(this.organization));
   }
 
   /**

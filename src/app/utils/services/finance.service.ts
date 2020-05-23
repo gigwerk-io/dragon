@@ -3,9 +3,8 @@ import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Storage } from '@ionic/storage';
-import { StorageKeys } from '../interfaces/storage/constants';
-import { Payment } from '../interfaces/finances/credit-codes';
-import { Response } from '../interfaces/api/GenericResponse';
+import { Payment } from '../interfaces/models/Payment';
+import { Response } from '../interfaces/responses/GenericResponse';
 
 
 @Injectable({
