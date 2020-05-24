@@ -99,7 +99,7 @@ workflows:
   deployment:
     jobs:
       - install-dependencies
-      - karma-test:
+      - test:
           requires:
             - install-dependencies
       - build-dev:
