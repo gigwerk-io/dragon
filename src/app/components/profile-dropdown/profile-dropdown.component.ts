@@ -36,6 +36,7 @@ export class ProfileDropdownComponent implements OnInit {
         }
       };
       this.auth.logout(headers).subscribe(res => {
+        console.log(res);
         this.router.navigateByUrl('/login');
       });
     });

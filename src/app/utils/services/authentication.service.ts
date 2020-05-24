@@ -38,7 +38,8 @@ export class AuthenticationService {
   }
 
   logout(token): Observable<GenericResponse> {
-    return this.http.get<GenericResponse>(`${environment.apiUrl}/logout`, token).pipe(
+    console.log(token);
+    return this.http.post<GenericResponse>(`${environment.apiUrl}/logout`, null, token).pipe(
       // @ts-ignore
       tap(async (res: GenericResponse) => {
         await this.storage.remove(StorageKeys.ACCESS_TOKEN);

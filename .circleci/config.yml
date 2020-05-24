@@ -41,17 +41,13 @@ jobs:
           paths:
             - "*"
 
-  karma-test:
+  test:
     <<: *defaults
     steps:
       - run: *install-chrome
       - attach_workspace:
           at: /tmp/workspace
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - "*"
-#      - run: npm run test
+      - run: npm run e2e
 
   build-dev:
     <<: *defaults
