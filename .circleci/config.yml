@@ -108,21 +108,3 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-to-dev:
-          requires:
-            - build-dev
-          filters:
-            branches:
-              only: master
-      - build-prod:
-          requires:
-            - karma-test
-          filters:
-            branches:
-              only: production
-      - deploy-to-prod:
-          requires:
-            - build-prod
-          filters:
-            branches:
-              only: production
