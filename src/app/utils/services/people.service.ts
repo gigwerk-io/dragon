@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { PendingInvitationsResponse, SingleUserResponse, User, UsersResponse } from '../interfaces/user/User';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Role } from '../interfaces/storage/constants';
+import { Role } from '../interfaces/enum/constants';
 import { ToastrService } from 'ngx-toastr';
-import { Response } from '../interfaces/api/GenericResponse';
+import { Response } from '../interfaces/responses/GenericResponse';
+import {User} from '../interfaces/models/User';
 
 
 @Injectable({
@@ -69,42 +69,10 @@ export class PeopleService extends RESTService {
       .then((res: Observable<any>) => res.toPromise());
   }
 
-  inviteUsers(file: File): Promise<any> {
-    return this.makeHttpRequest(`invite`, 'POST', file)
-      .toPromise()
-      .then((res: Observable<any>) => res.toPromise());
-  }
-
-  getPendingInvites(): Promise<PendingInvitationsResponse> {
-    return this.makeHttpRequest(`invitations`, 'GET')
-      .toPromise()
-      .then((res: Observable<PendingInvitationsResponse>) => res.toPromise());
-  }
-
   resetPassword(id: number, body: { id: number; user_id: number; }): Promise<any> {
     return this.makeHttpRequest(`password-reset/${id}`, 'POST', body)
       .toPromise()
       .then((res: Observable<any>) => res.toPromise());
   }
-
-
-  getInvitations(): Promise<Response<User[]>> {
-    return this.makeHttpRequest(`invitations`, 'GET')
-      .toPromise()
-      .then((res) => res.toPromise());
-  }
-
-  deleteOrResendInvite(id: number, type: string): void {
-    const message = type === 'POST' ? 'Invitation Sent' : 'Invitation Deleted';
-
-    // type: POST | DELETE
-    this.makeHttpRequest(`invitation/${id}`, type)
-      .toPromise()
-      .then(() => {
-        this.toast.success(message);
-      }).catch(() => this.toast.error('Something went wrong'));
-  }
-
-
 
 }

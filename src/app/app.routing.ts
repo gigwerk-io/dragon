@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [CheckAuth]
   }, {
     path: '',
-    component: AuthLayoutComponent,
+    // component: AuthLayoutComponent,
     children: [
       {
         path: '',

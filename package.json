@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve & ngtw watch",
     "build": "ngtw build && ng build",
+    "dev": "ngtw build && ng build --configuration=dev",
+    "prod": "ngtw build && ng build --configuration=prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

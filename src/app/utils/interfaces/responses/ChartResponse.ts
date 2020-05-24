@@ -1,4 +1,4 @@
-export interface ChartData {
+export interface ChartResponse {
   labels: any;
   datasets: [{
     label: string;

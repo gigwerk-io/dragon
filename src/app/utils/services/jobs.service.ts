@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { JobsResponse, MarketplaceJob, SingleJobResponse } from '../interfaces/favr/MarketplaceJob';
+import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
 import { Observable } from 'rxjs';
-import { Response } from '../interfaces/api/GenericResponse';
+import { Response } from '../interfaces/responses/GenericResponse';
 
 @Injectable({
   providedIn: 'root'
