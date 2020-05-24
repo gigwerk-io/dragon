@@ -104,7 +104,7 @@ workflows:
             - install-dependencies
       - build-dev:
           requires:
-            - karma-test
+            - test
           filters:
             branches:
               only: master
