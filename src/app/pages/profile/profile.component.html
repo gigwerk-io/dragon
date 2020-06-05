@@ -1,0 +1,595 @@
+<ngx-spinner></ngx-spinner>
+
+<main class="profile-page" *ngIf="user" style="margin-top: -23px;">
+    <section class="relative block bg-white" style="height: 500px;">
+        <div class="absolute top-0 w-full h-full bg-center bg-cover"
+            style='background-image: url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80");'>
+            <span id="blackOverlay" class="w-full h-full absolute opacity-50 bg-black"></span>
+        </div>
+        <div class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden">
+            <svg class="absolute bottom-0 overflow-hidden" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                version="1.1" viewBox="0 0 2560 100" x="0" y="0">
+                <polygon class="text-gray-300 fill-current" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </section>
+    <section class="relative py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64 ">
+                <div class="px-6">
+                    <div class="flex flex-wrap justify-center">
+                        <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                            <div class="relative">
+                                <img alt="..." [src]="user.profile.image"
+                                    class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
+                                    style="max-width: 150px;" />
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
+                            <div class="py-6 px-3 mt-32 sm:mt-0" *ngIf="!user.is_admin">
+                                <button (click)="removeUser()"
+                                    class="bg-red-600  active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                                    type="button" style="transition: all 0.15s ease 0s;">
+                                    Remove User
+                                </button>
+                            </div>
+                        </div>
+                        <div class="w-full lg:w-4/12 px-4 lg:order-1">
+                            <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                                <div class="mr-4 p-3 text-center cursor-pointer outline-none  "
+                                    [routerLink]="['/people']">
+                                    <span class="text-xl font-bold block uppercase text-gray-700"><i
+                                            class="fas fa-user-friends"></i>
+                                    </span>
+                                    <span class="text-sm text-gray-500">People</span>
+                                </div>
+                                <div class="mr-4 p-3 text-center cursor-pointer outline-none  "
+                                    [routerLink]="['/settings']">
+                                    <span class="text-xl font-bold block uppercase text-gray-700"><i
+                                            class="fas fa-cog"></i>
+                                    </span>
+                                    <span class="text-sm text-gray-500">Settings</span>
+                                </div>
+                                <div class="lg:mr-4 p-3 text-center">
+                                    <span
+                                        class="text-xl font-bold block uppercase tracking-wide text-gray-700">{{user.isActive ? 'Active' : 'Inactive'}}</span><span
+                                        class="text-sm text-gray-500">Status</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-12">
+                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
+                            {{user.first_name}} {{user.last_name}}
+                        </h3>
+                        <div class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
+                            <i class="fas fa-calendar-alt  mr-2 text-lg text-gray-500"></i>
+                            <!-- <i class="fas fa-calendar-check  mr-2 text-lg text-gray-500"></i> -->
+                            <!-- Joined {{user.profile.created_at  | timeAgo}} -->
+                            Joined {{user.profile.created_at | date:'fullDate'}}
+                        </div>
+                        <div class="mb-2 text-gray-700 mt-10">
+                            <i class="fas fa-envelope-square mr-2 text-lg text-gray-500"></i>
+                            <a href="mailto:{{user.email}}">{{user.email}}</a>
+                            <!-- {{user.email}} -->
+                        </div>
+                        <div class="mb-2 text-gray-700 ">
+                            <i class="fas fa-phone mr-2 text-lg text-gray-500"></i>
+                            {{user.phone}}
+                        </div>
+                        <div class="mb-2 text-gray-700 ">
+                            <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i>
+                            {{Roles[role]}}
+                        </div>
+                        <div class="mb-2 text-gray-700" *ngIf="user.isActive">
+                            <i class="fas fa-user-check mr-2 text-lg text-gray-500"></i>
+                            Last seen {{user.last_seen_at | timeAgo}}
+                        </div>
+                        <div class="mb-2 text-gray-700" *ngIf="!user.isActive">
+                            <i class="fas fa-moon text-lg text-gray-500"></i>
+                            Last seen {{user.last_seen_at | timeAgo}}
+                        </div>
+                    </div>
+                    <div class="mt-10 py-10 border-t border-gray-300 text-center">
+                        <div class="flex flex-wrap justify-center">
+                            <div class="w-full lg:w-9/12 px-4">
+                                <p class="mb-4 text-lg leading-relaxed text-gray-800">
+                                    {{user.profile.description}}
+                                </p>
+                                <button type="button" (click)="showModal = true"
+                                    class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                                    <i class="fas fa-user -ml-1 mr-3 h-5 w-5"></i>
+                                    <!-- <svg class="-ml-1 mr-3 h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884zM18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                            clip-rule="evenodd" />
+                                    </svg> -->
+                                    Update Role
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="mt-10 py-10 border-t border-gray-300 text-center">
+                        <div class="flex flex-wrap justify-center">
+                            <div class="w-full lg:w-9/12 px-4">
+                                <p class="mb-4 text-lg leading-relaxed text-gray-800">
+                                    {{user.profile.description}}
+                                </p>
+                                <a class="font-normal text-pink-500" (click)="showModal=true"> Modify User Account</a>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+<!-- TABLE -->
+
+<div class="container mx-auto">
+    <div class="flex flex-col" *ngIf="pastPayouts">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div
+                class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+
+                <!-- PASTPAYOUTTABLE -->
+
+                <div *ngIf="activeClass.pastPayouts">
+                    <table class="min-w-full">
+                        <thead class="min-w-full">
+                            <div class="ml-auto inline-block ">
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastPayouts()"
+                                    [ngClass]="{'font-bold': activeClass.pastPayouts, underline: activeClass.pastPayouts}">
+                                    Past Payouts</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastRequests()"
+                                    [ngClass]="{'font-bold': activeClass.pastRequests, underline: activeClass.pastRequests}">
+                                    Past
+                                    Requests</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium " (click)="selectPastJobs()"
+                                    [ngClass]="{'font-bold': activeClass.pastJobs, underline:  activeClass.pastJobs}">
+                                    Past Jobs</p>
+                            </div>
+                            <div class="inline-block ml-20">
+                                <div class="relative rounded-md shadow-sm w-250   ">
+                                    <input id="email" class="form-input block w-full sm:text-sm sm:leading-5"
+                                        placeholder="Search..." (keyup)="onSearchPayoutTable($event)" />
+                                </div>
+                            </div>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    JOB
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    INTENSITY
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Earned
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Date of Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr
+                                *ngFor="let payout of pastPayouts | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index">
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <a [routerLink]="['profile', 1]">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full"
+                                                    src="{{payout.marketplace_job.image_one}}" alt="worker image" />
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm leading-5 font-medium text-gray-900">Description
+                                                </div>
+                                                <div class="text-sm leading-5 text-gray-500">
+                                                    {{payout.marketplace_job.description}}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{payout.marketplace_job.intensity}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <span *ngIf="payout.marketplace_job.status === 'Complete' ? true : false"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                        Completed
+                                    </span>
+                                    <span *ngIf="payout.marketplace_job.status === 'Complete' ? false : true"
+                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        In Progress
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{payout.amount | currency}}
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{payout.created_at | date:'fullDate'}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- <tr *ngIf="!pastPayouts.length" class="bg-red">
+                                <td>
+                                    No data to display...
+                                </td>
+                            </tr> -->
+                        </tbody>
+
+
+
+                    </table>
+                    <app-pagination (page)="setActivePage($event)" [activePage]="activePage" [maxPage]="maxPage"
+                        [maxPages]="maxPages" [pagination]="pagination" [windowSize]="windowSize"
+                        [results]="pastPayouts.length">
+                    </app-pagination>
+                </div>
+
+                <!-- PASTJOBS -->
+
+                <div *ngIf="activeClass.pastJobs">
+                    <table class="min-w-full">
+                        <thead class="min-w-full">
+                            <div class="ml-auto inline-block">
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastPayouts()"
+                                    [ngClass]="{'font-bold': activeClass.pastPayouts, underline: activeClass.pastPayouts}">
+                                    Past Payouts</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastRequests()"
+                                    [ngClass]="{'font-bold': activeClass.pastRequests, underline: activeClass.pastRequests}">
+                                    Past
+                                    Requests</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium " (click)="selectPastJobs()"
+                                    [ngClass]="{'font-bold': activeClass.pastJobs, underline:  activeClass.pastJobs}">
+                                    Past Jobs</p>
+                            </div>
+                            <div class="inline-block ml-20">
+                                <div class="relative rounded-md shadow-sm w-250   ">
+                                    <input id="email" class="form-input block w-full sm:text-sm sm:leading-5"
+                                        placeholder="Search..." (keyup)="onSearchPastJobs($event)" />
+                                </div>
+                            </div>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Jobs
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Intensity
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Price
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Date Created
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr
+                                *ngFor="let job of pastJobs | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index">
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 max-w-md overflow-hidden">
+                                    <a [routerLink]="['profile', 1]">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full" src="{{job.image_one}}"
+                                                    alt="worker image" />
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm leading-5 font-medium text-gray-900">Description
+                                                </div>
+                                                <div class="text-sm leading-5 text-gray-500">
+                                                    {{job.description}}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{job.status}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{job.intensity}}
+                                    </div>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{job.price | currency}}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    <div class="text-sm leading-5 text-gray-900">
+                                        {{job.created_at | date:"fullDate"}}
+                                    </div>
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <a [routerLink]="['/profile', job.id]"
+                                        class="text-indigo-600 hover:text-indigo-900">View</a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <app-pagination (page)="setActivePage($event)" [activePage]="activePage" [maxPage]="maxPage"
+                        [maxPages]="maxPages" [pagination]="pagination" [windowSize]="windowSize"
+                        [results]="pastJobs.length">
+                    </app-pagination>
+                </div>
+
+                <!-- PAST REQUESTS -->
+
+                <div *ngIf="activeClass.pastRequests">
+                    <table class="min-w-full">
+                        <thead class="min-w-full">
+                            <div class="ml-auto inline-block ">
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastPayouts()"
+                                    [ngClass]="{'font-bold': activeClass.pastPayouts, underline: activeClass.pastPayouts}">
+                                    Past Payouts</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium" (click)="selectPastRequests()"
+                                    [ngClass]="{'font-bold': activeClass.pastRequests, underline: activeClass.pastRequests}">
+                                    Past
+                                    Requests</p>
+                                <p class="inline-block mx-2 cursor-pointer font-medium " (click)="selectPastJobs()"
+                                    [ngClass]="{'font-bold': activeClass.pastJobs, underline:  activeClass.pastJobs}">
+                                    Past Jobs</p>
+                            </div>
+                            <div class="inline-block ml-20">
+                                <div class="relative rounded-md shadow-sm w-250   ">
+                                    <input id="email" class="form-input block w-full sm:text-sm sm:leading-5"
+                                        placeholder="Search..." (keyup)="onSearchPastRequests($event)" />
+                                </div>
+                            </div>
+                        </thead>
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    Job
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    status
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    intensity
+                                </th>
+                                <th
+                                    class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                                    views
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+                            <tr
+                                *ngFor="let request of pastRequests | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index">
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 max-w-md overflow-hidden">
+                                    <a [routerLink]="['/profile', request.user_id]">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full"
+                                                    src="{{request.marketplace_job.image_one}}" alt="worker image" />
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm leading-5 font-medium text-gray-900">Description
+                                                </div>
+                                                <div class="text-sm leading-5 text-gray-500">
+                                                    {{request.marketplace_job.description}}</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{request.marketplace_job.status}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{request.marketplace_job.intensity}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                    {{request.marketplace_job.views}}
+                                </td>
+                                <td
+                                    class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                                    <a [routerLink]="['/profile', request.marketplace_job.id]"
+                                        class="text-indigo-600 hover:text-indigo-900">View</a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <app-pagination (page)="setActivePage($event)" [activePage]="activePage" [maxPage]="maxPage"
+                        [maxPages]="maxPages" [pagination]="pagination" [windowSize]="windowSize"
+                        [results]="pastRequests.length">
+                    </app-pagination>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL -->
+
+<div class="fixed bottom-0 inset-x-0 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+    *ngIf="showModal">
+    <!--
+      Background overlay, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 transition-opacity" (click)="showModal=false">
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <!--
+      Modal panel, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        To: "opacity-100 translate-y-0 sm:scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 translate-y-0 sm:scale-100"
+        To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    -->
+    <div class=" w-full bg-white rounded-lg px-4 pt-5 pb-4 overflow-hidden shadow-xl transform transition-all sm:max-w-sm sm:w-full sm:p-6"
+        role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <form class="w-full max-w-lg" [formGroup]="userProfileForm" (ngSubmit)="onSubmit()">
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-first-name">
+                        First Name
+                    </label>
+                    <input
+                        class="text-gray-400 appearance-none block w-full bg-gray-200  border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="grid-first-name" type="text" placeholder="{{user.first_name}}" formControlName="first_name"
+                        required>
+                    <!-- <p class="text-red-500 text-xs italic">Please fill out this field.</p> -->
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-name">
+                        Last Name
+                    </label>
+                    <input
+                        class=" text-gray-400 appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-name" type="text" placeholder="{{user.last_name}}" value="{{user.last_name}}"
+                        formControlName="last_name" required>
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-email">
+                        Email
+                    </label>
+                    <input
+                        class="text-gray-400 appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-email" type="email" placeholder="{{user.email}}" value="{{user.email}}"
+                        formControlName="email" required>
+                </div>
+                <div class="w-full md:w-1/2 px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-last-phone">
+                        Phone
+                    </label>
+                    <input
+                        class="text-gray-400 appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-last-phone" type="text" placeholder="{{user.phone}}" value="{{user.phone}}"
+                        formControlName="phone" required>
+                </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                        Role
+                    </label>
+                    <div class="relative">
+                        <select
+                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="grid-role" value="{{role}}" selected (change)="changeUserRole($event)">
+                            <option value="1">Verified Freelancer</option>
+                            <option value="2">Pending Freelancer</option>
+                            <option value="3">Customer</option>
+                            <option value="4">Rejected Freelancer</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 ml-auto">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                        Status
+                    </label>
+                    <div class="relative">
+                        <select
+                            class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="grid-role" value="{{user.isActive ? 'active' : 'inactive'}}" formControlName="status"
+                            required>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                        for="grid-description">
+                        Description
+                    </label>
+                    <textarea formControlName="description" required
+                        class="text-gray-400 appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        id="grid-description" type="textarea" placeholder="{{user.profile.description}}"
+                        value="{{user.profile.description}}" rows="4"
+                        cols="50"> {{user.profile.description}} </textarea>
+                    <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center mt-4 mx-auto">
+                <div class="w-full lg:w-9/12 px-4">
+
+                    <button type="submit"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                        <i class="fas fa-user -ml-1 mr-1 h-5 w-5"></i>
+                        SAVE
+                    </button>
+                    <button type="button" (click)="showModal = false"
+                        class="ml-2 inline-flex items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
+                        <i class="fas fa-ban -ml-1 mr-1 h-5 w-5"></i>
+                        <!-- <i class="fas fa-cancel -ml-1 mr-3 h-5 w-5"></i> -->
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

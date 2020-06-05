@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { PendingInvitationsResponse, SingleUserResponse, User, UsersResponse } from '../interfaces/user/User';
+import { PendingInvitationsResponse, SingleUserResponse, User, UsersResponse, GigwerkUser } from '../interfaces/user/User';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Role } from '../interfaces/storage/constants';
@@ -42,11 +42,11 @@ export class PeopleService extends RESTService {
     return this.getAllUsers().then(allUsers => allUsers.data.filter(user => user.role === Role.CUSTOMER));
   }
 
-  getSingleUser(id: number): Promise<Response<User>> {
+  getSingleUser(id: number): Promise<Response<GigwerkUser>> {
     return this.makeHttpRequest(`user/${id}`, 'GET')
       .toPromise()
-      .then((res: Observable<Response<User>>) => {
-        return res.toPromise().then((r: Response<User>) => r);
+      .then((res: Observable<Response<GigwerkUser>>) => {
+        return res.toPromise().then((r: Response<GigwerkUser>) => r);
       });
   }
 
@@ -105,6 +105,18 @@ export class PeopleService extends RESTService {
       }).catch(() => this.toast.error('Something went wrong'));
   }
 
+  changeUserRole(id: number, role: number) {
+    return this.makeHttpRequest(`user/${id}`, 'PATCH', { role_id: role })
+      .toPromise()
+      .then((res: Observable<any>) => res.toPromise());
+  }
+
+  removeUser(id: number) {
+
+    return this.makeHttpRequest(`user/${id}`, 'DELETE')
+      .toPromise()
+      .then((res: Observable<any>) => res.toPromise());
+  }
 
 
 }

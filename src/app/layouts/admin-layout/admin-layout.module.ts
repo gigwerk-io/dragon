@@ -10,8 +10,9 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {ComponentsModule} from '../../components/components.module';
-import {SettingsComponent} from '../../pages/settings/settings.component';
+import { ComponentsModule } from '../../components/components.module';
+import { SettingsComponent } from '../../pages/settings/settings.component';
+import { ProfileComponent } from 'src/app/pages/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,9 @@ import {SettingsComponent} from '../../pages/settings/settings.component';
   ],
   declarations: [
     DashboardComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProfileComponent,
+
   ]
 })
 

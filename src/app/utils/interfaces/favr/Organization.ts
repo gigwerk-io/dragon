@@ -1,5 +1,6 @@
 export interface Organization {
   id: number;
+  owner_id: number;
   organization: {
     id: number;
     unique_id: any;
