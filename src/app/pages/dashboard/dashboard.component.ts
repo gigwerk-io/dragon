@@ -5,6 +5,7 @@ import {StatsResponse} from '../../utils/interfaces/responses/StatsResponse';
 import {Response} from '../../utils/interfaces/responses/GenericResponse';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {User} from '../../utils/interfaces/models/User';
+import {Stats} from '../../utils/interfaces/models/Stats';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,62 +17,35 @@ export class DashboardComponent implements OnInit {
   trafficStats: StatsResponse;
   date = new Date().getFullYear();
   totalHoursWorked: number;
-  salesChart;
-  barChart;
+  paymentsChart;
+  jobsChart;
+  stats: Stats;
   topWorkers: User[];
 
   constructor(private dashboardService: DashboardService, private storage: Storage, private ngxSpinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
-    this.ngxSpinner.show();
-    this.getDashboardData();
+    this.getGraphs();
+    this.getStats();
+    this.getLeaderboard();
   }
 
-  async getDashboardData() {
-    await this.getTrafficData();
-    await this.getUserData();
-    await this.getTimeWorkedStat();
-    await this.getSalesGraphData();
-    await this.getBarChartData();
-    await this.getLeaderboard();
-    setTimeout(() => {
-      this.ngxSpinner.hide();
-    }, 1000);
-    return;
-  }
-
-  async getUserData() {
-    return this.dashboardService.getUserStats().then(res => {
-      this.userStats = res.data;
+  getStats() {
+    this.dashboardService.getStats().then(res => {
+      this.stats = res.data;
+      console.log(this.stats);
     });
   }
 
-  async getTrafficData() {
-    return this.dashboardService.getTrafficStats().then(res => {
-      this.trafficStats = res.data;
+  getGraphs() {
+    this.dashboardService.getGraphs().then(res => {
+      this.paymentsChart = res.data.payments;
+      this.jobsChart = res.data.jobs;
     });
   }
 
-  async getTimeWorkedStat() {
-    return this.dashboardService.getTimeWorked()
-      .then((res: Response<{ minutes: number }>) => this.totalHoursWorked = Math.floor(res.data.minutes / 60));
-
-  }
-
-  async getSalesGraphData() {
-    return this.dashboardService.getSalesGraph().then(res => {
-      this.salesChart = res.data;
-    });
-  }
-
-  async getBarChartData() {
-    return this.dashboardService.getJobsGraph().then(res => {
-      this.barChart = res.data;
-    });
-  }
-
-  async getLeaderboard() {
+  getLeaderboard() {
     this.dashboardService.getLeaderboard().then(res => {
       this.topWorkers = res.data;
     });

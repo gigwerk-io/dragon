@@ -6,6 +6,9 @@ import { ChartResponse} from '../interfaces/responses/ChartResponse';
 import { RESTService } from './rest.service';
 import { Response } from '../interfaces/responses/GenericResponse';
 import {User} from '../interfaces/models/User';
+import {Stats} from '../interfaces/models/Stats';
+import {Graph} from '../interfaces/models/Graph';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,44 +19,21 @@ export class DashboardService extends RESTService {
     super(http, storage);
   }
 
-  getUserStats(): Promise<Response<StatsResponse>> {
-    return this.makeHttpRequest(`user-stats`, `GET`)
+  getStats(): Promise<Response<Stats>> {
+    return this.makeHttpRequest(`stats`, `GET`)
       .toPromise()
-      .then((res) => res.toPromise());
+      .then((res:  Observable<Response<Stats>>) => res.toPromise());
   }
 
-  getTrafficStats(): Promise<Response<StatsResponse>> {
-    return this.makeHttpRequest(`traffic-stats`, `GET`)
+  getGraphs(): Promise<Response<Graph>> {
+    return this.makeHttpRequest(`graphs`, `GET`)
       .toPromise()
-      .then((res) => res.toPromise());
+      .then((res:  Observable<Response<Graph>>) => res.toPromise());
   }
 
-  getProfitStats(): Promise<Response<StatsResponse>> {
-    return this.makeHttpRequest(`profit-stats`, `GET`)
-      .toPromise()
-      .then((res) => res.toPromise());
-  }
-
-  getSalesGraph(): Promise<Response<ChartResponse>> {
-    return this.makeHttpRequest(`payouts-graph`, `GET`)
-      .toPromise()
-      .then((res) => res.toPromise());
-  }
-
-  getJobsGraph(): Promise<Response<ChartResponse>> {
-    return this.makeHttpRequest(`jobs-graph`, `GET`)
-      .toPromise()
-      .then((res) => res.toPromise());
-  }
 
   getLeaderboard(): Promise<Response<User[]>> {
     return this.makeHttpRequest(`leaderboard`, `GET`)
-      .toPromise()
-      .then((res) => res.toPromise());
-  }
-
-  getTimeWorked(): Promise<Response<{ minutes: number }>> {
-    return this.makeHttpRequest(`time-worked`, `GET`)
       .toPromise()
       .then((res) => res.toPromise());
   }
