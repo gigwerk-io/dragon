@@ -1,5 +1,6 @@
 import {UserProfile} from './UserProfile';
 import {Business} from './Business';
+import {Status} from './Status';
 
 export interface User {
   id?: number;
@@ -26,4 +27,5 @@ export interface User {
   marketplace_jobs?: object;
   pivot?: object;
   businesses?: Business[];
+  status?: Status;
 }

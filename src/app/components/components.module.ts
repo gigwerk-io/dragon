@@ -19,6 +19,7 @@ import {BusinessLocationFormComponent} from './forms/business-location-form/busi
 import {FormsModule} from '@angular/forms';
 import { GenericToastComponent } from './toast/generic-toast/generic-toast.component';
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
+import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 
 @NgModule({
   imports: [
@@ -44,6 +45,7 @@ import { StatsCardComponent } from './cards/stats-card/stats-card.component';
     BusinessLocationFormComponent,
     GenericToastComponent,
     StatsCardComponent,
+    ApplicantListComponent,
 
   ],
   exports: [
@@ -59,7 +61,10 @@ import { StatsCardComponent } from './cards/stats-card/stats-card.component';
     BusinessLocationFormComponent,
     BusinessInfoFormComponent,
     GenericToastComponent,
-    StatsCardComponent
+    StatsCardComponent,
+    PaginationComponent,
+    ApplicantListComponent,
+    StarRatingComponent
   ]
 })
 export class ComponentsModule {
