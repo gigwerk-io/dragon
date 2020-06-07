@@ -4,7 +4,7 @@ export interface BusinessLocation {
   street_address?: string;
   city?: string;
   state?: string;
-  zip?: number;
+  zip?: string;
   lat?: number;
   long?: number;
 }

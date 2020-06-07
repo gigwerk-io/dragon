@@ -1,4 +1,5 @@
 import {BusinessProfile} from './BusinessProfile';
+import {BusinessLocation} from './BusinessLocation';
 
 export interface Business {
   id?: number;
@@ -10,6 +11,6 @@ export interface Business {
   created_at?: string;
   updated_at?: string;
   pivot?: object;
-  business_profile?: BusinessProfile;
-  business_location?: object;
+  profile?: BusinessProfile;
+  location?: BusinessLocation;
 }

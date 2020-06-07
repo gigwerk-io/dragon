@@ -12,6 +12,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {ComponentsModule} from '../../components/components.module';
 import {SettingsComponent} from '../../pages/settings/settings.component';
+import {ApplicantsComponent} from '../../pages/applicants/applicants.component';
+import {ApplicantComponent} from '../../pages/applicant/applicant.component';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import {SettingsComponent} from '../../pages/settings/settings.component';
   ],
   declarations: [
     DashboardComponent,
-    SettingsComponent
+    SettingsComponent,
+    ApplicantsComponent,
+    ApplicantComponent
   ]
 })
 
