@@ -10,10 +10,11 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {ComponentsModule} from '../../components/components.module';
-import {SettingsComponent} from '../../pages/settings/settings.component';
-import {ApplicantsComponent} from '../../pages/applicants/applicants.component';
-import {ApplicantComponent} from '../../pages/applicant/applicant.component';
+import { ComponentsModule } from '../../components/components.module';
+import { SettingsComponent } from '../../pages/settings/settings.component';
+import { ApplicantsComponent } from '../../pages/applicants/applicants.component';
+import { ApplicantComponent } from '../../pages/applicant/applicant.component';
+import { NotificationsComponent } from 'src/app/pages/notifications/notifications.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import {ApplicantComponent} from '../../pages/applicant/applicant.component';
     DashboardComponent,
     SettingsComponent,
     ApplicantsComponent,
-    ApplicantComponent
+    ApplicantComponent,
+    NotificationsComponent
   ]
 })
 

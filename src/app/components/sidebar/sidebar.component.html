@@ -28,57 +28,57 @@
       <div class="relative flex-1 flex flex-col max-w-xs w-full pt-5 pb-4 bg-gray-800">
         <div class="absolute top-0 right-0 -mr-14 p-1">
           <button class="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
-                  aria-label="Close sidebar" (click)="showSidebar = false">
+            aria-label="Close sidebar" (click)="showSidebar = false">
             <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
         <div class="flex-shrink-0 flex items-center px-4">
-          <img class="h-8 w-auto" src="./assets/img/brand/favr-red.png" alt="FAVR Logo"/>
+          <img class="h-8 w-auto" src="./assets/img/brand/favr-red.png" alt="FAVR Logo" />
         </div>
         <div class="mt-5 flex-1 h-0 overflow-y-auto">
           <nav class="px-2">
             <a routerLink="/dashboard"
-               [ngClass]="router.isActive('/dashboard', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/dashboard', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-300 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/>
+                  d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6" />
               </svg>
               Dashboard
             </a>
             <a routerLink="/people"
-               [ngClass]="router.isActive('/people', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/people', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
               People
             </a>
             <a routerLink="/jobs"
-               [ngClass]="router.isActive('/jobs', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/jobs', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path
                   d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-                <path
-                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+                </path>
               </svg>
               Jobs
             </a>
             <a routerLink="/applicants"
-               [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -89,8 +89,8 @@
               Applicants
             </a>
             <a routerLink="/finances"
-               [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -102,8 +102,8 @@
               Finances
             </a>
             <a routerLink="/settings"
-               [ngClass]="router.isActive('/settings', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+              [ngClass]="router.isActive('/settings', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
                 stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -126,51 +126,51 @@
   <div class="hidden md:flex md:flex-shrink-0">
     <div class="flex flex-col w-64">
       <div class="flex items-center h-16 flex-shrink-0 px-4 bg-gray-900">
-        <img class="h-8 w-auto" src="./assets/img/brand/favr-red.png" alt="FAVR Logo"/>
+        <img class="h-8 w-auto" src="./assets/img/brand/favr-red.png" alt="FAVR Logo" />
       </div>
       <div class="h-0 flex-1 flex flex-col overflow-y-auto">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <nav class="flex-1 px-2 py-4 bg-gray-800">
           <a routerLink="/dashboard"
-             [ngClass]="router.isActive('/dashboard', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/dashboard', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-300 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6"/>
+                d="M3 12l9-9 9 9M5 10v10a1 1 0 001 1h3a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h3a1 1 0 001-1V10M9 21h6" />
             </svg>
             Dashboard
           </a>
           <a routerLink="/people"
-             [ngClass]="router.isActive('/people', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/people', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             People
           </a>
           <a routerLink="/jobs"
-             [ngClass]="router.isActive('/jobs', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/jobs', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path
                 d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-              <path
-                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z">
+              </path>
             </svg>
             Jobs
           </a>
           <a routerLink="/applicants"
-             [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -181,8 +181,8 @@
             Applicants
           </a>
           <a routerLink="/finances"
-             [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -193,9 +193,22 @@
             </svg>
             Finances
           </a>
+          <a routerLink="/notifications"
+            [ngClass]="router.isActive('/notifications', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            <svg
+              class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
+              stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
+              <path
+                d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+                stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+            Notifications
+          </a>
           <a routerLink="/settings"
-             [ngClass]="router.isActive('/settings', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
+            [ngClass]="router.isActive('/settings', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
               stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -215,7 +228,7 @@
         class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600 md:hidden"
         aria-label="Open sidebar" (click)="showSidebar = true">
         <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
         </svg>
       </button>
       <div class="flex-1 px-4 flex justify-between">
@@ -226,12 +239,12 @@
               <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                 <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" clip-rule="evenodd"
-                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"/>
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                 </svg>
               </div>
               <input id="search_field"
-                     class="block w-full h-full pl-8 pr-3 py-2 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 sm:text-sm"
-                     placeholder="Search" type="search"/>
+                class="block w-full h-full pl-8 pr-3 py-2 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 sm:text-sm"
+                placeholder="Search" type="search" />
             </div>
           </div>
         </div>
@@ -239,7 +252,7 @@
           <button class="inline-block relative">
             <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
             <span
               class="absolute top-0 right-0 block h-3 w-3 rounded-full text-white shadow-solid bg-red-400 text-white"></span>
@@ -256,10 +269,10 @@
         <div class="pr-16 sm:text-center sm:px-16">
           <p class="font-medium text-white">
             <span class="block sm:ml-2 sm:inline-block">
-          <button (click)="showModal = true" class="text-white font-bold underline">
-            Finish Setting Up Your Business &rarr;
-          </button>
-        </span>
+              <button (click)="showModal = true" class="text-white font-bold underline">
+                Finish Setting Up Your Business &rarr;
+              </button>
+            </span>
           </p>
         </div>
       </div>
@@ -271,5 +284,5 @@
     </main>
   </div>
 </div>
-<app-finish-account-setup-modal [show]="showModal" [missingSteps]="missingSteps"
-                                (close)="showModal = false"></app-finish-account-setup-modal>
+<app-finish-account-setup-modal [show]="showModal" [missingSteps]="missingSteps" (close)="showModal = false">
+</app-finish-account-setup-modal>
