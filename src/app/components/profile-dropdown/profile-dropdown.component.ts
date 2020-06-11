@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../../utils/interfaces/storage/constants';
+import {StorageKeys} from '../../utils/interfaces/enum/constants';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../utils/services/authentication.service';
 
@@ -21,10 +21,10 @@ export class ProfileDropdownComponent implements OnInit {
   }
 
   getUser() {
-    this.storage.get(StorageKeys.PROFILE).then((profile) => {
-      this.userId = profile.user_id;
-      this.image = profile.image;
-      this.name = profile.user.first_name + ' ' + profile.user.last_name;
+    this.storage.get(StorageKeys.USER).then((user) => {
+      this.userId = user.id;
+      this.image = user.profile.image;
+      this.name = user.profile.first_name + ' ' + user.profile.last_name;
     });
   }
 
@@ -32,10 +32,11 @@ export class ProfileDropdownComponent implements OnInit {
     this.storage.get(StorageKeys.ACCESS_TOKEN).then(token => {
       const headers = {
         headers: {
-          Authorization: token
+          Authorization: 'Bearer ' + token
         }
       };
       this.auth.logout(headers).subscribe(res => {
+        console.log(res);
         this.router.navigateByUrl('/login');
       });
     });

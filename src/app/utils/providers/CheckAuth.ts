@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { StorageKeys } from '../interfaces/storage/constants';
+import { StorageKeys } from '../interfaces/enum/constants';
 import { AuthenticationService } from '../services/authentication.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -35,9 +35,12 @@ export class CheckAuth implements CanActivate {
         return true;
       })
       .catch(error => {
-        this.router.navigateByUrl('/login');
-        this.toast.error(error.error, 'Error with session token!');
-        return false;
+        switch (state.url) {
+          case '/login':
+            return true;
+          default:
+            this.router.navigateByUrl('/login');
+        }
       });
   }
 }

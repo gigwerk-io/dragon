@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: ' https://lumen.askfavr.com',
+  apiUrl: 'https://api.gigwerk.test',
   version: '0.0.1',
   pusherId: '5a35a484c75eee676b6f'
 };

@@ -41,17 +41,13 @@ jobs:
           paths:
             - "*"
 
-  karma-test:
+  test:
     <<: *defaults
     steps:
       - run: *install-chrome
       - attach_workspace:
           at: /tmp/workspace
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - "*"
-#      - run: npm run test
+      - run: npm run e2e
 
   build-dev:
     <<: *defaults
@@ -103,30 +99,12 @@ workflows:
   deployment:
     jobs:
       - install-dependencies
-      - karma-test:
+      - test:
           requires:
             - install-dependencies
       - build-dev:
           requires:
-            - karma-test
+            - test
           filters:
             branches:
               only: master
-      - deploy-to-dev:
-          requires:
-            - build-dev
-          filters:
-            branches:
-              only: master
-      - build-prod:
-          requires:
-            - karma-test
-          filters:
-            branches:
-              only: production
-      - deploy-to-prod:
-          requires:
-            - build-prod
-          filters:
-            branches:
-              only: production

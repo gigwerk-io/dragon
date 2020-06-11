@@ -76,8 +76,8 @@
               </svg>
               Jobs
             </a>
-            <a routerLink="/calendar"
-              [ngClass]="router.isActive('/calendar', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+            <a routerLink="/applicants"
+              [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
               class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
               <svg
                 class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
@@ -86,20 +86,7 @@
                   d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                   stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
               </svg>
-              Onboarding
-            </a>
-            <a routerLink="/invitations"
-              [ngClass]="router.isActive('/invitations', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-              class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
-              <svg
-                class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-                stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" stroke-linecap="round"
-                  stroke-linejoin="round" stroke-width="2"></path>
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" stroke-linecap="round"
-                  stroke-linejoin="round" stroke-width="2"></path>
-              </svg>
-              Invitations
+              Applicants
             </a>
             <a routerLink="/finances"
               [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
@@ -181,8 +168,8 @@
             </svg>
             Jobs
           </a>
-          <a routerLink="/calendar"
-            [ngClass]="router.isActive('/calendar', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
+          <a routerLink="/applicants"
+            [ngClass]="router.isActive('/applicants', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
             class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
             <svg
               class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
@@ -191,20 +178,7 @@
                 d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
             </svg>
-            Onboarding
-          </a>
-          <a routerLink="/invitations"
-            [ngClass]="router.isActive('/invitations', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
-            class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium rounded-md focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150">
-            <svg
-              class="mr-3 h-6 w-6 text-gray-400 group-hover:text-gray-300 group-focus:text-gray-300 transition ease-in-out duration-150"
-              stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" stroke-linecap="round"
-                stroke-linejoin="round" stroke-width="2"></path>
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" stroke-linecap="round"
-                stroke-linejoin="round" stroke-width="2"></path>
-            </svg>
-            Invitations
+            Applicants
           </a>
           <a routerLink="/finances"
             [ngClass]="router.isActive('/finances', true) ? 'bg-gray-900 text-white': 'text-gray-300 hover:text-white hover:bg-gray-700 focus:text-white'"
@@ -279,8 +253,7 @@
             *ngIf="showNotifications">
             <div class="px-2 py-2 bg-text-gray-400" *ngIf="notifications.length  && showNotifications">
               <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold">
-                Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded"
-                  style="border-radius: 100%;">{{badgeCount}}</span>
+                Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded" style="">{{badgeCount}}</span>
               </h6>
             </div>
             <div class="px-7 py-5 " *ngIf="notifications.length === 0  && showNotifications">
@@ -318,60 +291,6 @@
 
 
           </div>
-          <!-- <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10 "
-            *ngIf="showNotifications">
-            <div class="px-3 py-3">
-              <h6 class="text-center">
-                You have <strong class="text-primary">{{badgeCount}}</strong> unread notifications.
-              </h6>
-            </div>
-            <div class="">
-              <a class="list-group-item list-group-item-action" *ngFor="let unreadNotification of notifications"
-                (click)="markNotificationRead(unreadNotification.id)"
-                [routerLink]="unreadNotification.data.page + '/' + unreadNotification.data.params">
-                <div class=" border-t hover:bg-gray-100 p-2 ">
-                  <div class="col">
-                    <div class="">
-                      <div>
-                        <h4 class="font-bold font-sans">{{unreadNotification.data.title}}</h4>
-                      </div>
-                      <p class="font-sans "> {{unreadNotification.data.message}} </p>
-                      <div class="text-right text-muted"><small>{{unreadNotification.created_at | timeAgo}}</small>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class=" text-center border-t hover:bg-blue-100 p-3  ">
-              <a class="text-blue-500" href="javascript:void()">
-                View all
-              </a>
-            </div>
-
-          </div> -->
-
-          <!-- <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg top-11 right-5 "
-            *ngIf="showNotifications">
-            <div class="rounded-md bg-white shadow-xs">
-              <div class="py-1">
-                <a href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Account
-                  settings</a>
-                <a href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">Support</a>
-                <a href="#"
-                  class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">License</a>
-                <form method="POST" action="#">
-                  <button type="submit"
-                    class="block w-full text-left px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900">
-                    Sign out
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div> -->
 
           <!-- Profile dropdown -->
           <app-profile-dropdown></app-profile-dropdown>

@@ -3,10 +3,11 @@ import {Injectable, OnDestroy, OnInit} from '@angular/core';
 import Pusher from 'pusher-js';
 import {environment} from '../../../environments/environment';
 import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../interfaces/storage/constants';
+import {StorageKeys} from '../interfaces/enum/constants';
 import {ToastrService} from 'ngx-toastr';
-import {PusherNotification} from '../interfaces/notification/PusherNotification';
 import {Router} from '@angular/router';
+import {PusherNotification} from '../interfaces/models/PusherNotification';
+import {Business} from '../interfaces/models/Business';
 
 @Injectable()
 export class PusherServiceProvider implements OnInit, OnDestroy {
@@ -30,7 +31,7 @@ export class PusherServiceProvider implements OnInit, OnDestroy {
       authEndpoint: `${environment.apiUrl}/broadcasting/auth`,
       auth: {
         headers: {
-          Authorization: credentials.authToken
+          Authorization: 'Bearer ' + credentials.authToken
         },
         params: {}
       }
@@ -38,36 +39,12 @@ export class PusherServiceProvider implements OnInit, OnDestroy {
     return pusher.subscribe('private-organization.' + credentials.uuid);
   }
 
-  public lstenToNotifications() {
-    this.getCredentials().then(res => {
-      const pusher = new Pusher(environment.pusherId, {
-        cluster: 'us2',
-        forceTLS: true,
-        authEndpoint: `${environment.apiUrl}/broadcasting/auth`,
-        auth: {
-          headers: {
-            Authorization: res.authToken
-          },
-          params: {}
-        }
-      });
-      this.channel = pusher.subscribe('private-organization.' + res.uuid);
-      this.channel.bind_global((eventName, data: PusherNotification) => {
-        if (data.message != null && data.title != null) {
-          this.toast.info(data.message, data.title).onTap.subscribe(response => {
-            this.router.navigateByUrl(`${data.page}/${data.params}`);
-          });
-        }
-      });
-    });
-  }
-
   public async getCredentials() {
     let authToken: string, uuid: string;
-    return this.storage.get(StorageKeys.ACCESS_TOKEN).then((token) => {
+    return this.storage.get(StorageKeys.ACCESS_TOKEN).then((token: string) => {
       authToken = token;
-      return this.storage.get(StorageKeys.ORGANIZATION).then(organization => {
-        uuid = organization.organization.unique_id;
+      return this.storage.get(StorageKeys.SELECTED_BUSINESS).then((business: Business) => {
+        uuid = business.unique_id;
         return {authToken: authToken, uuid: uuid};
       });
     });
