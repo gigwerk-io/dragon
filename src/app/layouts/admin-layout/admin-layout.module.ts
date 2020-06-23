@@ -14,19 +14,21 @@ import {ComponentsModule} from '../../components/components.module';
 import {SettingsComponent} from '../../pages/settings/settings.component';
 import {ApplicantsComponent} from '../../pages/applicants/applicants.component';
 import {ApplicantComponent} from '../../pages/applicant/applicant.component';
+import {IonicModule} from '@ionic/angular';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    HttpClientModule,
-    ClipboardModule,
-    NgxSpinnerModule,
-    NgxChartsModule,
-    ComponentsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        HttpClientModule,
+        ClipboardModule,
+        NgxSpinnerModule,
+        NgxChartsModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+        IonicModule,
+    ],
   declarations: [
     DashboardComponent,
     SettingsComponent,
