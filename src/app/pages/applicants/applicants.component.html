@@ -1,11 +1,19 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-  <h1 class="text-2xl font-semibold text-gray-900">Applicants</h1>
+  <h1 class="text-2xl font-semibold text-gray-900" *ngIf="applicants; else skeletonApplicantsTitle">Applicants</h1>
+  <ng-template #skeletonApplicantsTitle>
+    <div class="h-5"></div>
+  </ng-template>
   <div class="hidden sm:block">
     <div class="py-5">
       <div class="border-t border-gray-200"></div>
     </div>
   </div>
 </div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="applicants">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="applicants; else skeletonApplicants">
   <app-applicant-list [applicants]="applicants"></app-applicant-list>
 </div>
+<ng-template #skeletonApplicants>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+    <ion-skeleton-text animated="false" class="rounded-lg w-full" style="height: 33rem"></ion-skeleton-text>
+  </div>
+</ng-template>
