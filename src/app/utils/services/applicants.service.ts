@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {RESTService} from './rest.service';
-import {HttpClient} from '@angular/common/http';
-import {Storage} from '@ionic/storage';
-import {Response} from '../interfaces/responses/GenericResponse';
-import {User} from '../interfaces/models/User';
-import {Observable} from 'rxjs';
-import {Application} from '../interfaces/models/Application';
+import { RESTService } from './rest.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { Response } from '../interfaces/responses/GenericResponse';
+import { User } from '../interfaces/models/User';
+import { Observable } from 'rxjs';
+import { Application } from '../interfaces/models/Application';
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +19,24 @@ export class ApplicantsService extends RESTService {
   getApplicants(): Promise<Response<Application[]>> {
     return this.makeHttpRequest(`applicants`, `GET`)
       .toPromise()
-      .then((res:  Observable<Response<Application[]>>) => res.toPromise());
+      .then((res: Observable<Response<Application[]>>) => res.toPromise());
   }
 
   getApplicant(id): Promise<Response<Application>> {
     return this.makeHttpRequest(`applicant/${id}`, `GET`)
       .toPromise()
-      .then((res:  Observable<Response<Application>>) => res.toPromise());
+      .then((res: Observable<Response<Application>>) => res.toPromise());
+  }
+
+  ApproveApplicant(id: number): Promise<Response<null>> {
+    return this.makeHttpRequest(`applicant/${id}/approve`, `POST`)
+      .toPromise()
+      .then((res) => res.toPromise());
+  }
+
+  rejectApplicant(id: number): Promise<Response<null>> {
+    return this.makeHttpRequest(`applicant/${id}/reject`, `POST`)
+      .toPromise()
+      .then((res) => res.toPromise());
   }
 }
