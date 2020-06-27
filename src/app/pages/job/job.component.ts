@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobsService } from '../../utils/services/jobs.service';
+import { PeopleService } from '../../utils/services/people.service';
 import { MarketplaceJob } from '../../utils/interfaces/models/MarketplaceJob';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TableService } from '../../utils/services/table.service';
+import { User } from '../../utils/interfaces/models/User';
 
 @Component({
   selector: 'app-job',
@@ -12,6 +15,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class JobComponent implements OnInit {
 
+  freelancers: User[] = [];
+  allFreelancers: User[] = [];
+  showModal = false;
   job: MarketplaceJob;
   images = [
     'https://blog.fantasticservices.com/wp-content/uploads/2020/01/lawn-mowing.jpg',
@@ -25,24 +31,27 @@ export class JobComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private jobsService: JobsService,
     private toast: ToastrService,
-    private router: Router
+    private peopleService: PeopleService,
+    private router: Router,
+    private tableService: TableService
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.jobsService.getJob(params['id']).then(res => {
         this.job = res.data;
-
-        console.log('job', this.job)
-
         // this.setupImages();
         this.setupForm();
-
-
       }).catch(() => {
         this.toast.error('Sorry this job doesn\'t exist.', 'Error!');
         this.router.navigateByUrl('/jobs');
       });
+    });
+
+    this.peopleService.getAllUsers().then(res => {
+      this.freelancers = res.data.filter(el => el.role === 'Verified Freelancer');
+      this.allFreelancers = this.freelancers;
+
     });
   }
 
@@ -77,9 +86,9 @@ export class JobComponent implements OnInit {
 
 
 
+
   onSubmit() {
     const form = this.jobDetailsForm.value;
-    console.log('form')
     const formBody = {
       complete_before: form.complete_before.replace('T', ' '),
       description: form.description,
@@ -87,14 +96,16 @@ export class JobComponent implements OnInit {
       city: form.location.city,
       state: form.location.state,
       zip: form.location.zip
-    }
+    };
     if (this.jobDetailsForm.valid) {
       this.jobsService.updateJob(this.job.id, formBody).then(res => {
-        console.log('res', res)
         this.toast.error('Job has been updated', 'Success');
-
-      })
+      });
     }
+  }
+
+  searchUser(e: string) {
+    this.freelancers = this.tableService.FilterFreelancer(e, this.freelancers, this.allFreelancers);
   }
 
 
