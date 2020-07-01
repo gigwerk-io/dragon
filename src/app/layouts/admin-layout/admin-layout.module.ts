@@ -10,30 +10,32 @@ import { AdminLayoutRoutes } from './admin-layout.routing';
 import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import {ComponentsModule} from '../../components/components.module';
-import {SettingsComponent} from '../../pages/settings/settings.component';
-import {ApplicantsComponent} from '../../pages/applicants/applicants.component';
-import {ApplicantComponent} from '../../pages/applicant/applicant.component';
-import {IonicModule} from '@ionic/angular';
+import { ComponentsModule } from '../../components/components.module';
+import { SettingsComponent } from '../../pages/settings/settings.component';
+import { ApplicantsComponent } from '../../pages/applicants/applicants.component';
+import { ApplicantComponent } from '../../pages/applicant/applicant.component';
+import { IonicModule } from '@ionic/angular';
+import { JobsComponent } from 'src/app/pages/jobs/jobs.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(AdminLayoutRoutes),
-        FormsModule,
-        HttpClientModule,
-        ClipboardModule,
-        NgxSpinnerModule,
-        NgxChartsModule,
-        ComponentsModule,
-        ReactiveFormsModule,
-        IonicModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(AdminLayoutRoutes),
+    FormsModule,
+    HttpClientModule,
+    ClipboardModule,
+    NgxSpinnerModule,
+    NgxChartsModule,
+    ComponentsModule,
+    ReactiveFormsModule,
+    IonicModule,
+  ],
   declarations: [
     DashboardComponent,
     SettingsComponent,
     ApplicantsComponent,
-    ApplicantComponent
+    ApplicantComponent,
+    JobsComponent
   ]
 })
 
