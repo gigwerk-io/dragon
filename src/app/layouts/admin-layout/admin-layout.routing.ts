@@ -12,6 +12,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'applicants', component: ApplicantsComponent },
   { path: 'applicant/:id', component: ApplicantComponent },
-  { path: 'job/:id', component: JobComponent }
+  { path: 'job/:id', component: JobComponent },
   { path: 'jobs', component: JobsComponent }
 ];
