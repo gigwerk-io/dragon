@@ -95,10 +95,15 @@ export class JobComponent implements OnInit {
       street_address: form.location.street_address,
       city: form.location.city,
       state: form.location.state,
-      zip: form.location.zip
+      zip: form.location.zip,
+      intensity: form.intensity,
+      price: form.price
+
     };
+    console.log('form', form)
     if (this.jobDetailsForm.valid) {
       this.jobsService.updateJob(this.job.id, formBody).then(res => {
+        console.log('res', res)
         this.toast.error('Job has been updated', 'Success');
       });
     }
