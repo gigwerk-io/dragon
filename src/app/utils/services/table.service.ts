@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { User } from '../interfaces/models/User';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
 
 @Injectable({
@@ -9,6 +9,11 @@ export class TableService {
 
   constructor() { }
 
+  FilterFreelancer(e: string, users: User[], allUsers: User[]) {
+    let Freelancer = users;
+
+    if (!e.length) {
+      return allUsers;
 
 
   filterJobsTable(e: string, jobs: MarketplaceJob[], allJobs: MarketplaceJob[]) {
@@ -20,6 +25,12 @@ export class TableService {
 
     const needle = e.toLowerCase();
 
+    return Freelancer = users.filter((filteredUsers) => {
+      const hayStack =
+        (
+          filteredUsers.first_name +
+          filteredUsers.last_name +
+          filteredUsers.profile.description
     return filteredJobs = jobs.filter((filteredJob) => {
       const hayStack =
         (

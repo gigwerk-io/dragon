@@ -15,7 +15,8 @@ import { SettingsComponent } from '../../pages/settings/settings.component';
 import { ApplicantsComponent } from '../../pages/applicants/applicants.component';
 import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
-import { JobsComponent } from 'src/app/pages/jobs/jobs.component';
+import { JobComponent } from '../../pages/job/job.component';
+import { JobsComponent } from '../../pages/jobs/jobs.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { JobsComponent } from 'src/app/pages/jobs/jobs.component';
     SettingsComponent,
     ApplicantsComponent,
     ApplicantComponent,
+    JobComponent
     JobsComponent
   ]
 })

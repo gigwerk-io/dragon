@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { PusherServiceProvider } from './utils/providers/pusher.service';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
@@ -29,7 +29,7 @@ import { IonicModule } from '@ionic/angular';
     IonicStorageModule.forRoot(),
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    IonicModule.forRoot()
+    IonicModule.forRoot(),
   ],
   declarations: [
     AppComponent,
