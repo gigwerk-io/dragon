@@ -16,6 +16,7 @@ import { ApplicantsComponent } from '../../pages/applicants/applicants.component
 import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
 import { JobComponent } from '../../pages/job/job.component';
+import { JobsComponent } from '../../pages/jobs/jobs.component';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { JobComponent } from '../../pages/job/job.component';
     ApplicantsComponent,
     ApplicantComponent,
     JobComponent
+    JobsComponent
   ]
 })
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ApplicantsService} from '../../utils/services/applicants.service';
-import {User} from '../../utils/interfaces/models/User';
-import {Application} from '../../utils/interfaces/models/Application';
+import { ApplicantsService } from '../../utils/services/applicants.service';
+import { User } from '../../utils/interfaces/models/User';
+import { Application } from '../../utils/interfaces/models/Application';
 
 @Component({
   selector: 'app-applicants',
