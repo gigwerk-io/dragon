@@ -110,7 +110,7 @@ export class JobComponent implements OnInit {
   }
 
   searchUser(e: string) {
-    this.freelancers = this.tableService.FilterFreelancer(e, this.freelancers, this.allFreelancers);
+    this.freelancers = this.tableService.filterFreelancer(e, this.freelancers, this.allFreelancers);
   }
 
 

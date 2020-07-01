@@ -9,13 +9,6 @@ export class TableService {
 
   constructor() { }
 
-  FilterFreelancer(e: string, users: User[], allUsers: User[]) {
-    let Freelancer = users;
-
-    if (!e.length) {
-      return allUsers;
-
-
   filterJobsTable(e: string, jobs: MarketplaceJob[], allJobs: MarketplaceJob[]) {
     let filteredJobs = jobs;
 
@@ -25,12 +18,6 @@ export class TableService {
 
     const needle = e.toLowerCase();
 
-    return Freelancer = users.filter((filteredUsers) => {
-      const hayStack =
-        (
-          filteredUsers.first_name +
-          filteredUsers.last_name +
-          filteredUsers.profile.description
     return filteredJobs = jobs.filter((filteredJob) => {
       const hayStack =
         (
@@ -46,7 +33,29 @@ export class TableService {
           .join('');
       return hayStack.includes(needle);
     });
-
   }
 
+  filterFreelancer(e: string, users: User[], allUsers: User[]) {
+    let Freelancer = users;
+
+    if (!e.length) {
+      return allUsers;
+    }
+
+    const needle = e.toLowerCase();
+
+    return Freelancer = users.filter((filteredUsers) => {
+      const hayStack =
+        (
+          filteredUsers.first_name +
+          filteredUsers.last_name +
+          filteredUsers.profile.description
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+
+  }
 }

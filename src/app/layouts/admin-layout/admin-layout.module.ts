@@ -36,7 +36,7 @@ import { JobsComponent } from '../../pages/jobs/jobs.component';
     SettingsComponent,
     ApplicantsComponent,
     ApplicantComponent,
-    JobComponent
+    JobComponent,
     JobsComponent
   ]
 })
