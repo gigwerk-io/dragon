@@ -16,17 +16,22 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { FinishAccountSetupModalComponent } from './modal/finish-account-setup-modal/finish-account-setup-modal.component';
 import { BusinessInfoFormComponent } from './forms/business-info-form/business-info-form.component';
 import { BusinessLocationFormComponent } from './forms/business-location-form/business-location-form.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GenericToastComponent } from './toast/generic-toast/generic-toast.component';
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
 import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
+import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
+import {NgxStripeModule} from 'ngx-stripe';
+import { ChangePlanModalComponent } from './modal/change-plan-modal/change-plan-modal.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgxStripeModule,
   ],
   declarations: [
     SidebarComponent,
@@ -48,6 +53,7 @@ import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
     StatsCardComponent,
     ApplicantListComponent,
     JobsListComponent,
+    PaymentMethodModalComponent,
 
   ],
   exports: [
@@ -67,7 +73,8 @@ import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
     PaginationComponent,
     ApplicantListComponent,
     StarRatingComponent,
-    JobsListComponent
+    JobsListComponent,
+    PaymentMethodModalComponent,
   ]
 })
 export class ComponentsModule {

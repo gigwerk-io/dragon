@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://api.gigwerk.test',
   version: '0.0.1',
-  pusherId: '5a35a484c75eee676b6f'
+  pusherId: '5a35a484c75eee676b6f',
+  stripePublicKey: 'pk_test_WRhN4BKmkqctL2nrjCPJCTXi'
 };
 
 /*

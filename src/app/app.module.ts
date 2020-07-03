@@ -15,6 +15,10 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from './components/components.module';
 import { IonicModule } from '@ionic/angular';
+import {NgxStripeModule} from 'ngx-stripe';
+import {environment} from '../environments/environment';
+import {CreditCardDirectivesModule} from 'angular-cc-library';
+import { PlanComponent } from './pages/plan/plan.component';
 
 
 @NgModule({
@@ -30,6 +34,8 @@ import { IonicModule } from '@ionic/angular';
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     IonicModule.forRoot(),
+    NgxStripeModule.forRoot(environment.stripePublicKey),
+    CreditCardDirectivesModule
   ],
   declarations: [
     AppComponent,

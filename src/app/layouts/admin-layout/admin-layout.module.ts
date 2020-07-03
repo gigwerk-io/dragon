@@ -17,6 +17,8 @@ import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
 import { JobComponent } from '../../pages/job/job.component';
 import { JobsComponent } from '../../pages/jobs/jobs.component';
+import {SubscriptionComponent} from '../../pages/subscription/subscription.component';
+import {PlanComponent} from '../../pages/plan/plan.component';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { JobsComponent } from '../../pages/jobs/jobs.component';
     ApplicantsComponent,
     ApplicantComponent,
     JobComponent,
-    JobsComponent
+    JobsComponent,
+    SubscriptionComponent,
+    PlanComponent
   ]
 })
 
