@@ -23,7 +23,6 @@ import { ApplicantListComponent } from './lists/applicant-list/applicant-list.co
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import {NgxStripeModule} from 'ngx-stripe';
-import { ChangePlanModalComponent } from './modal/change-plan-modal/change-plan-modal.component';
 
 @NgModule({
   imports: [

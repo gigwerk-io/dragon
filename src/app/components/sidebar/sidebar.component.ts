@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit {
   missingSteps: MissingSteps;
   showModal = false;
 
-  constructor(private router: Router, private settingsService: SettingsService) {
+  constructor(public router: Router, private settingsService: SettingsService) {
   }
 
   ngOnInit() {
