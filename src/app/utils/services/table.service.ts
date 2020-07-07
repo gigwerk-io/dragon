@@ -16,6 +16,9 @@ export class TableService {
       return allJobs;
     }
 
+
+    jobs = !jobs.length ? allJobs : jobs;
+
     const needle = e.toLowerCase();
 
     return filteredJobs = jobs.filter((filteredJob) => {
@@ -23,6 +26,7 @@ export class TableService {
         (
           filteredJob.customer.email +
           filteredJob.price +
+          filteredJob.status +
           filteredJob.customer.first_name +
           filteredJob.customer.last_name +
           filteredJob.intensity +
@@ -38,9 +42,12 @@ export class TableService {
   filterFreelancer(e: string, users: User[], allUsers: User[]) {
     let Freelancer = users;
 
+
     if (!e.length) {
       return allUsers;
     }
+
+    users = !users.length ? allUsers : users;
 
     const needle = e.toLowerCase();
 

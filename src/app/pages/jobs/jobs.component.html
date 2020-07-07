@@ -1,8 +1,5 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-    <h1 class="text-2xl font-semibold text-gray-900" *ngIf="jobs; else SkeletonJobsTitle">Jobs</h1>
-    <ng-template #SkeletonJobsTitle>
-        <div class="h-5"></div>
-    </ng-template>
+    <h1 class="text-2xl font-semibold text-gray-900" *ngIf="jobs">Jobs</h1>
     <div class="hidden sm:block">
         <div class="py-5">
             <div class="border-t border-gray-200"></div>
@@ -12,8 +9,18 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="jobs; else skeletonJobs">
     <app-jobs-list [jobs]="jobs"></app-jobs-list>
 </div>
+
+
 <ng-template #skeletonJobs>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <ion-skeleton-text animated="true" class="rounded-lg w-full" style="height: 33rem"></ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" w-full"
+            style="width: 69px; height: 23px; margin-bottom: 37px; margin-top: -7px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" w-full" style=" height: 1px; margin-bottom: 32px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class="mx-auto rounded "
+            style=" height: 38px; width: 200px; margin-bottom: 20px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class="rounded-lg w-full" style="height: 467px"></ion-skeleton-text>
     </div>
 </ng-template>

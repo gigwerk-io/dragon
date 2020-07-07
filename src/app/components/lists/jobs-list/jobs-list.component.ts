@@ -28,6 +28,7 @@ export class JobsListComponent implements OnInit {
 
 
     this.allJobs = this.jobs;
+    console.log('jobs', this.jobs)
 
     this.maxPages = (this.jobs.length / this.windowSize) - ((this.jobs.length % this.windowSize) / this.windowSize);
     if (this.maxPages < 19) {
