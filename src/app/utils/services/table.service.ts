@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/models/User';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
+import { Application } from '../interfaces/models/Application';
 import { filter } from 'rxjs/operators';
 
 @Injectable({
@@ -83,4 +84,29 @@ export class TableService {
     });
   }
 
+  filterApplicants(e: string, applicants: Application[], allApplicants: Application[]) {
+    let Freelancer = applicants;
+
+    if (!e.length) {
+      return allApplicants;
+    }
+
+    applicants = applicants.length ? applicants : allApplicants;
+
+    const needle = e.toLowerCase();
+
+    return Freelancer = applicants.filter((filteredUsers) => {
+      const hayStack =
+        (
+          filteredUsers.user.first_name +
+          filteredUsers.status.name +
+          filteredUsers.user.email
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+
+  }
 }
