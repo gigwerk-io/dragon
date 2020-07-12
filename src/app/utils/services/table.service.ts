@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/models/User';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,30 @@ export class TableService {
           .join('');
       return hayStack.includes(needle);
     });
-
   }
+
+  filterPeopleGrid(e: string, people: User[], allPeople: User[]) {
+    let Freelancer = people;
+
+    if (!e.length) {
+      return allPeople;
+    }
+
+    people = !people.length ? allPeople : people;
+
+    const needle = e.toLowerCase();
+
+    return Freelancer = people.filter((filteredUsers) => {
+      const hayStack =
+        (
+          filteredUsers.first_name +
+          filteredUsers.last_name
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+  }
+
 }

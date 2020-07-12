@@ -1,0 +1,48 @@
+<ng-template #skeletonJobs>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <div class="flex bg-gray-200">
+            <ion-skeleton-text animated="true" class=" ml-4" style="height: 25px; width: 155px; margin-top:43px">
+            </ion-skeleton-text>
+            <ion-skeleton-text animated="true" class=" ml-auto mr-4"
+                style="height: 25px; width: 175px; margin-top:43px">
+            </ion-skeleton-text>
+
+        </div>
+        <div class="flex bg-gray-200">
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+        </div>
+        <div class="flex bg-gray-200">
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+        </div>
+        <div class="flex bg-gray-200">
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+            <ion-skeleton-text animated="true" class="rounded-md flex-1 m-4" style="height: 367px"></ion-skeleton-text>
+        </div>
+        <div class="flex bg-gray-200 border border-red-500">
+            <div class="inline-block">
+                <ion-skeleton-text animated="true" class=" ml-4" style="height: 25px; width: 155px">
+                </ion-skeleton-text>
+            </div>
+            <div class="inline-block ml-auto mr-4 rounded-lg">
+                <ion-skeleton-text animated="true" class=" ml-4" style="height: 35px; width: 180px">
+                </ion-skeleton-text>
+            </div>
+
+        </div>
+    </div>
+</ng-template>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="peopleList; else skeletonJobs">
+    <app-people-grid [people]="peopleList"></app-people-grid>
+</div>
