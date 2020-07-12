@@ -23,6 +23,7 @@ import { ApplicantListComponent } from './lists/applicant-list/applicant-list.co
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import {NgxStripeModule} from 'ngx-stripe';
+import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 
 @NgModule({
   imports: [
@@ -53,7 +54,7 @@ import {NgxStripeModule} from 'ngx-stripe';
     ApplicantListComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
-
+    PeopleGridComponent,
   ],
   exports: [
     FooterComponent,
@@ -74,6 +75,7 @@ import {NgxStripeModule} from 'ngx-stripe';
     StarRatingComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
+    PeopleGridComponent
   ]
 })
 export class ComponentsModule {

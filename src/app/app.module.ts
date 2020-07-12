@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -19,6 +19,7 @@ import {NgxStripeModule} from 'ngx-stripe';
 import {environment} from '../environments/environment';
 import {CreditCardDirectivesModule} from 'angular-cc-library';
 import { PlanComponent } from './pages/plan/plan.component';
+import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { PlanComponent } from './pages/plan/plan.component';
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [PusherServiceProvider],
+  providers: [PusherServiceProvider, { provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

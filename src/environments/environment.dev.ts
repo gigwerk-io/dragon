@@ -1,7 +1,8 @@
 export const environment = {
-  production: true,
-  apiUrl: 'https://lumen.askfavr.com',
+  production: false,
+  apiUrl: 'https://dev.api.gigwerk.io',
   version: '0.0.1',
-  pusherId: '3e1e4ea4e682c0c4bad7',
+  pusherId: '0ebc57b54ea8b07aea4c',
+  sentryDsn: 'https://7bde9c6b4cbd426bb34db58308b014df@o419192.ingest.sentry.io/5329789',
   stripePublicKey: 'pk_test_WRhN4BKmkqctL2nrjCPJCTXi'
 };
