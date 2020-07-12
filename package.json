@@ -7,7 +7,7 @@
     "build": "ngtw build && ng build",
     "dev": "ngtw build && ng build --configuration=dev",
     "staging": "ngtw build && ng build --configuration=staging",
-    "prod": "ngtw build && ng build --configuration=prod",
+    "prod": "ngtw build && ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

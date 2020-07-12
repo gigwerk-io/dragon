@@ -1,4 +1,4 @@
-name: Dragon App
+name: Build Dragon App
 
 on: [push]
 
@@ -20,5 +20,3 @@ jobs:
         run: npm install
       - name: Build
         run: npm run dev
-      - name: E2E
-        run: npm run e2e
