@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://api.gigwerk.test',
   version: '0.0.1',
-  pusherId: '5a35a484c75eee676b6f'
+  pusherId: '0ebc57b54ea8b07aea4c',
+  sentryDsn: 'https://7bde9c6b4cbd426bb34db58308b014df@o419192.ingest.sentry.io/5329789'
 };
 
 /*

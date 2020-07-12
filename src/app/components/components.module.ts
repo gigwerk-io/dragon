@@ -21,6 +21,7 @@ import { GenericToastComponent } from './toast/generic-toast/generic-toast.compo
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
 import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
+import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,7 @@ import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
     StatsCardComponent,
     ApplicantListComponent,
     JobsListComponent,
-
+    PeopleGridComponent,
   ],
   exports: [
     FooterComponent,
@@ -67,7 +68,8 @@ import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
     PaginationComponent,
     ApplicantListComponent,
     StarRatingComponent,
-    JobsListComponent
+    JobsListComponent,
+    PeopleGridComponent
   ]
 })
 export class ComponentsModule {
