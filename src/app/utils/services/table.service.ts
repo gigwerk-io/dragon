@@ -5,9 +5,39 @@ import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
 @Injectable({
   providedIn: 'root'
 })
+
+// @pa
 export class TableService {
 
   constructor() { }
+
+
+  // THIS FUNCTION SHOULD BE USED FOR ALL ITEMS FILTERED;
+  // FOR EXAMPLE VISIT JOBS-LIST COMPONENT
+  filterTable(e: string, list: any[], fullList: any[], params: string[]) {
+    let filteredList = list;
+
+    if (!e.length) {
+      return fullList;
+    }
+
+    list = list.length ? list : fullList;
+
+    const needle = e.toLowerCase();
+
+    return filteredList = list.filter((filter) => {
+      // tslint:disable-next-line: no-eval
+      const listFilter = eval(params.join(' '));
+      const hayStack =
+        (
+          listFilter
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+  }
 
   filterJobsTable(e: string, jobs: MarketplaceJob[], allJobs: MarketplaceJob[]) {
     let filteredJobs = jobs;

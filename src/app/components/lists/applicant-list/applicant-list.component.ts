@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../../utils/interfaces/models/User';
-import {Application} from '../../../utils/interfaces/models/Application';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../../../utils/interfaces/models/User';
+import { Application } from '../../../utils/interfaces/models/Application';
 
 @Component({
   selector: 'app-applicant-list',
