@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://dev.api.gigwerk.io',
+  apiUrl: 'https://staging.api.gigwerk.io',
   version: '0.0.1',
-  pusherId: '0ebc57b54ea8b07aea4c',
+  pusherId: '19d88fc24ae3c9c43c52',
   sentryDsn: 'https://7bde9c6b4cbd426bb34db58308b014df@o419192.ingest.sentry.io/5329789'
 };

@@ -6,20 +6,22 @@
           Active Applications
         </h3>
       </div>
-      <div class="ml-4 mt-2 flex-shrink-0">
-      <span class="inline-flex rounded-md shadow-sm">
-        <span class="inline-flex rounded-md shadow-sm">
-          <button type="button"
-                  class="inline-flex items-center px-2.5 py-1.5 border border-gray-200 text-xs leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
-            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+
+      <div>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" fill="currentColor"
+              viewBox="0 0 20 20">
               <path fill-rule="evenodd"
-                    d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                    clip-rule="evenodd"></path>
+                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                clip-rule="evenodd"></path>
             </svg>
-          </button>
-        </span>
-      </span>
+          </div>
+          <input id="email" class="form-input block w-full pl-10 sm:text-sm sm:leading-5"
+            placeholder="Name, Status, Email" (input)="searchUser($event.target.value)" />
+        </div>
       </div>
+
     </div>
   </div>
   <ul>
@@ -27,21 +29,21 @@
       *ngFor="let applicant of applicants | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index"
       [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
       <a [routerLink]="'/applicant/' + applicant.id"
-         class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+        class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
         <div class="flex items-center px-4 py-4 sm:px-6">
           <div class="min-w-0 flex-1 flex items-center">
             <div class="flex-shrink-0">
-              <img class="h-12 w-12 rounded-full" [src]="applicant.user.profile.image" alt="applicant profile photo"/>
+              <img class="h-12 w-12 rounded-full" [src]="applicant.user.profile.image" alt="applicant profile photo" />
             </div>
             <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
               <div>
-                <div
-                  class="text-sm leading-5 font-medium text-indigo-600 truncate">{{applicant.user.first_name}} {{applicant.user.last_name}}
+                <div class="text-sm leading-5 font-medium text-indigo-600 truncate">{{applicant.user.first_name}}
+                  {{applicant.user.last_name}}
                 </div>
                 <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
                   <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                   </svg>
                   <span class="truncate">{{applicant.user.email}}
                   </span>
@@ -54,14 +56,33 @@
                     <time datetime="2020-01-07">January 7, 2020
                     </time>
                   </div>
-                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
+
+                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500"
+                    *ngIf="applicant.status.name === 'Approved'">
                     <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
                       <path fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                            clip-rule="evenodd"/>
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd" />
                     </svg>
-                    Completed phone screening
+                    Approved
                   </div>
+
+                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500"
+                    *ngIf="applicant.status.name === 'Pending'">
+                    <i class="fas fa-cog fa-spin flex-shrink-0 mr-1.5  text-yellow-400"></i>
+                    Pending
+                  </div>
+
+                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500"
+                    *ngIf="applicant.status.name === 'Rejected'">
+                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                        clip-rule="evenodd"></path>
+                    </svg>
+                    Rejected
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -69,20 +90,14 @@
           <div>
             <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd"/>
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd" />
             </svg>
           </div>
         </div>
       </a>
     </li>
   </ul>
-  <app-pagination
-    (page)="setActivePage($event)"
-    [activePage]="activePage"
-    [maxPage]="maxPage"
-    [maxPages]="maxPages"
-    [pagination]="pagination"
-    [windowSize]="windowSize"
-    [results]="applicants.length"></app-pagination>
+  <app-pagination (page)="setActivePage($event)" [activePage]="activePage" [maxPage]="maxPage" [maxPages]="maxPages"
+    [pagination]="pagination" [windowSize]="windowSize" [results]="applicants.length"></app-pagination>
 </div>

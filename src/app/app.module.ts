@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -15,6 +15,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from './components/components.module';
 import { IonicModule } from '@ionic/angular';
+import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { IonicModule } from '@ionic/angular';
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [PusherServiceProvider],
+  providers: [PusherServiceProvider, { provide: ErrorHandler, useClass: SentryErrorHandler }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
