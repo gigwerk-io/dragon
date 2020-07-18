@@ -26,9 +26,14 @@ export class JobsListComponent implements OnInit {
 
   ngOnInit() {
 
+    console.log('in the table component', this.jobs)
 
     this.allJobs = this.jobs;
 
+
+  }
+
+  setupPagination(): void {
     this.maxPages = (this.jobs.length / this.windowSize) - ((this.jobs.length % this.windowSize) / this.windowSize);
     if (this.maxPages < 19) {
       this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
@@ -37,6 +42,7 @@ export class JobsListComponent implements OnInit {
       this.setActivePage(1);
     }
   }
+
 
   setActivePage(page: number) {
     this.activePage = page;
@@ -72,7 +78,16 @@ export class JobsListComponent implements OnInit {
   }
 
   filterTable(event: string) {
-    this.jobs = this.tableService.filterJobsTable(event, this.jobs, this.allJobs);
+    const tablefilterParams = [
+      'filter.price +',
+      'filter.customer.first_name +',
+      'filter.customer.email +',
+      'filter.status +',
+      'filter.customer.last_name +',
+      'filter.intensity +',
+      'filter.views'
+    ];
+    this.jobs = this.tableService.filterTable(event, this.jobs, this.allJobs, tablefilterParams);
   }
 
 }
