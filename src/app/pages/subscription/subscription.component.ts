@@ -41,11 +41,7 @@ export class SubscriptionComponent implements OnInit {
       this.paymentMethods = res.data;
     });
 
-    // this.financeService.getInvoice().then(res => this.invoice = res.data);
-    this.financeService.getInvoice().then(res => {
-      this.invoice = res.data;
-      console.log('invoice', res.data)
-    });
+    this.financeService.getInvoice().then(res => this.invoice = res.data);
   }
 
 

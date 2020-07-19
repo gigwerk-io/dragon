@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SubscriptionService } from 'src/app/utils/services/subscription.service';
-import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
@@ -19,12 +18,9 @@ export class PlanComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('plan page')
     this.subscriptionService.getSubscription().then(res => {
       this.plan = res.data;
-      // this.plan.name = 'Enterprise Plan'
       this.currentPlan = this.plan.name;
-      console.log('res', this.plan)
     });
   }
 

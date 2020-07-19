@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { Payment } from '../interfaces/models/Payment';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { Subject } from 'rxjs';
+import { Invoice } from '../interfaces/models/invoice';
 
 
 
@@ -26,7 +27,7 @@ export class FinanceService extends RESTService {
 
   }
 
-  getInvoice() {
+  getInvoice(): Promise<Response<Invoice>> {
     return this.makeHttpRequest(`invoices`, 'GET')
       .toPromise()
       .then((res) => res.toPromise());
