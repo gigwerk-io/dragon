@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-landing-page": {
+    "dragon-dashboard": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -199,5 +199,5 @@
       }
     }
   },
-  "defaultProject": "angular-landing-page"
+  "defaultProject": "dragon-dashboard"
 }
