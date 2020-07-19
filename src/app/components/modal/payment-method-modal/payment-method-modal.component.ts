@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation} from '@angular/core';
-import {ElementOptions, Elements, ElementsOptions, StripeCardComponent, StripeService} from 'ngx-stripe';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Element as StripeElement} from 'ngx-stripe/lib/interfaces/element';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ElementOptions, Elements, ElementsOptions, StripeCardComponent, StripeService } from 'ngx-stripe';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Element as StripeElement } from 'ngx-stripe/lib/interfaces/element';
+import { FinanceService } from '../../../utils/services/finance.service';
 
 @Component({
   selector: 'app-payment-method-modal',
@@ -42,7 +43,9 @@ export class PaymentMethodModalComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private stripeService: StripeService) {}
+    private stripeService: StripeService,
+    private financeService: FinanceService
+  ) { }
 
   ngOnInit() {
     this.stripeTest = this.fb.group({
@@ -59,6 +62,7 @@ export class PaymentMethodModalComponent implements OnInit {
           // Use the token to create a charge or a customer
           // https://stripe.com/docs/charges
           console.log(result.token.id);
+          this.financeService.savePayment.next(result.token.id)
         } else if (result.error) {
           // Error creating the token
           console.log(result.error.message);

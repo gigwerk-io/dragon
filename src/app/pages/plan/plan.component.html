@@ -1,13 +1,23 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+<ngx-spinner></ngx-spinner>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="plan; else SKELETONTEXT">
   <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     <div>
-      <h2 class="text-xl font-bold">Basic Plan</h2>
+      <h2 class="text-xl font-bold">Basic Plan <span
+          class="inline-flex items-center ml-2 px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800">
+          <span *ngIf="currentPlan === 'Basic Plan'">Current Plan</span>
+        </span></h2>
       <div class="font-medium mb-2">All our standard features with unlimited brands and knowledge bases.</div>
 
-      <div class="flex flex-col w-full mb-4">
+      <div class="flex flex-col w-full mb-4" (click)="plan.name = 'Basic Plan'">
         <label
-          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-gray-100">
-          <input type="radio" name="plan" value="standard_monthly" class="form-radio text-primary-500">
+          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-gray-100"
+          [ngClass]="{'border-purple-400': plan.name === 'Basic Plan'}">
+
+
+
+          <input type="radio" name="plan" value="Basic Plan" [checked]="plan.name === 'Basic Plan'"
+            class="form-radio text-primary-500">
           <div class="ml-4"><span class="font-semibold">Monthly</span> - <span class="font-bold">$29.00</span>
             <ul class="gap-6 text-gray-600 mt-3">
               <li class="my-1 py-1"><i class="fas fa-check fa-fw text-green-500"></i> Business Dashboard</li>
@@ -23,16 +33,20 @@
     </div>
 
     <div>
-      <h2 class="text-xl font-bold">Pro Plan  <span
-        class="inline-flex items-center ml-2 px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800">
-        Current Plan
-      </span></h2>
+      <h2 class="text-xl font-bold">Pro Plan <span
+          class="inline-flex items-center ml-2 px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800">
+          <span *ngIf="currentPlan === 'Pro Plan'">Current Plan</span>
+        </span></h2>
       <div class="font-medium mb-2">All our standard features with unlimited brands and knowledge bases.</div>
 
-      <div class="flex flex-col w-full mb-4">
+      <div class="flex flex-col w-full mb-4" (click)="plan.name = 'Pro Plan'">
         <label
-          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-purple-300">
-          <input type="radio" name="plan" value="standard_monthly" class="form-radio text-primary-500" checked>
+          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-gray-100"
+          [ngClass]="{'border-purple-400': plan.name === 'Pro Plan'}">
+
+
+          <input type="radio" name="plan" value="Pro Plan" [checked]="plan.name === 'Pro Plan'"
+            class="form-radio text-primary-500">
           <div class="ml-4"><span class="font-semibold">Monthly</span> - <span class="font-bold">$79.00</span>
             <ul class="gap-6 text-gray-600 mt-3">
               <li class="my-1 py-1"><i class="fas fa-check fa-fw text-green-500"></i> Business Dashboard</li>
@@ -48,13 +62,21 @@
     </div>
 
     <div>
-      <h2 class="text-xl font-bold">Enterprise Plan</h2>
+      <h2 class="text-xl font-bold">Enterprise Plan <span
+          class="inline-flex items-center ml-2 px-2.5 py-0.5 rounded-full text-xs font-medium leading-4 bg-purple-100 text-purple-800">
+          <span *ngIf="currentPlan === 'Enterprise Plan'">Current Plan</span>
+        </span></h2>
       <div class="font-medium mb-2">All our standard features with unlimited brands and knowledge bases.</div>
 
-      <div class="flex flex-col w-full mb-4">
+      <div class="flex flex-col w-full mb-4" (click)="plan.name = 'Enterprise Plan'">
         <label
-          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-gray-100">
-          <input type="radio" name="plan" value="standard_monthly" class="form-radio text-primary-500">
+          class="flex-1 bg-white flex items-center cursor-pointer rounded-lg shadow-lg border-2 px-4 py-3 border-purple-100"
+          [ngClass]="{'border-purple-400': plan.name === 'Enterprise Plan'}">
+
+
+
+          <input type="radio" name="plan" value="standard_monthly" class="form-radio text-primary-500"
+            [checked]="plan.name === 'Enterprise Plan'">
           <div class="ml-4"><span class="font-semibold">Monthly</span> - <span class="font-bold">$149.00</span>
             <ul class="gap-6 text-gray-600 mt-3">
               <li class="my-1 py-1"><i class="fas fa-check fa-fw text-green-500"></i> Business Dashboard</li>
@@ -72,11 +94,70 @@
   <div class="mt-8 border-t border-gray-200 pt-5">
     <div class="flex justify-end">
       <span class="ml-3 inline-flex rounded-md shadow-sm">
-        <button type="submit"
-                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+        <button type="submit" (click)="changePlan()" [disabled]="currentPlan === plan.name"
+          [ngClass]="{'opacity-100': currentPlan !== plan.name }"
+          class="opacity-25 inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
           Change Plan
         </button>
       </span>
     </div>
   </div>
 </div>
+
+<ng-template #SKELETONTEXT>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+
+
+    <div class="flex ">
+      <div class="flex-initial text-gray-700 text-center   py-2 m-5">
+        <ion-skeleton-text animated="true" class=" " style="height: 25px; width: 111px; margin-left: -10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 366px; margin-left: -10px; margin-top: 18px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 133px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" rounded-md"
+          style="height: 250px; width: 375px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+      </div>
+
+      <div class="flex-initial text-gray-700 text-center   py-2 m-5">
+        <ion-skeleton-text animated="true" class=" " style="height: 25px; width: 111px; margin-left: -10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 366px; margin-left: -10px; margin-top: 18px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 133px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" rounded-md"
+          style="height: 250px; width: 375px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+      </div>
+
+      <div class="flex-initial text-gray-700 text-center   py-2 m-5">
+        <ion-skeleton-text animated="true" class=" " style="height: 25px; width: 111px; margin-left: -10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 366px; margin-left: -10px; margin-top: 18px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" "
+          style="height: 12px; width: 133px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+        <ion-skeleton-text animated="true" class=" rounded-md"
+          style="height: 250px; width: 375px; margin-left: -10px; margin-top: 10px;">
+        </ion-skeleton-text>
+      </div>
+    </div>
+
+    <div>
+      <ion-skeleton-text animated="true" class=" rounded-md"
+        style="height: 41px; width: 112px; margin-left: auto; margin-top: 30px; margin-right: 17px;">
+      </ion-skeleton-text>
+    </div>
+
+
+  </div>
+</ng-template>

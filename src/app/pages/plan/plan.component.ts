@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SubscriptionService } from 'src/app/utils/services/subscription.service';
+import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-plan',
@@ -7,9 +10,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlanComponent implements OnInit {
 
-  constructor() { }
+  currentPlan;
+  plan;
+
+  constructor(
+    private subscriptionService: SubscriptionService,
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit() {
+    console.log('plan page')
+    this.subscriptionService.getSubscription().then(res => {
+      this.plan = res.data;
+      // this.plan.name = 'Enterprise Plan'
+      this.currentPlan = this.plan.name;
+      console.log('res', this.plan)
+    });
+  }
+
+  changePlan() {
+    console.log('submitting', this.plan.name);
+    this.spinner.show();
+    this.subscriptionService.changeSubscription(this.plan.name).then(res => {
+      console.log('res', res)
+      this.currentPlan = this.plan.name;
+      this.spinner.hide();
+    })
   }
 
 }
