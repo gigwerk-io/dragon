@@ -22,13 +22,6 @@ export class JobsService extends RESTService {
         return res.toPromise().then((jobsRes) => jobsRes);
       });
   }
-  // getAllJobs(): Promise<Response<MarketplaceJob[]>> {
-  //   return this.makeHttpRequest('jobs', 'GET')
-  //     .toPromise()
-  //     .then((res) => {
-  //       return res.toPromise().then((jobsRes) => jobsRes);
-  //     });
-  // }
 
   getJob(id: number): Promise<Response<MarketplaceJob>> {
     return this.makeHttpRequest(`job/${id}`, `GET`)

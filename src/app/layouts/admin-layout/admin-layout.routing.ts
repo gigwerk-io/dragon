@@ -6,6 +6,8 @@ import { ApplicantsComponent } from '../../pages/applicants/applicants.component
 import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { JobComponent } from '../../pages/job/job.component';
 import { JobsComponent } from '../../pages/jobs/jobs.component';
+import {SubscriptionComponent} from '../../pages/subscription/subscription.component';
+import {PlanComponent} from '../../pages/plan/plan.component';
 import { PeopleComponent } from '../../pages/people/people.component';
 
 export const AdminLayoutRoutes: Routes = [
@@ -15,5 +17,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'applicant/:id', component: ApplicantComponent },
   { path: 'job/:id', component: JobComponent },
   { path: 'jobs', component: JobsComponent },
+  { path: 'subscription', component: SubscriptionComponent},
+  { path: 'plan', component: PlanComponent},
   { path: 'people', component: PeopleComponent }
 ];

@@ -15,6 +15,10 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from './components/components.module';
 import { IonicModule } from '@ionic/angular';
+import {NgxStripeModule} from 'ngx-stripe';
+import {environment} from '../environments/environment';
+import {CreditCardDirectivesModule} from 'angular-cc-library';
+import { PlanComponent } from './pages/plan/plan.component';
 import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
 
 
@@ -31,6 +35,8 @@ import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     IonicModule.forRoot(),
+    NgxStripeModule.forRoot(environment.stripePublicKey),
+    CreditCardDirectivesModule
   ],
   declarations: [
     AppComponent,

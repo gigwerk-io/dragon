@@ -21,13 +21,6 @@ module.exports = {
     "breaking",
     "issues",
   ],
-  "scopes": [
-    "dashboard",
-    "jobs",
-    "settings",
-    "tech-debt",
-    "users"
-  ],
   "types": {
     "chore": {
       "description": "Build process or auxiliary tool changes",
