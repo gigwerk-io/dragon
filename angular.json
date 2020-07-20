@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-landing-page": {
+    "dragon-dashboard": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-landing-page",
+            "outputPath": "dist/dragon-dashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -116,18 +116,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-landing-page:build"
+            "browserTarget": "dragon-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-landing-page:build:production"
+              "browserTarget": "dragon-dashboard:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-landing-page:build"
+            "browserTarget": "dragon-dashboard:build"
           }
         },
         "test": {
@@ -164,40 +164,40 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-landing-page:serve"
+            "devServerTarget": "dragon-dashboard:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-landing-page:serve:production"
+              "devServerTarget": "dragon-dashboard:serve:production"
             }
           }
         },
         "ionic-cordova-serve": {
           "builder": "@ionic/angular-toolkit:cordova-serve",
           "options": {
-            "cordovaBuildTarget": "angular-landing-page:ionic-cordova-build",
-            "devServerTarget": "angular-landing-page:serve"
+            "cordovaBuildTarget": "dragon-dashboard:ionic-cordova-build",
+            "devServerTarget": "dragon-dashboard:serve"
           },
           "configurations": {
             "production": {
-              "cordovaBuildTarget": "angular-landing-page:ionic-cordova-build:production",
-              "devServerTarget": "angular-landing-page:serve:production"
+              "cordovaBuildTarget": "dragon-dashboard:ionic-cordova-build:production",
+              "devServerTarget": "dragon-dashboard:serve:production"
             }
           }
         },
         "ionic-cordova-build": {
           "builder": "@ionic/angular-toolkit:cordova-build",
           "options": {
-            "browserTarget": "angular-landing-page:build"
+            "browserTarget": "dragon-dashboard:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-landing-page:build:production"
+              "browserTarget": "dragon-dashboard:build:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-landing-page"
+  "defaultProject": "dragon-dashboard"
 }
