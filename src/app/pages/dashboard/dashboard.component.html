@@ -1,6 +1,9 @@
 <ngx-spinner></ngx-spinner>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-  <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+  <h1 class="text-2xl font-semibold text-gray-900" *ngIf="stats; else skeletonDashboard">Dashboard</h1>
+  <ng-template #skeletonDashboard>
+    <div class="h-5"></div>
+  </ng-template>
   <div class="hidden sm:block">
     <div class="py-5">
       <div class="border-t border-gray-200"></div>
@@ -10,7 +13,7 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
   <!-- Replace with your content -->
   <div class="py-4">
-    <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="stats">
+    <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="stats; else skeletonStats">
       <app-stats-card title="Applicants" [value]="stats.applicants" href="#">
         <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
           <path
@@ -45,23 +48,47 @@
         </svg>
       </app-stats-card>
     </div>
+    <ng-template #skeletonStats>
+      <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
+        <ion-skeleton-text animated="false" class="rounded-lg h-40 w-full"></ion-skeleton-text>
+
+        <ion-skeleton-text animated="false" class="rounded-lg h-40 w-full"></ion-skeleton-text>
+
+        <ion-skeleton-text animated="false" class="rounded-lg h-40 w-full"></ion-skeleton-text>
+
+        <ion-skeleton-text animated="false" class="rounded-lg h-40 w-full"></ion-skeleton-text>
+      </div>
+    </ng-template>
   </div>
   <div class="container py-4">
     <div class="items-center flex flex-col md:flex-row">
-      <div class="w-full md:w-8/12 mx-2" *ngIf="paymentsChart">
+      <div class="w-full md:w-8/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
         <app-line-chart [labels]="paymentsChart.labels" [datasets]="paymentsChart.datasets"></app-line-chart>
       </div>
-      <div class="w-full md:w-4/12 mx-2" *ngIf="jobsChart">
+      <ng-template #skeletonPaymentsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0" style="height: 26rem"></ion-skeleton-text>
+      </ng-template>
+
+      <div class="w-full md:w-4/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
         <app-bar-chart [labels]="jobsChart.labels" [datasets]="jobsChart.datasets"></app-bar-chart>
       </div>
+      <ng-template #skeletonJobsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0" style="height: 26rem"></ion-skeleton-text>
+      </ng-template>
     </div>
   </div>
-  <div class="container py-4" *ngIf="topWorkers">
+  <div class="container" *ngIf="topWorkers; else skeletonTopWorkers">
     <h3 class="text-lg leading-6 font-medium text-gray-900 mb-2">
-      Leader Board
+      Leaderboard
     </h3>
     <app-leaderboard-list [topWorkers]="topWorkers"></app-leaderboard-list>
   </div>
-
+  <ng-template #skeletonTopWorkers>
+    <div class="container py-4">
+      <div class="h-4">
+      </div>
+      <ion-skeleton-text animated="false" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
+    </div>
+  </ng-template>
   <!-- /End replace -->
 </div>

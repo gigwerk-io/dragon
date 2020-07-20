@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.gigwerk.test',
+  apiUrl: 'http://api.gigwerk.test',
   version: '0.0.1',
   pusherId: '5a35a484c75eee676b6f'
 };
