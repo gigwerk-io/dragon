@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Role } from '../interfaces/enum/constants';
 import { ToastrService } from 'ngx-toastr';
 import { Response } from '../interfaces/responses/GenericResponse';
-import {User} from '../interfaces/models/User';
+import { User } from '../interfaces/models/User';
 
 
 @Injectable({
@@ -18,16 +18,14 @@ export class PeopleService extends RESTService {
   constructor(
     public http: HttpClient,
     public storage: Storage,
-    private toast: ToastrService, ) {
+    private toast: ToastrService,) {
     super(http, storage);
   }
 
   getAllUsers(): Promise<Response<User[]>> {
     return this.makeHttpRequest(`users`, 'GET')
       .toPromise()
-      .then((res: Observable<Response<User[]>>) => {
-        return res.toPromise().then(usersRes => usersRes);
-      });
+      .then((res: Observable<Response<User[]>>) => res.toPromise());
   }
 
   getAllFreelancers(): Promise<User[]> {

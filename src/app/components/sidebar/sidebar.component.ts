@@ -32,8 +32,6 @@ export class SidebarComponent implements OnInit {
     private settingsService: SettingsService,
     private notificationService: NotificationService,
     private events: Events,
-
-  ) {
   }
 
   ngOnInit() {
