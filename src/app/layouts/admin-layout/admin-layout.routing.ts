@@ -17,7 +17,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'applicant/:id', component: ApplicantComponent },
   { path: 'job/:id', component: JobComponent },
   { path: 'jobs', component: JobsComponent },
-  { path: 'subscription', component: SubscriptionComponent},
+  { path: 'manage-subscription', component: SubscriptionComponent},
   { path: 'plan', component: PlanComponent},
   { path: 'members', component: PeopleComponent }
 ];

@@ -6,6 +6,8 @@ import { NotificationService } from '../../utils/services/notification.service';
 import { Events } from '../../utils/services/events';
 import { Notification } from '../../utils/interfaces/models/Notification';
 import { AuthenticationService } from '../../utils/services/authentication.service';
+import {Storage} from '@ionic/storage';
+import {StorageKeys} from '../../utils/interfaces/enum/constants';
 
 
 @Component({
@@ -28,8 +30,13 @@ export class SidebarComponent implements OnInit, DoCheck {
   notifications: Notification[] = [];
   badgeCount = '';
 
+  userId: number;
+  image: string;
+  name: string;
+
   constructor(
     public router: Router,
+    private storage: Storage,
     private authService: AuthenticationService,
     private settingsService: SettingsService,
     private notificationService: NotificationService,
@@ -48,6 +55,7 @@ export class SidebarComponent implements OnInit, DoCheck {
       this.badgeCount = res.data.length > 9 ? '9+' : String(res.data.length);
       this.notifications = res.data.length > 5 ? res.data.slice(0, 5) : res.data;
     });
+    this.getUser();
   } // end of onInit()
 
   markNotificationRead(id: string) {
@@ -69,6 +77,14 @@ export class SidebarComponent implements OnInit, DoCheck {
       .reduce((tot, frag) => tot + ' ' + frag.charAt(0).toUpperCase() + frag.slice(1));
 
     this.pageTitle = this.pageTitle.charAt(0).toUpperCase() + this.pageTitle.slice(1);
+  }
+
+  getUser() {
+    this.storage.get(StorageKeys.USER).then((user) => {
+      this.userId = user.id;
+      this.image = user.profile.image;
+      this.name = user.first_name + ' ' + user.last_name;
+    });
   }
 
   signOut() {
