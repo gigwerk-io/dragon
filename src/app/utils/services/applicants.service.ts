@@ -18,13 +18,11 @@ export class ApplicantsService extends RESTService {
 
   getApplicants(): Promise<Response<Application[]>> {
     return this.makeHttpRequest(`applicants`, `GET`)
-      .toPromise()
       .then((res:  Observable<Response<Application[]>>) => res.toPromise());
   }
 
   getApplicant(id): Promise<Response<Application>> {
     return this.makeHttpRequest(`applicant/${id}`, `GET`)
-      .toPromise()
       .then((res:  Observable<Response<Application>>) => res.toPromise());
   }
 }

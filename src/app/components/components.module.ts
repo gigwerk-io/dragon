@@ -21,13 +21,15 @@ import { GenericToastComponent } from './toast/generic-toast/generic-toast.compo
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
 import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
+import {IonicModule} from "@ionic/angular";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule,
+        IonicModule,
+    ],
   declarations: [
     SidebarComponent,
     TimeAgoPipe,

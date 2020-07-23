@@ -24,18 +24,13 @@ export class FinanceService extends RESTService {
   }
 
   getAllPayments(): Promise<Response<Payment[]>> {
-    return this.makeHttpRequest(`payments`, 'GET')
-      .toPromise()
+    return this.makeHttpRequest<Response<Payment[]>>(`payments`, 'GET')
       .then((res) => res.toPromise());
   }
 
 
   refundCutomer(stripe_token: string) {
     return this.makeHttpRequest(`admin/refund/${stripe_token}`, 'PATCH')
-      .toPromise()
       .then((res) => console.log('refunded?', res));
   }
-
-
-
 }

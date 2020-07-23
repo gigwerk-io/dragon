@@ -21,20 +21,17 @@ export class DashboardService extends RESTService {
 
   getStats(): Promise<Response<Stats>> {
     return this.makeHttpRequest(`stats`, `GET`)
-      .toPromise()
       .then((res:  Observable<Response<Stats>>) => res.toPromise());
   }
 
   getGraphs(): Promise<Response<Graph>> {
     return this.makeHttpRequest(`graphs`, `GET`)
-      .toPromise()
       .then((res:  Observable<Response<Graph>>) => res.toPromise());
   }
 
 
   getLeaderboard(): Promise<Response<User[]>> {
-    return this.makeHttpRequest(`leaderboard`, `GET`)
-      .toPromise()
+    return this.makeHttpRequest<Response<User[]>>(`leaderboard`, `GET`)
       .then((res) => res.toPromise());
   }
 }
