@@ -16,14 +16,12 @@ export class NotificationService extends RESTService {
   }
 
   getAllNotifications(): Promise<Response<Notification[]>> {
-    return this.makeHttpRequest(`user/notifications/all`, 'GET')
-      .toPromise()
+    return this.makeHttpRequest<Response<Notification[]>>(`notifications/all`, 'GET')
       .then((res) => res.toPromise());
   }
 
   getUnreadNotifications(): Promise<Response<Notification[]>> {
-    return this.makeHttpRequest(`user/notifications/all`, 'GET')
-      .toPromise()
+    return this.makeHttpRequest<Response<Notification[]>>(`notifications/new`, 'GET')
       .then((res) => res.toPromise());
   }
 
@@ -31,9 +29,8 @@ export class NotificationService extends RESTService {
 
   }
 
-  getSingleNotification(id): Promise<Notification> {
-    return this.makeHttpRequest(`notification/${id}`, 'GET')
-      .toPromise()
+  getSingleNotification(id): Promise<Response<Notification>> {
+    return this.makeHttpRequest<Response<Notification>>(`notification/${id}`, 'GET')
       .then((res) => res.toPromise());
   }
 }

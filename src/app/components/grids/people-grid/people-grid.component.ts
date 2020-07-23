@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, DoCheck} from '@angular/core';
 import { User } from '../../../utils/interfaces/models/User';
 import { TableService } from '../../../utils/services/table.service';
 
@@ -7,7 +7,7 @@ import { TableService } from '../../../utils/services/table.service';
   templateUrl: './people-grid.component.html',
   styleUrls: ['./people-grid.component.css']
 })
-export class PeopleGridComponent implements OnInit {
+export class PeopleGridComponent implements OnInit, DoCheck {
 
   // tslint:disable-next-line: no-input-rename
   @Input('people') people: User[];
@@ -25,10 +25,14 @@ export class PeopleGridComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.allPeople = this.people;
-    this.maxPages = (this.people.length / this.windowSize) - ((this.people.length % this.windowSize) / this.windowSize) + 1;
+  }
 
-    this.setupPagination();
+  ngDoCheck() {
+    this.allPeople = this.people;
+    if (this.people && this.windowSize) {
+      this.maxPages = (this.people.length / this.windowSize) - ((this.people.length % this.windowSize) / this.windowSize) + 1;
+      this.setupPagination();
+    }
   }
 
   setupPagination(): void {

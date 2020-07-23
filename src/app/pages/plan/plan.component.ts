@@ -28,10 +28,10 @@ export class PlanComponent implements OnInit {
     console.log('submitting', this.plan.name);
     this.spinner.show();
     this.subscriptionService.changeSubscription(this.plan.name).then(res => {
-      console.log('res', res)
+      console.log('res', res);
       this.currentPlan = this.plan.name;
       this.spinner.hide();
-    })
+    });
   }
 
 }

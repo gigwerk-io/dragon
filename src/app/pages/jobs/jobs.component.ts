@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { JobsService } from 'src/app/utils/services/jobs.service';
+import {MarketplaceJob} from "../../utils/interfaces/models/MarketplaceJob";
 
 @Component({
   selector: 'app-jobs',
@@ -8,7 +9,7 @@ import { JobsService } from 'src/app/utils/services/jobs.service';
 })
 export class JobsComponent implements OnInit {
 
-  jobs;
+  jobs: MarketplaceJob[];
 
   constructor(
     private jobsService: JobsService

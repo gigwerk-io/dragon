@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
 import { User } from '../../../utils/interfaces/models/User';
 import { Application } from '../../../utils/interfaces/models/Application';
 import { TableService } from '../../../utils/services/table.service';
@@ -8,9 +8,8 @@ import { TableService } from '../../../utils/services/table.service';
   templateUrl: './applicant-list.component.html',
   styleUrls: ['./applicant-list.component.css']
 })
-export class ApplicantListComponent implements OnInit {
-  // tslint:disable-next-line: no-input-rename
-  @Input('applicants') applicants: Application[];
+export class ApplicantListComponent implements OnInit, DoCheck {
+  @Input() applicants: Application[];
   allApplicants: Application[];
   activePage = 1;
   maxPages: number;
@@ -22,6 +21,9 @@ export class ApplicantListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  ngDoCheck() {
     this.allApplicants = this.applicants;
     this.setupPagination();
   }
@@ -31,13 +33,15 @@ export class ApplicantListComponent implements OnInit {
   }
 
   setupPagination(): void {
-    this.maxPages = (this.applicants.length / this.windowSize) - ((this.applicants.length % this.windowSize) / this.windowSize);
+    if (this.applicants && this.windowSize) {
+      this.maxPages = (this.applicants.length / this.windowSize) - ((this.applicants.length % this.windowSize) / this.windowSize);
 
-    if (this.maxPages < 19) {
-      this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
-      this.maxPage = this.maxPages;
-    } else {
-      this.setActivePage(1);
+      if (this.maxPages < 19) {
+        this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
+        this.maxPage = this.maxPages;
+      } else {
+        this.setActivePage(1);
+      }
     }
   }
 

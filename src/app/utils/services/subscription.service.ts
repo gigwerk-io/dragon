@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
+import {Response} from "../interfaces/responses/GenericResponse";
 
 
 @Injectable({
@@ -23,16 +24,13 @@ export class SubscriptionService extends RESTService {
   }
 
   getSubscription() {
-    return this.makeHttpRequest('subscription', 'GET')
-      .toPromise()
+    return this.makeHttpRequest<Response<any>>('subscription', 'GET')
       .then((res) => res.toPromise());
   }
 
 
   changeSubscription(id: string) {
-
-    return this.makeHttpRequest('subscription', 'PATCH', { subscription_id: this.subscriptionMap[id] })
-      .toPromise()
+    return this.makeHttpRequest<Response<any>>('subscription', 'PATCH', { subscription_id: this.subscriptionMap[id] })
       .then((res) => res.toPromise());
   }
 

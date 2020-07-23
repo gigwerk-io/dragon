@@ -24,6 +24,7 @@ import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import {NgxStripeModule} from 'ngx-stripe';
 import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
+import {IonicModule} from '@ionic/angular';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
     FormsModule,
     ReactiveFormsModule,
     NgxStripeModule,
+    IonicModule
   ],
   declarations: [
     SidebarComponent,
