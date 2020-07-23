@@ -35,7 +35,7 @@ jobs:
       - name: Build Dragon App
         run: npm install && npm run dev
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/angular-landing-page s3://gigwerk-dev-dashboard
+        run: aws s3 sync ./dist/dragon-dashboard s3://gigwerk-dev-dashboard
   deploy-staging:
     runs-on: ubuntu-latest
     needs: test
@@ -51,4 +51,4 @@ jobs:
       - name: Build Dragon App
         run: npm install && npm run staging
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./dist/angular-landing-page s3://gigwerk-staging-dashboard
+        run: aws s3 sync ./dist/dragon-dashboard s3://gigwerk-staging-dashboard

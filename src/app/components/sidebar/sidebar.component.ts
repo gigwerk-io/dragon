@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
     private settingsService: SettingsService,
     private notificationService: NotificationService,
     private events: Events,
-  }
+  ){}
 
   ngOnInit() {
     this.settingsService.checkMissingSteps().then((steps) => {
@@ -54,7 +54,7 @@ export class SidebarComponent implements OnInit {
     // this.settingsService.checkMissingSteps().then((steps) => {
     //   this.missingSteps = steps.data;
     //   // tslint:disable-next-line:max-line-length
-    // this.isMissingSteps = (!this.missingSteps.has_location || !this.missingSteps.has_workers 
+    // this.isMissingSteps = (!this.missingSteps.has_location || !this.missingSteps.has_workers
     // || !this.missingSteps.has_stripe || !this.missingSteps.has_customers);
     // });
   }
