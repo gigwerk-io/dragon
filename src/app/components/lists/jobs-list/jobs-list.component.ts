@@ -24,12 +24,14 @@ export class JobsListComponent implements OnInit, DoCheck {
     private tableService: TableService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngDoCheck() {
     this.allJobs = this.jobs;
+    this.setupPagination();
+  }
 
+  setupPagination(): void {
     if (this.jobs && this.windowSize) {
       this.maxPages = (this.jobs.length / this.windowSize) - ((this.jobs.length % this.windowSize) / this.windowSize);
       if (this.maxPages < 19) {
@@ -75,7 +77,16 @@ export class JobsListComponent implements OnInit, DoCheck {
   }
 
   filterTable(event: string) {
-    this.jobs = this.tableService.filterJobsTable(event, this.jobs, this.allJobs);
+    const tablefilterParams = [
+      'filter.price +',
+      'filter.customer.first_name +',
+      'filter.customer.email +',
+      'filter.status +',
+      'filter.customer.last_name +',
+      'filter.intensity +',
+      'filter.views'
+    ];
+    this.jobs = this.tableService.filterTable(event, this.jobs, this.allJobs, tablefilterParams);
   }
 
 }

@@ -1,8 +1,12 @@
-import {Component, DoCheck, Input, OnChanges, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {SettingsService} from '../../utils/services/settings.service';
-import {MissingSteps} from '../../utils/interfaces/user/User';
-import {AuthenticationService} from "../../utils/services/authentication.service";
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { SettingsService } from '../../utils/services/settings.service';
+import { MissingSteps } from '../../utils/interfaces/user/User';
+import { NotificationService } from '../../utils/services/notification.service';
+import { Events } from '../../utils/services/events';
+import { Notification } from '../../utils/interfaces/models/Notification';
+import { AuthenticationService } from '../../utils/services/authentication.service';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +14,9 @@ import {AuthenticationService} from "../../utils/services/authentication.service
 })
 export class SidebarComponent implements OnInit, DoCheck {
   showSidebar = false;
-  public isMissingSteps = false;
-  public stepsKey = {
+  showNotifications = false;
+  isMissingSteps = false;
+  stepsKey = {
     workers: 'people',
     customers: 'people',
     stripe: 'settings',
@@ -20,21 +25,34 @@ export class SidebarComponent implements OnInit, DoCheck {
   missingSteps: MissingSteps;
   showModal = false;
   @Input() pageTitle = '';
-
-  dashboardActive: string;
-  peopleActive: string;
-  jobsActive: string;
-  applicantsActive: string;
-  financesActive: string;
-  settingsActive: string;
+  notifications: Notification[] = [];
+  badgeCount = '';
 
   constructor(
+    public router: Router,
+    private authService: AuthenticationService,
     private settingsService: SettingsService,
-    private router: Router,
-    private authService: AuthenticationService
-  ) {  }
+    private notificationService: NotificationService,
+    private events: Events,
+  ) { }
 
   ngOnInit() {
+    this.settingsService.checkMissingSteps().then((steps) => {
+      this.missingSteps = steps.data;
+      // tslint:disable-next-line:max-line-length
+      this.isMissingSteps = (!this.missingSteps.has_location || !this.missingSteps.has_workers || !this.missingSteps.has_stripe || !this.missingSteps.has_customers);
+    });
+
+    this.notificationService.getUnreadNotifications().then(res => {
+      console.log('res', res);
+      this.badgeCount = res.data.length > 9 ? '9+' : String(res.data.length);
+      this.notifications = res.data.length > 5 ? res.data.slice(0, 5) : res.data;
+    });
+  } // end of onInit()
+
+  markNotificationRead(id: string) {
+    // marks notification as read on the backend
+    this.notificationService.getSingleNotification(id).then(() => this.events.publish('notificationRead'));
     // this.settingsService.checkMissingSteps().then((steps) => {
     //   this.missingSteps = steps.data;
     // tslint:disable-next-line:max-line-length
@@ -43,59 +61,14 @@ export class SidebarComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    this.pageTitle = this.router.url.split('/')[1];
-    this.pageTitle = this.pageTitle.charAt(0).toUpperCase() + this.pageTitle.slice(1);
+    // form a page title to display from a url: /my-page -> My Page
+    this.pageTitle = this.router.url
+      .split('/')
+      .join('')
+      .split('-')
+      .reduce((tot, frag) => tot + ' ' + frag.charAt(0).toUpperCase() + frag.slice(1));
 
-    switch (this.pageTitle) {
-      case 'Dashboard':
-        this.dashboardActive = 'text-white bg-gray-900';
-        this.peopleActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.jobsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.applicantsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.financesActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.settingsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-      case 'People':
-        this.peopleActive = 'text-white bg-gray-900';
-        this.dashboardActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.jobsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.applicantsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.financesActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.settingsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-      case 'Jobs':
-        this.jobsActive = 'text-white bg-gray-900';
-        this.dashboardActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.peopleActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.applicantsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.financesActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.settingsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-      case 'Applicants':
-        this.applicantsActive = 'text-white bg-gray-900';
-        this.dashboardActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.peopleActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.jobsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.financesActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.settingsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-      case 'Finances':
-        this.financesActive = 'text-white bg-gray-900';
-        this.dashboardActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.peopleActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.jobsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.applicantsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.settingsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-      case 'Settings':
-        this.settingsActive = 'text-white bg-gray-900';
-        this.dashboardActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.peopleActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.jobsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.applicantsActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        this.financesActive = 'text-gray-300 hover:text-white hover:bg-gray-700';
-        break;
-    }
+    this.pageTitle = this.pageTitle.charAt(0).toUpperCase() + this.pageTitle.slice(1);
   }
 
   signOut() {

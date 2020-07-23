@@ -1,6 +1,7 @@
-import {Component, DoCheck, Input, OnInit} from '@angular/core';
-import {User} from '../../../utils/interfaces/models/User';
-import {Application} from '../../../utils/interfaces/models/Application';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { User } from '../../../utils/interfaces/models/User';
+import { Application } from '../../../utils/interfaces/models/Application';
+import { TableService } from '../../../utils/services/table.service';
 
 @Component({
   selector: 'app-applicant-list',
@@ -8,20 +9,33 @@ import {Application} from '../../../utils/interfaces/models/Application';
   styleUrls: ['./applicant-list.component.css']
 })
 export class ApplicantListComponent implements OnInit, DoCheck {
-  @Input('applicants') applicants: Application[];
+  @Input() applicants: Application[];
+  allApplicants: Application[];
   activePage = 1;
   maxPages: number;
   maxPage: number;
   pagination: number[];
   windowSize = 5;
-  constructor() { }
+  constructor(
+    private tableService: TableService
+  ) { }
 
   ngOnInit() {
   }
 
   ngDoCheck() {
+    this.allApplicants = this.applicants;
+    this.setupPagination();
+  }
+
+  setPage($event) {
+    console.log($event);
+  }
+
+  setupPagination(): void {
     if (this.applicants && this.windowSize) {
       this.maxPages = (this.applicants.length / this.windowSize) - ((this.applicants.length % this.windowSize) / this.windowSize);
+
       if (this.maxPages < 19) {
         this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
         this.maxPage = this.maxPages;
@@ -29,10 +43,6 @@ export class ApplicantListComponent implements OnInit, DoCheck {
         this.setActivePage(1);
       }
     }
-  }
-
-  setPage($event) {
-    console.log($event);
   }
 
   setActivePage(page: number) {
@@ -66,6 +76,11 @@ export class ApplicantListComponent implements OnInit, DoCheck {
       this.pagination.push(maxPage);
       this.maxPage = maxPage;
     }
+  }
+
+  searchUser(e: string) {
+    this.applicants = this.tableService.filterApplicants(e, this.applicants, this.allApplicants);
+    this.activePage = 1;
   }
 
 }

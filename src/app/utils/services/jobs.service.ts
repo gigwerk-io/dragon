@@ -55,6 +55,4 @@ export class JobsService extends RESTService {
     return this.makeHttpRequest(`job/${id}`, 'DELETE')
       .then((res: Observable<any>) => res.toPromise());
   }
-
-
 }

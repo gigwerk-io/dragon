@@ -1,7 +1,7 @@
 <!-- SKELETON CAROUSEL -->
 <ng-template #skeletonCarousel>
-    <div class="w-full   p-0" style="margin-top: -28px;">
-        <ion-skeleton-text animated="true" class="rounded-lg w-full" style="height: 33rem"></ion-skeleton-text>
+    <div class="w-full p-0">
+        <ion-skeleton-text class="rounded-lg w-full" style="height: 33rem"></ion-skeleton-text>
     </div>
 </ng-template>
 
@@ -74,9 +74,8 @@
 </ng-template>
 
 <!-- CAROUSEL -->
-<div class="carousel relative shadow-2xl bg-white mb-100" *ngIf="job; else skeletonCarousel "
-    style="margin-top: -28px;">
-    <div class="carousel-inner relative overflow-hidden w-full">
+<div class="carousel relative bg-white mb-100" *ngIf="job; else skeletonCarousel">
+    <div class="carousel-inner relative rounded-lg overflow-hidden w-full">
         <!--Slide 1-->
         <div>
             <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden=""

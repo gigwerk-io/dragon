@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Subscription} from 'rxjs';
-import {AuthenticationService} from '../../utils/services/authentication.service';
-import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
-import {NgForm} from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '../../utils/services/authentication.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
   loginSubscription: Subscription;
 
   constructor(private router: Router,
-              private auth: AuthenticationService,
-              private toast: ToastrService) { }
+    private auth: AuthenticationService,
+    private toast: ToastrService) { }
 
   ngOnInit() {
+
   }
 
   onLogin(form: NgForm) {

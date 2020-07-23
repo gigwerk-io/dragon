@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {RESTService} from './rest.service';
-import {HttpClient} from '@angular/common/http';
-import {Storage} from '@ionic/storage';
-import {Observable} from 'rxjs';
-import {Response} from '../interfaces/responses/GenericResponse';
-import {Notification} from '../interfaces/models/Notification';
+import { Injectable } from '@angular/core';
+import { RESTService } from './rest.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs';
+import { Response } from '../interfaces/responses/GenericResponse';
+import { Notification } from '../interfaces/models/Notification';
 
 @Injectable({
   providedIn: 'root'
