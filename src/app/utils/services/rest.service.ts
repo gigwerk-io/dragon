@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../interfaces/enum/constants';
-import {HttpParams} from '@angular/common/http';
-import {from, Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {Business} from '../interfaces/models/Business';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { StorageKeys } from '../interfaces/enum/constants';
+import { HttpParams } from '@angular/common/http';
+import { from, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { Business } from '../interfaces/models/Business';
 
 @Injectable({
   providedIn: 'root'

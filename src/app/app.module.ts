@@ -25,6 +25,7 @@ import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
