@@ -22,31 +22,26 @@ export class SettingsService extends RESTService {
 
   getAccount(): Promise<Response<Business>> {
     return this.makeHttpRequest(`account`, `GET`)
-      .toPromise()
       .then((res: Observable<Response<Business>>) => res.toPromise());
   }
 
   updateLocation(body: UpdateLocationRequest): Promise<Response<null>> {
     return this.makeHttpRequest(`location`, `PATCH`, body)
-      .toPromise()
       .then((res: Observable<Response<null>>) => res.toPromise());
   }
 
   updateBusiness(body: UpdateBusinessRequest) {
     return this.makeHttpRequest(`account`, `PATCH`, body)
-      .toPromise()
       .then((res: Observable<Response<null>>) => res.toPromise());
   }
 
   getQRCode(): Promise<string> {
     return this.makeHttpRequest(`qr-code`, 'GET')
-      .toPromise()
       .then((res: Observable<any>) => res.toPromise().then(r => r.url));
   }
 
   getStripeLink(): Promise<Response<any>> {
     return this.makeHttpRequest(`stripe`, 'GET')
-      .toPromise()
       .then((res: Observable<Response<any>>) => res.toPromise().then(r => r));
   }
   // getStripeLink(): Promise<string> {
@@ -56,7 +51,6 @@ export class SettingsService extends RESTService {
   // }
   checkMissingSteps(): Promise<Response<MissingSteps>> {
     return this.makeHttpRequest(`missing-steps`, 'GET')
-      .toPromise()
       .then((res: Observable<Response<MissingSteps>>) => res.toPromise());
   }
 }

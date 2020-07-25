@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../interfaces/enum/constants';
-import {HttpParams} from '@angular/common/http';
-import {from, Observable} from 'rxjs';
-import {environment} from '../../../environments/environment';
-import {Business} from '../interfaces/models/Business';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+import { StorageKeys } from '../interfaces/enum/constants';
+import { HttpParams } from '@angular/common/http';
+import { from, Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { Business } from '../interfaces/models/Business';
 
 @Injectable({
   providedIn: 'root'
@@ -31,10 +31,12 @@ export class RESTService {
   /**
    * Note: this is an Observable that returns an Observable upon subscription
    */
-  // tslint:disable-next-line:max-line-length
-  public makeHttpRequest(route: string, httpMethod: string, httpParams?: HttpParams | any, callback?: () => any): Observable<any> | undefined {
-    return from(
-      this.storage.get(StorageKeys.ACCESS_TOKEN)
+  public makeHttpRequest<T>(
+    route: string,
+    httpMethod: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
+    httpParams?: any
+  ): Promise<Observable<T> | undefined> {
+    return this.storage.get(StorageKeys.ACCESS_TOKEN)
         .then(token => {
           const header = {
             headers: {
@@ -44,24 +46,25 @@ export class RESTService {
 
           return this.businessUuid()
             .then(businessUuid => {
-              callback;
               route = `${environment.apiUrl}/business/${businessUuid}/${route}`;
               switch (httpMethod) {
                 case 'GET':
-                  return this.http.get(route, header);
+                  if (httpParams) {
+                    header['params'] = httpParams;
+                  }
+                  return this.http.get<T>(route, header);
                 case 'POST':
-                  return this.http.post(route, httpParams, header);
+                  return this.http.post<T>(route, httpParams, header);
                 case 'PUT':
-                  return this.http.put(route, httpParams, header);
+                  return this.http.put<T>(route, httpParams, header);
                 case 'DELETE':
-                  return this.http.delete(route, header);
+                  return this.http.delete<T>(route, header);
                 case 'PATCH':
-                  return this.http.patch(route, httpParams, header);
+                  return this.http.patch<T>(route, httpParams, header);
                 default:
                   return undefined;
               }
             });
-        })
-    );
+        });
   }
 }
