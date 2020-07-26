@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TableService } from '../../utils/services/table.service';
 import { User } from '../../utils/interfaces/models/User';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-job',
@@ -19,12 +20,8 @@ export class JobComponent implements OnInit {
   allFreelancers: User[] = [];
   showModal = false;
   job: MarketplaceJob;
-  images = [
-    'https://blog.fantasticservices.com/wp-content/uploads/2020/01/lawn-mowing.jpg',
-    'https://www.house-painting-info.com/wp-content/uploads/2017/12/74d1413e960c3c315c1aca8e3d050baf.jpg',
-    'https://blog.fantasticservices.com/wp-content/uploads/2020/01/lawn-mowing.jpg',
-
-  ];
+  images = [];
+  assignedFreelancer = false;
   jobDetailsForm: FormGroup;
 
   constructor(
@@ -33,15 +30,18 @@ export class JobComponent implements OnInit {
     private toast: ToastrService,
     private peopleService: PeopleService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private tableService: TableService
   ) { }
 
   ngOnInit() {
+
     this.activatedRoute.params.subscribe(params => {
       this.jobsService.getJob(params['id']).then(res => {
         this.job = res.data;
-        // this.setupImages();
+        this.setupImages();
         this.setupForm();
+        this.checkForAssignedFreelancer(this.job.proposals);
       }).catch(() => {
         this.toast.error('Sorry this job doesn\'t exist.', 'Error!');
         this.router.navigateByUrl('/jobs');
@@ -49,9 +49,9 @@ export class JobComponent implements OnInit {
     });
 
     this.peopleService.getAllUsers().then(res => {
-      this.freelancers = res.data.filter(el => el.role === 'Verified Freelancer');
+      this.freelancers = this.checkForProposedFreelancers(res.data, this.job.proposals)
+        .filter(el => el.role === 'Verified Freelancer');
       this.allFreelancers = this.freelancers;
-
     });
   }
 
@@ -87,7 +87,7 @@ export class JobComponent implements OnInit {
 
 
 
-  onSubmit() {
+  onSubmit(): void {
     const form = this.jobDetailsForm.value;
     const formBody = {
       complete_before: form.complete_before.replace('T', ' '),
@@ -100,17 +100,51 @@ export class JobComponent implements OnInit {
       price: form.price
 
     };
-    console.log('form', form)
     if (this.jobDetailsForm.valid) {
       this.jobsService.updateJob(this.job.id, formBody).then(res => {
-        console.log('res', res)
         this.toast.error('Job has been updated', 'Success');
       });
     }
   }
 
-  searchUser(e: string) {
-    this.freelancers = this.tableService.filterFreelancer(e, this.freelancers, this.allFreelancers);
+
+  checkForAssignedFreelancer(arr): void {
+    if (arr.length && this.job.status === 'Approved') {
+      arr.forEach((el, i) => this.assignedFreelancer = el.status === 'Approved' ? el : undefined);
+    }
+  }
+
+  checkForProposedFreelancers(freelancers, proposals) {
+    return freelancers.map(el => {
+      proposals.map(pro => {
+        el.proposed = pro.user.id === el.profile.id && pro.status !== 'Approved' ? true : false;
+      });
+      return el;
+    });
+  }
+
+  proposeUser(user: User, i: number) {
+    this.spinner.show();
+    this.jobsService.assignWorker(this.job.id, { worker_id: user.profile.id }).then(res => {
+      this.freelancers.forEach(x => x.proposed = x.proposed === true ? false : false);
+      this.freelancers[i].proposed = true;
+      this.spinner.hide();
+    });
+
+
+
+  }
+
+
+  searchUser(e: string): void {
+
+
+    const tablefilterParams = [
+      'filter.first_name +',
+      'filter.last_name +',
+      'filter.profile.description',
+    ];
+    this.freelancers = this.tableService.filterTable(e, this.freelancers, this.allFreelancers, tablefilterParams);
   }
 
 
