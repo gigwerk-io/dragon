@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
     private toast: ToastrService) { }
 
   ngOnInit() {
-
   }
 
   onLogin(form: NgForm) {
