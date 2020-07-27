@@ -391,7 +391,7 @@
                     <span class="inline-flex rounded-md shadow-sm">
 
                         <button type="button"
-                            *ngIf="assignedFreelancer && assignedFreelancer.id === user.id; else unassigned "
+                            *ngIf="assignedFreelancer && assignedFreelancer.user.id === user.id; else unassigned "
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 bg-green-600 font-medium rounded-md text-white  hover:bg-green-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150">
                             <i *ngIf="!user.proposed" class="fas fa-user-check mr-1"></i>
                             <i *ngIf="user.proposed" class="fas fa-chalkboard-teacher"></i>
