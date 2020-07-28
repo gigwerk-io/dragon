@@ -147,12 +147,17 @@
                     </p>
                 </div>
                 <div class=" inline-block" style="margin-left: 70%;">
-                    <button type="button" (click)="showModal = true"
+                    <button type="button" (click)="showModal = true" *ngIf="!assignedFreelancer"
                         class="inline-flex bg-blue-100 items-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-blue-700  hover:bg-blue-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150">
                         <span *ngIf="!job.proposals.length">Assign this Job to a Freelancer</span>
                         <span *ngIf="!assignedFreelancer && job.status == 'Pending Approval'">Job is pending
                             approval</span>
-                        <span *ngIf="assignedFreelancer">Job is assigned to
+                    </button>
+
+                    <button type="button" *ngIf="assignedFreelancer"
+                        class="cursor-default inline-flex bg-blue-100 items-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-blue-700  hover:bg-blue-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-blue active:bg-blue-200 transition ease-in-out duration-150">
+
+                        <span>Job is assigned to
                             {{assignedFreelancer.user.first_name}} {{assignedFreelancer.user.last_name}}</span>
                     </button>
                 </div>

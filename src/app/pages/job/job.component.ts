@@ -128,6 +128,7 @@ export class JobComponent implements OnInit {
     this.jobsService.assignWorker(this.job.id, { worker_id: user.profile.id }).then(res => {
       this.freelancers.forEach(x => x.proposed = x.proposed === true ? false : false);
       this.freelancers[i].proposed = true;
+      this.ngOnInit();
       this.spinner.hide();
     });
 
