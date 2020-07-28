@@ -1,6 +1,6 @@
-import {UserProfile} from './UserProfile';
-import {Business} from './Business';
-import {Status} from './Status';
+import { UserProfile } from './UserProfile';
+import { Business } from './Business';
+import { Status } from './Status';
 
 export interface User {
   id?: number;
@@ -28,4 +28,5 @@ export interface User {
   pivot?: object;
   businesses?: Business[];
   status?: Status;
+  proposed?: boolean;
 }
