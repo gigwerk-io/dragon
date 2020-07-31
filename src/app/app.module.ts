@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import {ErrorHandler, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app.routing';
@@ -18,14 +17,12 @@ import { IonicModule } from '@ionic/angular';
 import {NgxStripeModule} from 'ngx-stripe';
 import {environment} from '../environments/environment';
 import {CreditCardDirectivesModule} from 'angular-cc-library';
-import { PlanComponent } from './pages/plan/plan.component';
 import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
-
+import {GuidedTourModule, GuidedTourService} from 'ngx-guided-tour';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -37,14 +34,19 @@ import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
     NgxSpinnerModule,
     IonicModule.forRoot(),
     NgxStripeModule.forRoot(environment.stripePublicKey),
-    CreditCardDirectivesModule
+    CreditCardDirectivesModule,
+    GuidedTourModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [PusherServiceProvider, { provide: ErrorHandler, useClass: SentryErrorHandler }],
+  providers: [
+    GuidedTourService,
+    PusherServiceProvider,
+    { provide: ErrorHandler, useClass: SentryErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

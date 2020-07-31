@@ -44,11 +44,11 @@ export class SidebarComponent implements OnInit, DoCheck {
   ) { }
 
   ngOnInit() {
-    this.settingsService.checkMissingSteps().then((steps) => {
-      this.missingSteps = steps.data;
-      // tslint:disable-next-line:max-line-length
-      this.isMissingSteps = (!this.missingSteps.has_location || !this.missingSteps.has_workers || !this.missingSteps.has_stripe || !this.missingSteps.has_customers);
-    });
+    // this.settingsService.checkMissingSteps().then((steps) => {
+    //   this.missingSteps = steps.data;
+    //   // tslint:disable-next-line:max-line-length
+    //   this.isMissingSteps = (!this.missingSteps.has_location || !this.missingSteps.has_workers || !this.missingSteps.has_stripe || !this.missingSteps.has_customers);
+    // });
 
     this.notificationService.getUnreadNotifications().then(res => {
       console.log('res', res);
