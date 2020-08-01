@@ -6,8 +6,8 @@ import { NotificationService } from '../../utils/services/notification.service';
 import { Events } from '../../utils/services/events';
 import { Notification } from '../../utils/interfaces/models/Notification';
 import { AuthenticationService } from '../../utils/services/authentication.service';
-import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../../utils/interfaces/enum/constants';
+import { Storage } from '@ionic/storage';
+import { StorageKeys } from '../../utils/interfaces/enum/constants';
 
 
 @Component({
@@ -51,9 +51,11 @@ export class SidebarComponent implements OnInit, DoCheck {
     });
 
     this.notificationService.getUnreadNotifications().then(res => {
-      console.log('res', res);
       this.badgeCount = res.data.length > 9 ? '9+' : String(res.data.length);
       this.notifications = res.data.length > 5 ? res.data.slice(0, 5) : res.data;
+
+      // this.notifications = []
+      // console.log('notifications', this.notifications)
     });
     this.getUser();
   } // end of onInit()
@@ -86,6 +88,7 @@ export class SidebarComponent implements OnInit, DoCheck {
       this.name = user.first_name + ' ' + user.last_name;
     });
   }
+
 
   signOut() {
     this.authService.logout();
