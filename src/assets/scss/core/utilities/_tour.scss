@@ -1,0 +1,49 @@
+::ng-deep ngx-guided-tour {
+  .guided-tour-spotlight-overlay {
+    z-index: 1001;
+  }
+  .tour-step {
+    z-index: 1001;
+    max-width: 80%!important;
+    width: auto!important;
+    .tour-block {
+      background: white;
+      border-radius: .5rem;
+    }
+  }
+  .tour-buttons {
+    button {
+      border-radius: .375rem!important;
+      transition-duration: .15s;
+      transition-timing-function: cubic-bezier(.4,0,.2,1);
+      transition-property: background-color,border-color,color,fill,stroke,opacity,box-shadow,transform;
+      color:rgb(55,65,81);
+      padding-top: .5rem!important;
+      padding-bottom: .5rem!important;
+      padding-left: .75rem!important;
+      padding-right: .75rem!important;
+      font-weight: 500!important;
+      align-items: center;
+      display: inline-flex;
+      border: 2px solid rgb(210,214,220)!important;
+      background-color: rgb(255,255,255);
+      line-height: inherit!important;
+    }
+    .next-button {
+      background: #5850ec;
+      border: 2px solid #5850ec !important;
+      color: white;
+    }
+    .back-button {
+      margin-right: .5rem!important;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  ::ng-deep ngx-guided-tour {
+    .tour-step {
+      min-width: 80%;
+    }
+  }
+}
