@@ -6,55 +6,82 @@
           <div class="flex items-center justify-between h-16 px-4 sm:px-0">
             <div class="flex items-center">
               <div class="flex-shrink-0">
-                <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg" alt="Workflow logo">
+                <img class="h-8 w-8" src="https://tailwindui.com/img/logos/workflow-mark-on-dark.svg"
+                  alt="Workflow logo">
               </div>
               <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline">
-                  <a routerLink="/dashboard" class="px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/dashboard', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-                  <a routerLink="/members" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/members', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Members</a>
-                  <a routerLink="/jobs" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/jobs', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Jobs</a>
-                  <a routerLink="/applicants" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/applicants', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Applicants</a>
-                  <a routerLink="/manage-subscription" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Manage Subscription</a>
-                  <a routerLink="/app-settings" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">App Settings</a>
-                  <a routerLink="/settings" class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/settings', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Business Settings</a>
+                  <a routerLink="/dashboard"
+                    class="px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/dashboard', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
+                  <a routerLink="/members"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/members', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Members</a>
+                  <a routerLink="/jobs"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/jobs', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Jobs</a>
+                  <a routerLink="/applicants"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/applicants', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Applicants</a>
+                  <a routerLink="/manage-subscription"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Manage
+                    Subscription</a>
+                  <a routerLink="/app-settings"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">App
+                    Settings</a>
+                  <a routerLink="/settings"
+                    class="ml-4 px-3 py-2 rounded-md text-sm font-medium {{router.isActive('/settings', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Business
+                    Settings</a>
                 </div>
               </div>
             </div>
-            <div class="hidden md:block">
+            <div class="hidden md:block relative">
               <div class="ml-4 flex items-center md:ml-6">
-                <button (click)="showNotifications = !showNotifications" class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700" aria-label="Notifications">
+                <button (click)="showNotifications = !showNotifications"
+                  class="relative p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
+                  aria-label="Notifications">
                   <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                   </svg>
                   <span *ngIf="notifications.length"
-                    class="absolute top-0 right-0 block h-3 w-3 rounded-full text-white shadow-lg bg-red-600 text-white"></span>
+                    class="absolute top-0 right-0 block h-3 w-3 rounded-full  shadow-lg bg-red-600 text-white"></span>
                 </button>
 
-                <div class=" bg-white w-200 absolute rounded-md shadow-lg top-11 right-5 md:right-15 m-h-10  border-2"
-                     *ngIf="showNotifications">
+                <div class=" bg-white absolute rounded-md shadow-lg top-11 right-10  m-h-10  border-2 z-50"
+                  *ngIf="showNotifications" style="width: 17rem">
                   <div class="px-2 py-2 bg-text-gray-400" *ngIf="notifications.length  && showNotifications">
                     <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold">
-                      Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded" style="">{{badgeCount}}</span>
+                      Notifications <span class=" text-white bg-red-600 px-1 py-1  rounded"
+                        style="">{{badgeCount}}</span>
                     </h6>
                   </div>
-                  <div class="px-7 py-5 " *ngIf="notifications.length === 0  && showNotifications">
+                  <div class="px-4 py-2 " *ngIf="notifications.length === 0  && showNotifications">
                     <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold"
-                        *ngIf="notifications.length === 0  && showNotifications">
+                      *ngIf="notifications.length === 0  && showNotifications">
                       You have 0 new notifications
+                      <i class="fas fa-folder-open text-lg"></i>
                     </h6>
                   </div>
                   <div class="" *ngIf="notifications.length  && showNotifications">
-                    <a class="list-group-item list-group-item-action" *ngFor="let unreadNotification of notifications"
-                       (click)="markNotificationRead(unreadNotification.id)"
-                       [routerLink]="unreadNotification.data.page + '/' + unreadNotification.data.params">
-                      <div class=" border-t hover:bg-gray-100 px-4 py-4  bg-cool-gray-50 bg-grey-100 ">
+                    <a class="list-group-item list-group-item-action"
+                      *ngFor="let unreadNotification of notifications; let i = index"
+                      (click)="markNotificationRead(unreadNotification.id)"
+                      [routerLink]="unreadNotification.data.page + '/' + unreadNotification.data.params">
+                      <div class=" border-t hover:bg-gray-200 px-1 py-1 h-23"
+                        [ngClass]="{'bg-gray-100' : i % 2 === 0, 'bg-white': i % 2 !== 0}">
                         <div class="col">
                           <div class="px-5">
                             <div>
-                              <h4 class="font-bold font-sans ">{{unreadNotification.data.title}}</h4>
+                              <h4 class="font-bold text-sm font-sans text-black my-1">{{unreadNotification.data.title}}
+                              </h4>
                             </div>
-                            <p class="font-sans font-light"> {{unreadNotification.data.message}} </p>
-                            <div class="text-right text-muted"><small>{{unreadNotification.created_at | timeAgo}}</small>
+                            <p class="font-sans text-xs font-medium text-gray-600"
+                              *ngIf="unreadNotification.data.message.length >= 40">
+                              {{unreadNotification.data.message | slice:0:40}}...
+                            </p>
+                            <p class="font-sans text-xs font-medium text-gray-600"
+                              *ngIf="unreadNotification.data.message.length < 40">
+                              {{unreadNotification.data.message}}
+                            </p>
+                            <div class="text-right text-gray-400">
+                              <small>{{unreadNotification.created_at | timeAgo}}</small>
                             </div>
                           </div>
 
@@ -63,7 +90,7 @@
                     </a>
                   </div>
                   <div class=" text-center border-t hover:bg-blue-100 p-3  "
-                       *ngIf="notifications.length  && showNotifications ">
+                    *ngIf="notifications.length  && showNotifications ">
                     <a class="text-blue-500" [routerLink]="['/notifications']" (click)="showNotifications = false">
                       View all
                     </a>
@@ -71,36 +98,37 @@
                 </div>
 
                 <!-- Profile dropdown -->
-<!--                <div class="ml-3 relative">-->
-<!--                  <div (click)="showSidebar = !showSidebar">-->
-<!--                    <button class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true">-->
-<!--                      <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">-->
-<!--                    </button>-->
-<!--                  </div>-->
-<!--                  &lt;!&ndash;-->
-<!--                    Profile dropdown panel, show/hide based on dropdown state.-->
+                <!--                <div class="ml-3 relative">-->
+                <!--                  <div (click)="showSidebar = !showSidebar">-->
+                <!--                    <button class="max-w-xs flex items-center text-sm rounded-full text-white focus:outline-none focus:shadow-solid" id="user-menu" aria-label="User menu" aria-haspopup="true">-->
+                <!--                      <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">-->
+                <!--                    </button>-->
+                <!--                  </div>-->
+                <!--                  &lt;!&ndash;-->
+                <!--                    Profile dropdown panel, show/hide based on dropdown state.-->
 
-<!--                    Entering: "transition ease-out duration-100"-->
-<!--                      From: "transform opacity-0 scale-95"-->
-<!--                      To: "transform opacity-100 scale-100"-->
-<!--                    Leaving: "transition ease-in duration-75"-->
-<!--                      From: "transform opacity-100 scale-100"-->
-<!--                      To: "transform opacity-0 scale-95"-->
-<!--                  &ndash;&gt;-->
-<!--                  <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" *ngIf="showSidebar">-->
-<!--                    <div class="py-1 rounded-md bg-white shadow-xs">-->
-<!--                      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>-->
-<!--                      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>-->
-<!--                      <a href="#" (click)="signOut()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>-->
-<!--                    </div>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <!--                    Entering: "transition ease-out duration-100"-->
+                <!--                      From: "transform opacity-0 scale-95"-->
+                <!--                      To: "transform opacity-100 scale-100"-->
+                <!--                    Leaving: "transition ease-in duration-75"-->
+                <!--                      From: "transform opacity-100 scale-100"-->
+                <!--                      To: "transform opacity-0 scale-95"-->
+                <!--                  &ndash;&gt;-->
+                <!--                  <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg" *ngIf="showSidebar">-->
+                <!--                    <div class="py-1 rounded-md bg-white shadow-xs">-->
+                <!--                      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Your Profile</a>-->
+                <!--                      <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>-->
+                <!--                      <a href="#" (click)="signOut()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>-->
+                <!--                    </div>-->
+                <!--                  </div>-->
+                <!--                </div>-->
                 <app-profile-dropdown></app-profile-dropdown>
               </div>
             </div>
             <div class="-mr-2 flex md:hidden">
               <!-- Mobile menu button -->
-              <button (click)="showMobileMenu = !showMobileMenu" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
+              <button (click)="showMobileMenu = !showMobileMenu"
+                class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white">
                 <!-- Menu open: "hidden", Menu closed: "block" -->
                 <svg class="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -122,13 +150,23 @@
       -->
       <div class="{{showMobileMenu ? 'block md:block' : 'hidden md:hidden'}} border-b border-gray-700 ">
         <div class="px-2 py-3 sm:px-3">
-          <a routerLink="/dashboard" class="block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/dashboard', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
-          <a routerLink="/members" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/members', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Members</a>
-          <a routerLink="/jobs" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/jobs', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Jobs</a>
-          <a routerLink="/applicants" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/applicants', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Applicants</a>
-          <a routerLink="/manage-subscription" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Manage Subscription</a>
-          <a routerLink="/app-settings" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">App Settings</a>
-          <a routerLink="/settings" class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/settings', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Business Settings</a>
+          <a routerLink="/dashboard"
+            class="block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/dashboard', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Dashboard</a>
+          <a routerLink="/members"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/members', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Members</a>
+          <a routerLink="/jobs"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/jobs', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Jobs</a>
+          <a routerLink="/applicants"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/applicants', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Applicants</a>
+          <a routerLink="/manage-subscription"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Manage
+            Subscription</a>
+          <a routerLink="/app-settings"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/#', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">App
+            Settings</a>
+          <a routerLink="/settings"
+            class="mt-1 block px-3 py-2 rounded-md text-base font-medium {{router.isActive('/settings', true) ? 'text-white bg-gray-900' : 'text-gray-300 hover:text-white hover:bg-gray-700'}} focus:outline-none focus:text-white focus:bg-gray-700">Business
+            Settings</a>
         </div>
         <div class="pt-4 pb-3 border-t border-gray-700">
           <div class="flex items-center px-5">
@@ -140,9 +178,15 @@
             </div>
           </div>
           <div class="mt-3 px-2" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-            <a [routerLink]="['/profile', userId]" class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Your Profile</a>
-            <a href="#" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Settings</a>
-            <a (click)="signOut()" class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700" role="menuitem">Sign out</a>
+            <a [routerLink]="['/profile', userId]"
+              class="block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              role="menuitem">Your Profile</a>
+            <a href="#"
+              class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              role="menuitem">Settings</a>
+            <a (click)="signOut()"
+              class="mt-1 block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
+              role="menuitem">Sign out</a>
           </div>
         </div>
       </div>
@@ -160,7 +204,7 @@
     <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
       <!-- Replace with your content -->
       <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
-<!--        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>-->
+        <!--        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>-->
         <ng-content></ng-content>
       </div>
       <!-- /End replace -->
@@ -168,5 +212,5 @@
   </main>
 </div>
 
-<app-finish-account-setup-modal [show]="showModal" [missingSteps]="missingSteps"
-                                (close)="showModal = false"></app-finish-account-setup-modal>
+<app-finish-account-setup-modal [show]="showModal" [missingSteps]="missingSteps" (close)="showModal = false">
+</app-finish-account-setup-modal>
