@@ -10,14 +10,17 @@ import { GenericResponse, Response } from '../interfaces/responses/GenericRespon
 import { ToastrService } from 'ngx-toastr';
 import {LoginResponse} from '../interfaces/responses/LoginResponse';
 import {LoginRequest} from '../interfaces/requests/LoginRequest';
+import {RESTService} from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenticationService {
+export class AuthenticationService extends RESTService {
   authSubject = new BehaviorSubject(false);
 
-  constructor(private http: HttpClient, private storage: Storage, private toast: ToastrService) { }
+  constructor(public http: HttpClient, public storage: Storage, public toast: ToastrService) {
+    super(http, storage);
+  }
 
   login(body: LoginRequest): Observable<Response<LoginResponse>> {
     return this.http.post<Response<LoginResponse>>(`${environment.apiUrl}/login`, body).pipe(
@@ -37,16 +40,14 @@ export class AuthenticationService {
     );
   }
 
-  logout(token): Observable<GenericResponse> {
-    console.log(token);
-    return this.http.post<GenericResponse>(`${environment.apiUrl}/logout`, null, token).pipe(
-      // @ts-ignore
-      tap(async (res: GenericResponse) => {
+  logout(): Promise<Observable<GenericResponse>> {
+    return this.makeHttpRequest<GenericResponse>(`${environment.apiUrl}/logout`, 'POST', null)
+      .then(async res => {
         await this.storage.remove(StorageKeys.ACCESS_TOKEN);
         await this.storage.remove(StorageKeys.USER);
         this.authSubject.next(true);
-      })
-    );
+        return res;
+      });
   }
 
   isLoggedIn() {

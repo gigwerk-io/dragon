@@ -29,16 +29,9 @@ export class ProfileDropdownComponent implements OnInit {
   }
 
   onLogout() {
-    this.storage.get(StorageKeys.ACCESS_TOKEN).then(token => {
-      const headers = {
-        headers: {
-          Authorization: 'Bearer ' + token
-        }
-      };
-      this.auth.logout(headers).subscribe(res => {
-        console.log(res);
-        this.router.navigateByUrl('/login');
-      });
+    this.auth.logout().then(res => {
+      console.log(res);
+      this.router.navigateByUrl('/login');
     });
   }
 }

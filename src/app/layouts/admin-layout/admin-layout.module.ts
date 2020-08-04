@@ -17,27 +17,35 @@ import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
 import { JobComponent } from '../../pages/job/job.component';
 import { JobsComponent } from '../../pages/jobs/jobs.component';
+import { PeopleComponent } from 'src/app/pages/people/people.component';
+import {SubscriptionComponent} from '../../pages/subscription/subscription.component';
+import {PlanComponent} from '../../pages/plan/plan.component';
+import {GuidedTourModule} from "ngx-guided-tour";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(AdminLayoutRoutes),
-    FormsModule,
-    HttpClientModule,
-    ClipboardModule,
-    NgxSpinnerModule,
-    NgxChartsModule,
-    ComponentsModule,
-    ReactiveFormsModule,
-    IonicModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(AdminLayoutRoutes),
+        FormsModule,
+        HttpClientModule,
+        ClipboardModule,
+        NgxSpinnerModule,
+        NgxChartsModule,
+        ComponentsModule,
+        ReactiveFormsModule,
+        IonicModule,
+        GuidedTourModule,
+    ],
   declarations: [
     DashboardComponent,
     SettingsComponent,
     ApplicantsComponent,
     ApplicantComponent,
     JobComponent,
-    JobsComponent
+    JobsComponent,
+    SubscriptionComponent,
+    PlanComponent,
+    PeopleComponent
   ]
 })
 

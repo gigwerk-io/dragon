@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, DoCheck} from '@angular/core';
 import { TableService } from '../../../utils/services/table.service';
 import { MarketplaceJob } from '../../../utils/interfaces/models/MarketplaceJob';
 
@@ -7,7 +7,7 @@ import { MarketplaceJob } from '../../../utils/interfaces/models/MarketplaceJob'
   templateUrl: './jobs-list.component.html',
   styleUrls: ['./jobs-list.component.css']
 })
-export class JobsListComponent implements OnInit {
+export class JobsListComponent implements OnInit, DoCheck {
 
 
   // tslint:disable-next-line: no-input-rename
@@ -24,17 +24,22 @@ export class JobsListComponent implements OnInit {
     private tableService: TableService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-
+  ngDoCheck() {
     this.allJobs = this.jobs;
+    this.setupPagination();
+  }
 
-    this.maxPages = (this.jobs.length / this.windowSize) - ((this.jobs.length % this.windowSize) / this.windowSize);
-    if (this.maxPages < 19) {
-      this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
-      this.maxPage = this.maxPages;
-    } else {
-      this.setActivePage(1);
+  setupPagination(): void {
+    if (this.jobs && this.windowSize) {
+      this.maxPages = (this.jobs.length / this.windowSize) - ((this.jobs.length % this.windowSize) / this.windowSize);
+      if (this.maxPages < 19) {
+        this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
+        this.maxPage = this.maxPages;
+      } else {
+        this.setActivePage(1);
+      }
     }
   }
 
@@ -72,7 +77,16 @@ export class JobsListComponent implements OnInit {
   }
 
   filterTable(event: string) {
-    this.jobs = this.tableService.filterJobsTable(event, this.jobs, this.allJobs);
+    const tablefilterParams = [
+      'filter.price +',
+      'filter.customer.first_name +',
+      'filter.customer.email +',
+      'filter.status +',
+      'filter.customer.last_name +',
+      'filter.intensity +',
+      'filter.views'
+    ];
+    this.jobs = this.tableService.filterTable(event, this.jobs, this.allJobs, tablefilterParams);
   }
 
 }

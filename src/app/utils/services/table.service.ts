@@ -1,13 +1,46 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/models/User';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
+import { Application } from '../interfaces/models/Application';
+import { filter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
+
+// @pa
 export class TableService {
 
   constructor() { }
+
+
+  // THIS FUNCTION SHOULD BE USED FOR ALL ITEMS FILTERED;
+  // FOR AN EXAMPLE VISIT JOBS-LIST COMPONENT
+  filterTable(e: string, list: any[], fullList: any[], params: string[]) {
+    let filteredList = list;
+
+    if (!e.length) {
+      return fullList;
+    }
+
+    list = list.length ? list : fullList;
+
+    const needle = e.toLowerCase();
+
+    // tslint:disable-next-line: no-shadowed-variable
+    return filteredList = list.filter((filter) => {
+      // tslint:disable-next-line: no-eval
+      const listFilter = eval(params.join(' '));
+      const hayStack =
+        (
+          listFilter
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+  }
 
   filterJobsTable(e: string, jobs: MarketplaceJob[], allJobs: MarketplaceJob[]) {
     let filteredJobs = jobs;
@@ -35,21 +68,47 @@ export class TableService {
     });
   }
 
-  filterFreelancer(e: string, users: User[], allUsers: User[]) {
-    let Freelancer = users;
+  filterPeopleGrid(e: string, people: User[], allPeople: User[]) {
+    let Freelancer = people;
 
     if (!e.length) {
-      return allUsers;
+      return allPeople;
     }
+
+    people = !people.length ? allPeople : people;
 
     const needle = e.toLowerCase();
 
-    return Freelancer = users.filter((filteredUsers) => {
+    return Freelancer = people.filter((filteredUsers) => {
       const hayStack =
         (
           filteredUsers.first_name +
-          filteredUsers.last_name +
-          filteredUsers.profile.description
+          filteredUsers.last_name
+        )
+          .toLowerCase()
+          .split(' ')
+          .join('');
+      return hayStack.includes(needle);
+    });
+  }
+
+  filterApplicants(e: string, applicants: Application[], allApplicants: Application[]) {
+    let Freelancer = applicants;
+
+    if (!e.length) {
+      return allApplicants;
+    }
+
+    applicants = applicants.length ? applicants : allApplicants;
+
+    const needle = e.toLowerCase();
+
+    return Freelancer = applicants.filter((filteredUsers) => {
+      const hayStack =
+        (
+          filteredUsers.user.first_name +
+          filteredUsers.status.name +
+          filteredUsers.user.email
         )
           .toLowerCase()
           .split(' ')

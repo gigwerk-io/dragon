@@ -1,5 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
@@ -15,7 +14,11 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component
 import { IonicStorageModule } from '@ionic/storage';
 import { ComponentsModule } from './components/components.module';
 import { IonicModule } from '@ionic/angular';
-
+import {NgxStripeModule} from 'ngx-stripe';
+import {environment} from '../environments/environment';
+import {CreditCardDirectivesModule} from 'angular-cc-library';
+import {SentryErrorHandler} from './utils/handlers/SentryErrorHandler';
+import {GuidedTourModule, GuidedTourService} from 'ngx-guided-tour';
 
 @NgModule({
   imports: [
@@ -30,13 +33,20 @@ import { IonicModule } from '@ionic/angular';
     ToastrModule.forRoot(),
     NgxSpinnerModule,
     IonicModule.forRoot(),
+    NgxStripeModule.forRoot(environment.stripePublicKey),
+    CreditCardDirectivesModule,
+    GuidedTourModule
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
   ],
-  providers: [PusherServiceProvider],
+  providers: [
+    GuidedTourService,
+    PusherServiceProvider,
+    { provide: ErrorHandler, useClass: SentryErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

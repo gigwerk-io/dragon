@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { Role } from '../interfaces/enum/constants';
 import { ToastrService } from 'ngx-toastr';
 import { Response } from '../interfaces/responses/GenericResponse';
-import {User} from '../interfaces/models/User';
+import { User } from '../interfaces/models/User';
 
 
 @Injectable({
@@ -18,13 +18,13 @@ export class PeopleService extends RESTService {
   constructor(
     public http: HttpClient,
     public storage: Storage,
-    private toast: ToastrService, ) {
+    private toast: ToastrService
+  ) {
     super(http, storage);
   }
 
   getAllUsers(): Promise<Response<User[]>> {
     return this.makeHttpRequest(`users`, 'GET')
-      .toPromise()
       .then((res: Observable<Response<User[]>>) => {
         return res.toPromise().then(usersRes => usersRes);
       });
@@ -44,7 +44,6 @@ export class PeopleService extends RESTService {
 
   getSingleUser(id: number): Promise<Response<User>> {
     return this.makeHttpRequest(`user/${id}`, 'GET')
-      .toPromise()
       .then((res: Observable<Response<User>>) => {
         return res.toPromise().then((r: Response<User>) => r);
       });
@@ -53,25 +52,21 @@ export class PeopleService extends RESTService {
   createUser(body: { first_name: string; last_name: string; username: string; email: string; password: string; role: string; })
     : Promise<any> {
     return this.makeHttpRequest(`register`, 'POST', body)
-      .toPromise()
       .then((res: Observable<any>) => res.toPromise());
   }
 
   updateUser(id: number, body: { role: string; description: string; email: string; }): Promise<any> {
     return this.makeHttpRequest(`user/${id}`, 'PUT', body)
-      .toPromise()
       .then((res: Observable<any>) => res.toPromise());
   }
 
   deleteUser(id: number): Promise<any> {
     return this.makeHttpRequest(`user/${id}`, 'DELETE')
-      .toPromise()
       .then((res: Observable<any>) => res.toPromise());
   }
 
   resetPassword(id: number, body: { id: number; user_id: number; }): Promise<any> {
     return this.makeHttpRequest(`password-reset/${id}`, 'POST', body)
-      .toPromise()
       .then((res: Observable<any>) => res.toPromise());
   }
 

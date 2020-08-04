@@ -1,0 +1,10 @@
+@import "./node_modules/ngx-guided-tour/scss/guided-tour-base-theme.scss";
+@import "./src/assets/scss/core/utilities/tour";
+
+::ng-deep .w-50 {
+  width: 50%;
+}
+
+::ng-deep .w-40 {
+  width: 40%;
+}
