@@ -1,0 +1,110 @@
+version: 2
+
+aliases:
+  - &install-chrome
+    name: Install Chrome
+    command: |
+      sudo apt install -y libappindicator3-1
+      curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      sudo dpkg -i google-chrome.deb
+      sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+      rm google-chrome.deb
+  - &install-pip
+    name: Install Python Pip
+    command: sudo apt-get update; sudo apt install python-pip; python --version; pip --version;
+
+  - &restore-cache-src
+    key: dependency-cache-{{ checksum "package.json" }}
+
+  - &save-cache-src
+    key: dependency-cache-{{ checksum "package.json" }}
+    paths:
+      - node_modules
+
+defaults: &defaults
+  working_directory: /tmp/workspace
+  docker:
+    - image: circleci/node:10-browsers
+
+jobs:
+
+  # node modules
+  install-dependencies:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache: *restore-cache-src
+      - run: npm install
+      - save_cache: *save-cache-src
+      - persist_to_workspace:
+          root: /tmp/workspace
+          paths:
+            - "*"
+
+  test:
+    <<: *defaults
+    steps:
+      - run: *install-chrome
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: npm run e2e
+
+  build-dev:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: ls
+      - run: npm run dev
+      - persist_to_workspace:
+          root: .
+          paths: dist/
+
+  build-prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: npm run prod
+      - persist_to_workspace:
+          root: .
+          paths: dist/
+
+  deploy-to-dev:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: *install-pip
+      - run: pip install awscli; aws --version;
+      - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      - run: aws configure set aws_secret_access_key $AWS_ACCESS_KEY_ID
+      - run: aws configure set region $AWS_DEFAULT_REGION
+      - run: aws s3 sync dist/ s3://favr-staging-fundraising
+
+  deploy-to-prod:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: *install-pip
+      - run: pip install awscli; aws --version;
+      - run: aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+      - run: aws configure set aws_secret_access_key $AWS_ACCESS_KEY_ID
+      - run: aws configure set region $AWS_DEFAULT_REGION
+      - run: aws s3 sync dist/ s3://favr-production-fundraising
+
+workflows:
+  version: 2
+  deployment:
+    jobs:
+      - install-dependencies
+      - test:
+          requires:
+            - install-dependencies
+      - build-dev:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
