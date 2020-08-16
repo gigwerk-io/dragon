@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, DoCheck, OnChanges } from '@angular/core';
 import { Notification } from '../../../utils/interfaces/models/Notification';
+import { NotificationService } from '../../../utils/services/notification.service';
+import { Events } from '../../../utils/services/events';
+import { TableService } from '../../../utils/services/table.service';
 
 @Component({
   selector: 'app-notifications-list',
@@ -19,23 +22,36 @@ export class NotificationsListComponent implements OnInit, OnChanges {
   pagination: number[];
   windowSize = 4;
 
+  typeMap = {
+    'JobNeedsAttentionNotification': 'fas fa-wrench',
+    'JobRequestedNotification': 'fas fa-hand-paper'
+  };
 
-  constructor() { }
+
+
+  constructor(
+    private notificationsService: NotificationService,
+    private events: Events,
+    private tableService: TableService
+  ) { }
 
   ngOnInit() {
   }
 
   ngOnChanges() {
     if (this.notifications !== undefined) {
-      for (let index = 0; index < 40; index++) {
-        this.notifications.push(this.notifications[0])
-      }
+      this.parseTypes(this.notifications);
       this.allNotifications = this.notifications;
-      console.log('notigf', this.notifications)
-      console.log(this.notifications[0].type.substring(this.notifications[0].type.lastIndexOf('\\') + 1))
       this.setupPagination();
-    }
 
+    }
+  }
+
+  parseTypes(list: any) {
+    return list.map((el) => {
+      el.type = el.type.substring((el.type.lastIndexOf('\\') + 1));
+      return el;
+    });
   }
 
   setupPagination(): void {
@@ -80,6 +96,68 @@ export class NotificationsListComponent implements OnInit, OnChanges {
       this.pagination.push(...centeredRange.sort((a, b) => a - b).filter(i => i !== undefined));
       this.pagination.push(maxPage);
       this.maxPage = maxPage;
+    }
+  }
+
+  markNotificationRead(id: string) {
+    this.notificationsService.getSingleNotification(id).then(() => this.events.publish('notificationRead'));
+  }
+
+
+  filterTable(event: string) {
+    const tablefilterParams = [
+      'filter.data.title +',
+      'filter.data.message'
+    ];
+    this.notifications = this.tableService.filterTable(event, this.notifications, this.allNotifications, tablefilterParams);
+    this.activePage = 1;
+  }
+
+  getUnreadNotifications() {
+    this.notifications = undefined;
+    this.allNotifications = undefined;
+    this.notificationsService.getUnreadNotifications().then((res) => {
+      this.notifications = this.parseTypes(res.data);
+      this.allNotifications = this.notifications;
+      this.setupPagination();
+    });
+  }
+
+  getAllNotifications() {
+    this.notifications = undefined;
+    this.allNotifications = undefined;
+    this.notificationsService.getAllNotifications().then((res) => {
+      this.notifications = this.parseTypes(res.data);
+      this.allNotifications = this.notifications;
+      this.setupPagination();
+
+    });
+  }
+
+  getFilteredList(type: string) {
+    this.notifications = undefined;
+    this.notifications = this.allNotifications.filter(el => {
+      return el.type === type;
+    });
+    this.setupPagination();
+  }
+
+  onFilterBy(value: string) {
+    switch (value) {
+      case 'all':
+        this.getAllNotifications();
+        break;
+      case 'unread':
+        this.getUnreadNotifications();
+        break;
+      case 'attention':
+        this.getFilteredList('JobNeedsAttentionNotification');
+        break;
+      case 'requested':
+        this.getFilteredList('JobRequestedNotification');
+        break;
+      default:
+        break;
     }
   }
 
