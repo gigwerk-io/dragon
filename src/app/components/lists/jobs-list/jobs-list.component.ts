@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, DoCheck} from '@angular/core';
+import { Component, OnInit, Input, DoCheck } from '@angular/core';
 import { TableService } from '../../../utils/services/table.service';
 import { MarketplaceJob } from '../../../utils/interfaces/models/MarketplaceJob';
 
@@ -24,7 +24,7 @@ export class JobsListComponent implements OnInit, DoCheck {
     private tableService: TableService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngDoCheck() {
     this.allJobs = this.jobs;

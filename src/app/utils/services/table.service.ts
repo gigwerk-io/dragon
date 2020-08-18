@@ -18,19 +18,25 @@ export class TableService {
   // FOR AN EXAMPLE VISIT JOBS-LIST COMPONENT
   filterTable(e: string, list: any[], fullList: any[], params: string[]) {
     let filteredList = list;
-
+    // console.log('this is the full List', fullList)
     if (!e.length) {
       return fullList;
     }
 
     list = list.length ? list : fullList;
+    // console.log('list', list)
 
-    const needle = e.toLowerCase();
+    const needle = e.toLowerCase().replace(/ /g, '');
+    // console.log("needle", needl)
+
+
 
     // tslint:disable-next-line: no-shadowed-variable
     return filteredList = list.filter((filter) => {
       // tslint:disable-next-line: no-eval
       const listFilter = eval(params.join(' '));
+
+
       const hayStack =
         (
           listFilter

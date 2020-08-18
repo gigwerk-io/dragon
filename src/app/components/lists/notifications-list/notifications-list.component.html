@@ -1,0 +1,303 @@
+<div class="flex flex-col" *ngIf="notifications ; else SkeletonText">
+    <div class="mx-auto mt-2 flex-shrink-0 mb-5">
+
+        <div>
+            <label for="email" class="sr-only">Search
+            </label>
+            <div class="relative rounded-md shadow-sm inline-block">
+                <input id="email" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Search"
+                    (input)="filterTable($event.target.value)" />
+            </div>
+            <div class="relative rounded-md shadow-sm inline-block ml-3">
+                <select (change)="onFilterBy($event.target.value)"
+                    class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                    <option value='all' selected>All</option>
+                    <option value='unread'>Unread</option>
+                    <option value='attention'>Attention</option>
+                    <option value='requested'>Requested</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+
+
+            <!-- CONTENT GOES HERE -->
+
+            <div class="bg-white shadow overflow-hidden sm:rounded-md" *ngIf="notifications.length">
+                <ul>
+                    <li *ngFor="let notification of notifications | slice: (activePage - 1) * windowSize : (activePage - 1) * windowSize + windowSize;  let i = index"
+                        (click)="markNotificationRead(notification.id)">
+                        <div class="flex items-center px-4 py-4 sm:px-6 rounded-sm my-3"
+                            style="border-bottom: 1px solid #e8e8e8; padding-bottom: 12px;">
+                            <div class="min-w-0 flex-1 flex items-center">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-envelope text-5xl "></i>
+                                </div>
+                                <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                    <div>
+                                        <div class="  border border-red-500 bg-red-500 inline-block py-1 px-2 rounded text-white text-xs font-semibold "
+                                            *ngIf="notification.type === 'JobNeedsAttentionNotification'">
+                                            Attention
+                                        </div>
+                                        <div class="  border border-green-500 bg-green-500 inline-block py-1 px-2 rounded text-white text-xs font-semibold "
+                                            *ngIf="notification.type === 'JobRequestedNotification'; else CommentTemplate">
+                                            Requested
+                                        </div>
+                                        <div class="  border border-green-500 bg-green-500 inline-block py-1 px-2 rounded text-white text-xs font-semibold "
+                                            *ngIf="notification.type !== 'JobRequestedNotification' && notification.type !== 'JobNeedsAttentionNotification' ">
+                                            Requested
+                                        </div>
+
+
+                                        <div class="leading-5 text-gray-600 font-bold text-lg mt-2 ">
+                                            {{notification.data.title}}
+                                        </div>
+                                        <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
+                                            <span class="">{{notification.data.message}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="hidden md:block">
+                                        <div>
+
+                                            <div class="mt-2 flex items-center text-sm leading-5 text-gray-300">
+                                                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
+                                                    viewBox="0 0 20 20" fill="currentColor" class="clock w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                        clip-rule="evenodd"></path>
+                                                </svg>
+                                                <div class="text-sm leading-5 text-gray-900 ml-1">
+                                                    Last Updated On
+                                                    <time
+                                                        datetime="2020-01-07">{{notification.updated_at | date}}</time>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div *ngIf="!notifications.length" class="text-center">
+                <h1 class="text-5xl">
+                    <i class="fas fa-exclamation-triangle "></i>
+                </h1>
+                <h5>No Notifcations</h5>
+
+            </div>
+            <ng-container *ngIf="notifications">
+                <app-pagination (page)="setActivePage($event)" [activePage]="activePage" [maxPage]="maxPage"
+                    [maxPages]="maxPages" [pagination]="pagination" [windowSize]="windowSize"
+                    [results]="notifications.length">
+                </app-pagination>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #SkeletonText>
+    <div class="flex flex-col">
+        <div class="mx-auto mt-2 flex-shrink-0 mb-5">
+
+            <div>
+                <label for="email" class="sr-only">Search
+                </label>
+                <div class="relative rounded-md shadow-sm inline-block">
+                    <input id="email" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Search" />
+                </div>
+                <div class="relative rounded-md shadow-sm inline-block ml-3">
+                    <select
+                        class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+                        <option value='all' selected>All</option>
+                        <option value='unread'>Unread</option>
+                        <option value='attention'>Attention</option>
+                        <option value='requested'>Requested</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+            <div
+                class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                    <ul>
+                        <li>
+                            <div class="flex items-center px-4 py-4 sm:px-6 rounded-sm my-3"
+                                style="border-bottom: 1px solid #eeeeee; padding-bottom: 12px;">
+                                <div class="min-w-0 flex-1 flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-envelope text-5xl " style="color: #eeeeee;"></i>
+                                    </div>
+                                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                        <div>
+                                            <ion-skeleton-text
+                                                class=" inline-block py-1 px-2 rounded text-white text-xs font-semibold"
+                                                style="width: 69px; height: 27px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class=" leading-5 text-gray-600 font-bold text-lg mt-2 "
+                                                style="width: 200px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 300px; height: 9px;">
+                                            </ion-skeleton-text>
+                                        </div>
+                                        <div class="hidden md:block">
+                                            <div>
+                                                <div class="mt-2 flex items-center text-sm leading-5 text-gray-300">
+                                                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 " style="color: #eeeeee;"
+                                                        viewBox="0 0 20 20" fill="currentColor" class="clock w-6 h-6">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    <ion-skeleton-text class="text-sm leading-5 text-gray-900 ml-1"
+                                                        style="width: 176px; height: 9px;">
+                                                    </ion-skeleton-text>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <svg class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor"
+                                        style="color: #eeeeee;">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex items-center px-4 py-4 sm:px-6 rounded-sm my-3"
+                                style="border-bottom: 1px solid #eeeeee; padding-bottom: 12px;">
+                                <div class="min-w-0 flex-1 flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-envelope text-5xl " style="color: #eeeeee;"></i>
+                                    </div>
+                                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                        <div>
+                                            <ion-skeleton-text
+                                                class=" inline-block py-1 px-2 rounded text-white text-xs font-semibold"
+                                                style="width: 69px; height: 27px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class=" leading-5 text-gray-600 font-bold text-lg mt-2 "
+                                                style="width: 200px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 300px; height: 9px;">
+                                            </ion-skeleton-text>
+                                        </div>
+                                        <div class="hidden md:block">
+                                            <div>
+                                                <div class="mt-2 flex items-center text-sm leading-5 text-gray-300">
+                                                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 " style="color: #eeeeee;"
+                                                        viewBox="0 0 20 20" fill="currentColor" class="clock w-6 h-6">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    <ion-skeleton-text class="text-sm leading-5 text-gray-900 ml-1"
+                                                        style="width: 176px; height: 9px;">
+                                                    </ion-skeleton-text>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <svg class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor"
+                                        style="color: #eeeeee;">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="flex items-center px-4 py-4 sm:px-6 rounded-sm my-3"
+                                style="border-bottom: 1px solid #eeeeee; padding-bottom: 12px;">
+                                <div class="min-w-0 flex-1 flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-envelope text-5xl " style="color: #eeeeee;"></i>
+                                    </div>
+                                    <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+                                        <div>
+                                            <ion-skeleton-text
+                                                class=" inline-block py-1 px-2 rounded text-white text-xs font-semibold"
+                                                style="width: 69px; height: 27px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class=" leading-5 text-gray-600 font-bold text-lg mt-2 "
+                                                style="width: 200px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 400px; height: 9px;">
+                                            </ion-skeleton-text>
+                                            <ion-skeleton-text class="mt-2 flex items-center text-sm leading-5 "
+                                                style="width: 300px; height: 9px;">
+                                            </ion-skeleton-text>
+                                        </div>
+                                        <div class="hidden md:block">
+                                            <div>
+                                                <div class="mt-2 flex items-center text-sm leading-5 text-gray-300">
+                                                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 " style="color: #eeeeee;"
+                                                        viewBox="0 0 20 20" fill="currentColor" class="clock w-6 h-6">
+                                                        <path fill-rule="evenodd"
+                                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                                            clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    <ion-skeleton-text class="text-sm leading-5 text-gray-900 ml-1"
+                                                        style="width: 176px; height: 9px;">
+                                                    </ion-skeleton-text>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <svg class="h-5 w-5 " viewBox="0 0 20 20" fill="currentColor"
+                                        style="color: #eeeeee;">
+                                        <path fill-rule="evenodd"
+                                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
