@@ -1,24 +1,24 @@
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 hidden md:block"
+<!--<div class="max-w-7xl mb-10 mx-auto px-4 sm:px-6 md:px-8 hidden md:block"
   *ngIf="subscription && paymentMethods && invoice; else SKELETONHEADER">
   <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap mb-3">
     <div class="ml-4 mt-4">
-      <h1 class="text-2xl font-semibold text-gray-900">
+      <h1 class="text-2xl font-semibold text-white">
         Billing & Subscription
       </h1>
     </div>
   </div>
   <div class="hidden sm:block">
     <div class="py-5">
-      <div class="border-t border-gray-200"></div>
+      <div class="border-t border-2 border-white"></div>
     </div>
   </div>
+</div>-->
+<div *ngIf="subscription && paymentMethods && invoice; else SKELETONHEADER">
 </div>
 
 
 
-
-
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8" *ngIf="subscription && paymentMethods && invoice">
+<div class="max-w-7xl mx-auto px-4 mt-24 pt-24 sm:px-6 md:px-8" *ngIf="subscription && paymentMethods && invoice">
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <ng-container *ngIf="1 === 1; else skeletonSubPlanForm">
@@ -99,7 +99,7 @@
 
   <div class="hidden sm:block">
     <div class="py-5">
-      <div class="border-t border-gray-200"></div>
+      <div class="border-t border-gray-250"></div>
     </div>
   </div>
 
@@ -135,7 +135,7 @@
                     <div class="mt-3 sm:mt-0 sm:ml-4">
                       <div class="text-sm leading-5 font-medium text-gray-900">
                         Ending with {{method.card.last4}}
-                        <p *ngIf="i === 0"
+                        <p *ngIf="method.default"
                           class="inline-flex items-center mx-2 px-2 py-0.5 rounded text-xs font-medium leading-4 bg-green-100 text-green-800">
                           Default
                         </p>
@@ -192,7 +192,7 @@
 
   <div class="hidden sm:block">
     <div class="py-5">
-      <div class="border-t border-gray-200"></div>
+      <div class="border-t border-gray-250"></div>
     </div>
   </div>
 
@@ -280,11 +280,7 @@
     </div>
   </div>
 
-  <div class="hidden sm:block">
-    <div class="py-5">
-      <div class="border-t border-gray-200"></div>
-    </div>
-  </div>
+  
 </div>
 
 <app-payment-method-modal [show]="showPaymentModal" (close)="showPaymentModal = false"></app-payment-method-modal>
@@ -294,7 +290,7 @@
 <ng-template #SKELETONHEADER>
   <div class="max-w-7xl mx-auto  sm:px-6 md:px-8 hidden md:block">
     <div class="-ml-4 -mt-4 flex justify-between items-center flex-wrap sm:flex-no-wrap " style="margin-bottom: 45px;">
-      <ion-skeleton-text animated="true" class=" ml-4" style="height: 25px; width: 240px; margin-top:43px">
+      <ion-skeleton-text animated="true" class="ml-4 bg-white" style="visibility: hidden; height: 25px; width: 240px; margin-top:43px">
       </ion-skeleton-text>
     </div>
 

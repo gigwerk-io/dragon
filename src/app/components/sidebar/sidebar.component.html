@@ -1,4 +1,4 @@
-<div id="app_container" class="overflow-y-scroll h-full">
+<div id="app_container" class="overflow-y-scroll h-full bg-gray-100">
   <div class="bg-gray-800 pb-32">
     <nav class="bg-gray-800">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -55,7 +55,7 @@
                   <div class="px-4 py-2 " *ngIf="notifications.length === 0  && showNotifications">
                     <h6 class="text-center border-solid text-gray-600 border-3 border-green-200 font-extrabold"
                       *ngIf="notifications.length === 0  && showNotifications">
-                      You have 0 new notifications
+                      You have new notifications
                       <i class="fas fa-folder-open text-lg"></i>
                     </h6>
                   </div>
@@ -193,7 +193,7 @@
     </nav>
     <header class="py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl leading-9 font-bold text-white">
+        <h1 class="text-4xl leading-9 font-bold text-white">
           {{pageTitle}}
         </h1>
       </div>
@@ -203,7 +203,7 @@
   <main class="-mt-32">
     <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
       <!-- Replace with your content -->
-      <div class="bg-white rounded-lg shadow px-5 py-6 sm:px-6">
+      <div class="rounded-lg px-5 sm:px-6">
         <!--        <div class="border-4 border-dashed border-gray-200 rounded-lg h-96"></div>-->
         <ng-content></ng-content>
       </div>
