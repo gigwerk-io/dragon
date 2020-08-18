@@ -1,86 +1,43 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { User } from '../../../utils/interfaces/models/User';
+import { Component, DoCheck, Input, OnInit, OnChanges } from '@angular/core';
 import { Application } from '../../../utils/interfaces/models/Application';
 import { TableService } from '../../../utils/services/table.service';
+import { PaginationService } from '../../../utils/services/pagination.service';
 
 @Component({
   selector: 'app-applicant-list',
   templateUrl: './applicant-list.component.html',
-  styleUrls: ['./applicant-list.component.css']
+  styleUrls: ['./applicant-list.component.css'],
+  providers: [PaginationService]
 })
-export class ApplicantListComponent implements OnInit, DoCheck {
+export class ApplicantListComponent implements OnInit, OnChanges {
   @Input() applicants: Application[];
   allApplicants: Application[];
-  activePage = 1;
-  maxPages: number;
-  maxPage: number;
-  pagination: number[];
   windowSize = 5;
   constructor(
-    private tableService: TableService
+    private tableService: TableService,
+    public paginationService: PaginationService
   ) { }
 
   ngOnInit() {
   }
 
-  ngDoCheck() {
-    this.allApplicants = this.applicants;
-    this.setupPagination();
-  }
-
-  setPage($event) {
-    console.log($event);
-  }
-
-  setupPagination(): void {
-    if (this.applicants && this.windowSize) {
-      this.maxPages = (this.applicants.length / this.windowSize) - ((this.applicants.length % this.windowSize) / this.windowSize);
-
-      if (this.maxPages < 19) {
-        this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);
-        this.maxPage = this.maxPages;
-      } else {
-        this.setActivePage(1);
-      }
-    }
-  }
-
-  setActivePage(page: number) {
-    this.activePage = page;
-    if (this.maxPages > 19) {
-      this.pagination = [1];
-      const pages = 17;
-      let maxPage = this.maxPages;
-      let step = 9;
-      if (this.applicants.length % 5 === 0) {
-        maxPage -= 1;
-      }
-      const centeredRange = Array(pages).fill(undefined)
-        .map(() => {
-          const i = page + step;
-          if (step > 0) {
-            step -= 1;
-          } else if (step === 0) {
-            step = -7;
-          } else if (i < maxPage) {
-            step += 1;
-          }
-
-          if (i > 1 && i < maxPage) {
-            return i;
-          }
-
-          return undefined;
-        });
-      this.pagination.push(...centeredRange.sort((a, b) => a - b).filter(i => i !== undefined));
-      this.pagination.push(maxPage);
-      this.maxPage = maxPage;
+  ngOnChanges() {
+    if (this.applicants !== undefined) {
+      this.allApplicants = this.applicants;
+      this.paginationService.setupPagination(this.applicants, this.windowSize);
     }
   }
 
   searchUser(e: string) {
-    this.applicants = this.tableService.filterApplicants(e, this.applicants, this.allApplicants);
-    this.activePage = 1;
+
+    const tableFilterParams = [
+      'filter.first_name +',
+      'filter.customer.name +',
+      'filter.customer.email'
+    ];
+
+    this.applicants = this.tableService.filterTable(e, this.applicants, this.allApplicants, tableFilterParams);
+    this.paginationService.setupPagination(this.applicants, this.windowSize);
   }
 
 }
