@@ -13,6 +13,7 @@ export class ApplicantListComponent implements OnInit, OnChanges {
   @Input() applicants: Application[];
   allApplicants: Application[];
   windowSize = 5;
+  applicantID = undefined;
   constructor(
     private tableService: TableService,
     public paginationService: PaginationService

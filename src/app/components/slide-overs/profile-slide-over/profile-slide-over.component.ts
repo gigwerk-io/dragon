@@ -31,19 +31,16 @@ export class ProfileSlideOverComponent implements OnInit, OnChanges {
   }
 
   getUser() {
-    // this.peopleService.getSingleUser(this.UserID).then(res => this.user = res.data).catch(err => {
-    //   // In the future an error message should show up;
-    //   this.transition = false;
-    // });
-    this.peopleService.getSingleUser(this.UserID).then(res => {
-      this.profile = res.data;
-      console.log('user', this.profile)
-    })
+    this.peopleService.getSingleUser(this.UserID).then(res => this.profile = res.data).catch(err => {
+      // In the future an error message should show up;
+      this.clear();
+    });
   }
 
   clear() {
     this.transition = false;
     this.profile = undefined;
-    console.log('profile', this.profile)
   }
+
+
 }
