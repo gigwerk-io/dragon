@@ -26,6 +26,7 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
+import { TextComponent } from './form-builder/text/text.component';
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
     PaymentMethodModalComponent,
     PeopleGridComponent,
     NotificationsListComponent,
+    TextComponent,
   ],
   exports: [
     FooterComponent,
@@ -80,7 +82,9 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
     JobsListComponent,
     PaymentMethodModalComponent,
     PeopleGridComponent,
-    NotificationsListComponent
+    TextComponent,
+    NotificationsListComponent,
+    
   ]
 })
 export class ComponentsModule {

@@ -22,6 +22,7 @@ import { SubscriptionComponent } from '../../pages/subscription/subscription.com
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { GuidedTourModule } from 'ngx-guided-tour';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
+import { FormTestComponent } from '../../pages/form-test/form-test.component';
 
 @NgModule({
   imports: [
@@ -47,7 +48,8 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
     SubscriptionComponent,
     PlanComponent,
     PeopleComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    FormTestComponent
   ]
 })
 

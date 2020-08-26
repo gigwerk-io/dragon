@@ -10,6 +10,7 @@ import { SubscriptionComponent } from '../../pages/subscription/subscription.com
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { PeopleComponent } from '../../pages/people/people.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
+import { FormTestComponent } from '../../pages/form-test/form-test.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -21,5 +22,6 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'manage-subscription', component: SubscriptionComponent },
   { path: 'plan', component: PlanComponent },
   { path: 'members', component: PeopleComponent },
-  { path: 'notifications', component: NotificationsComponent }
+  { path: 'notifications', component: NotificationsComponent },
+  { path: 'formtest', component: FormTestComponent }, // THIS FORM IS ONLY FOR TESTING OUT FORM COMPONENTS. NEEDS TO BE DELETED
 ];
