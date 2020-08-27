@@ -27,6 +27,8 @@ import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
 import { TextComponent } from './form-builder/text/text.component';
+import { EmailComponent } from './form-builder/email/email.component';
+import { PhoneComponent } from './form-builder/phone/phone.component';
 
 @NgModule({
   imports: [
@@ -61,6 +63,8 @@ import { TextComponent } from './form-builder/text/text.component';
     PeopleGridComponent,
     NotificationsListComponent,
     TextComponent,
+    EmailComponent,
+    PhoneComponent,
   ],
   exports: [
     FooterComponent,
@@ -84,7 +88,9 @@ import { TextComponent } from './form-builder/text/text.component';
     PeopleGridComponent,
     TextComponent,
     NotificationsListComponent,
-    
+    EmailComponent,
+    PhoneComponent,
+
   ]
 })
 export class ComponentsModule {

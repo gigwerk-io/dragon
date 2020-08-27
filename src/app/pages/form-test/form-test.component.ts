@@ -5,18 +5,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   templateUrl: './form-test.component.html',
   styleUrls: ['./form-test.component.css']
 })
-export class FormTestComponent implements OnInit, OnDestroy {
-  
+export class FormTestComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
-    console.log('form test')
+
   }
 
-  ngOnDestroy() {
-    console.log('destroying')
-  }
 
 
 
