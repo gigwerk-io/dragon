@@ -7,7 +7,7 @@
         <div class="flex-initial w-1/3 px-4 py-2 m-2">
             <label for="email" class="block text-sm font-medium leading-5 " > {{textObject.label}} <span *ngIf="textObject.requireToggle" class="text-red-500">*</span></label>
             <div class="mt-1 relative rounded-md shadow-sm">
-                <input id="text" [required]="textObject.requireToggle" id="name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="textObject.placeholder">
+                <input type="text" [required]="textObject.requireToggle" [id]="name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="textObject.placeholder">
             </div>
         </div>
         <div class="ml-auto  py-2 m-2 mr-10">

@@ -29,6 +29,12 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
 import { TextComponent } from './form-builder/text/text.component';
 import { EmailComponent } from './form-builder/email/email.component';
 import { PhoneComponent } from './form-builder/phone/phone.component';
+import { NumberComponent } from './form-builder/number/number.component';
+import { DateComponent } from './form-builder/date/date.component';
+import { DateTimeComponent } from './form-builder/date-time/date-time.component';
+import { TextareaComponent } from './form-builder/textarea/textarea.component';
+import { ParagraphComponent } from './form-builder/paragraph/paragraph.component';
+import { CheckboxComponent } from './form-builder/checkbox/checkbox.component';
 
 @NgModule({
   imports: [
@@ -65,6 +71,12 @@ import { PhoneComponent } from './form-builder/phone/phone.component';
     TextComponent,
     EmailComponent,
     PhoneComponent,
+    NumberComponent,
+    DateComponent,
+    DateTimeComponent,
+    TextareaComponent,
+    ParagraphComponent,
+    CheckboxComponent,
   ],
   exports: [
     FooterComponent,
@@ -90,7 +102,12 @@ import { PhoneComponent } from './form-builder/phone/phone.component';
     NotificationsListComponent,
     EmailComponent,
     PhoneComponent,
-
+    NumberComponent,
+    DateComponent,
+    DateTimeComponent,
+    TextareaComponent,
+    ParagraphComponent,
+    CheckboxComponent,
   ]
 })
 export class ComponentsModule {

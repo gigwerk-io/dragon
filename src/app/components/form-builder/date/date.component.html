@@ -5,9 +5,9 @@
             <i class="fas fa-ellipsis-v"></i>
         </div>
         <div class="flex-initial w-1/3 px-4 py-2 m-2">
-            <label for="email" class="block text-sm font-medium leading-5 " > {{emailObject.label}} <span *ngIf="emailObject.requireToggle" class="text-red-500">*</span></label>
+            <label for="email" class="block text-sm font-medium leading-5 " > {{dateObject.label}} <span *ngIf="dateObject.requireToggle" class="text-red-500">*</span></label>
             <div class="mt-1 relative rounded-md shadow-sm">
-                <input type="email" [required]="emailObject.requireToggle" [id]="name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="emailObject.placeholder">
+                <input type="date" [required]="dateObject.requireToggle" [id]="dateObject.name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="dateObject.placeholder">
             </div>
         </div>
         <div class="ml-auto  py-2 m-2 mr-10">
@@ -42,21 +42,17 @@
                               <div class="grid grid-cols-2 gap-6">
                                 <div class="col-span-6 sm:col-span-4 ">
                                   <label  for="require" class="block text-sm font-medium leading-5 text-gray-700">Require</label>
-                                  <span (click)="emailObject.requireToggle = !emailObject.requireToggle"  [ngClass]="{'bg-indigo-600': emailObject.requireToggle}" role="checkbox" tabindex="0" aria-checked="false" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline">
-                                  <span aria-hidden="true" [ngClass]="{'translate-x-5': emailObject.requireToggle, 'translate-x-0': !emailObject.requireToggle}" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200"></span>
+                                  <span (click)="dateObject.requireToggle = !dateObject.requireToggle"  [ngClass]="{'bg-indigo-600': dateObject.requireToggle}" role="checkbox" tabindex="0" aria-checked="false" class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline">
+                                  <span aria-hidden="true" [ngClass]="{'translate-x-5': dateObject.requireToggle, 'translate-x-0': !dateObject.requireToggle}" class="translate-x-0 inline-block h-5 w-5 rounded-full bg-white shadow transform transition ease-in-out duration-200"></span>
                                   </span>
                                 </div>
                                 <div class="col-span-6 sm:col-span-4 ">
                                   <label for="label" class="block text-sm font-medium leading-5 text-gray-700">Label</label>
-                                  <input id="label" [ngModel]="emailObject.label" (input)="emailObject.label = $event.target.value"  type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                  <input id="label" [ngModel]="dateObject.label" (input)="dateObject.label = $event.target.value"  type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                 </div>
                                 <div class="col-span-6 sm:col-span-4 ">
                                   <label for="name" class="block text-sm font-medium leading-5 text-gray-700">Name</label>
-                                  <input id="name" [ngModel]="emailObject.name" (input)="emailObject.name = $event.target.value" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
-                                </div>
-                                <div class="col-span-6 sm:col-span-4 ">
-                                  <label for="Placeholder" class="block text-sm font-medium leading-5 text-gray-700">Placeholder</label>
-                                  <input id="placeholder" [ngModel]="emailObject.placeholder" (input)="emailObject.placeholder = $event.target.value" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                  <input id="name" [ngModel]="dateObject.name" (input)="dateObject.name = $event.target.value" type="text" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                                 </div>
                               </div>
                             </div>
