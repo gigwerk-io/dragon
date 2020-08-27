@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-checkbox',
-  templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.css']
+  selector: 'app-radio',
+  templateUrl: './radio.component.html',
+  styleUrls: ['./radio.component.css']
 })
-export class CheckboxComponent implements OnInit {
+export class RadioComponent implements OnInit {
 
   transition = false;
   show = true;
-  checkboxObject = {
+  radioObject = {
     requireToggle: false,
     placeholder: '',
-    label: 'Checkbox',
-    name: `checkbox-${Date.now()}`,
-    checkboxArr: [
+    label: 'Radio',
+    name: `radio-${Date.now()}`,
+    radioArr: [
       {text: 'Option 1', value: 'option 1'},
       {text: 'Option 2', value: 'option 2'},
       {text: 'Option 3', value: 'option 3'},
@@ -22,6 +22,7 @@ export class CheckboxComponent implements OnInit {
     ]
   };
  
+  radioValue = '';
   newOptionText = '';
   newOptionValue = '';
 
@@ -32,10 +33,15 @@ export class CheckboxComponent implements OnInit {
 
   addOption() {
     if (this.newOptionText.length && this.newOptionValue.length) {
-      this.checkboxObject.checkboxArr.push({text: this.newOptionText, value: this.newOptionValue});
+      this.radioObject.radioArr.push({text: this.newOptionText, value: this.newOptionValue});
       this.newOptionText = '';
       this.newOptionValue = '';
     }
   }
+
+  changeValue(event) {
+    console.log(this.radioValue, document.getElementById(this.radioObject.name).innerText, event)
+  }
+  
 
 }
