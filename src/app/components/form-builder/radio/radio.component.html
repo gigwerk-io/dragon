@@ -10,7 +10,7 @@
                 <div *ngFor="let optionRadio of radioObject.radioArr; let i = index">
                     <!-- <input [id]="radioObject.name" type="checkbox" name="option-{{i}}" value="{{optionCheck.value}}">
                     <label  for="option-{{i}}"> {{optionCheck.text}}</label><br>  -->
-                    <input   [(ngModel)]="radioValue" (input)="changeValue($event.target.value)" type="radio" [id]="radioObject.name" name="option" value="{{optionRadio.value}}">
+                    <input  (change)="changeValue($event)" type="radio" [id]="'radio' + i" name="option" value="{{optionRadio.text}}">
                     <label for="other"> {{optionRadio.text}}</label>
                 </div>
             </div>

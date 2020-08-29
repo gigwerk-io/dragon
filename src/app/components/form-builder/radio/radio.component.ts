@@ -19,9 +19,8 @@ export class RadioComponent implements OnInit {
       {text: 'Option 2', value: 'option 2'},
       {text: 'Option 3', value: 'option 3'},
       {text: 'Option 4', value: 'option 4'},
-    ]
+    ],
   };
- 
   radioValue = '';
   newOptionText = '';
   newOptionValue = '';
@@ -39,9 +38,5 @@ export class RadioComponent implements OnInit {
     }
   }
 
-  changeValue(event) {
-    console.log(this.radioValue, document.getElementById(this.radioObject.name).innerText, event)
-  }
-  
 
 }
