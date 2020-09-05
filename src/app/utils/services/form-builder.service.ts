@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { RESTService } from './rest.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FormBuilderService {
+export class FormBuilderService extends RESTService {
 
   componentOptions = [];
 
 
-  constructor() { }
+  constructor(
+    public http: HttpClient,
+    public storage: Storage
+  ) {
+    super(http, storage);
+   }
 
   deleteComponentFromArray = new Subject<number>();
   gatherComponentsOptions = new Subject<string>();
@@ -26,15 +35,20 @@ export class FormBuilderService {
         }
       }
     }
-    tempArr.push(formHeader);
+    // tempArr.push(formHeader);
     this.componentOptions = tempArr;
-
-    console.log('This is what would be sent to the backend');
-    console.log(this.componentOptions);
-
-    this.componentOptions = [];
-
+    this.saveForm(formHeader)
   }
+
+  saveForm(formHeader: {formTitle: string, formDescription: string}) {
+    return this.makeHttpRequest(`drag-drop-form`, 'POST', {form: this.componentOptions, formHeader})
+    .then(res => res.toPromise().then(res => console.log('response', res)));
+  }
+
+  // getJob(id: number): Promise<Response<MarketplaceJob>> {
+  //   return this.makeHttpRequest<Response<MarketplaceJob>>(`job/${id}`, `GET`)
+  //     .then((res) => res.toPromise());
+  // }
 
 
 
