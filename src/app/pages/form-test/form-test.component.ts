@@ -28,11 +28,13 @@ export class FormTestComponent implements OnInit, OnDestroy {
     'select'
   ];
 
+  formTitle = '';
+  formDescription = '';
+
   fields = [...this.masterFields];
 
   components = [
-    'text',
-    // 'email',
+    'text'
   ];
 
 

@@ -100,6 +100,18 @@
     </div>
   </div>
   <div class="col-span-3 bg-white">
+    <div class="w-2/3 mx-auto h-10 mt-5">
+      <label for="formTitle" class="sr-only">Form Title</label>
+      <div class="relative rounded-md shadow-sm">
+        <input id="formTitle" class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formTitle' placeholder="Enter the title of your form">
+      </div>
+    </div>
+    <div class="w-2/3 mx-auto h-10 mt-5">
+      <label for="formTitle" class="sr-only">Form Title</label>
+      <div class="relative rounded-md shadow-sm">
+        <input id="formTitle" class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formDescription' placeholder="Enter form description">
+      </div>
+    </div>
     <div class="grid grid-cols-1">
       <h4 class="text-xl ml-10 mt-10">
         Drag and drop items below to build your custom application form:
@@ -112,10 +124,11 @@
         [cdkDropListData]="components"
         [cdkDropListConnectedTo]="[fieldsList]"
         class="example-list"
+        style="min-height: 40px;"
         (cdkDropListDropped)="drop($event)"
       >
         <div
-          class="example-box"
+          class="example-box "
           *ngFor="let item of components; let i = index"
           cdkDrag
         >
@@ -132,8 +145,10 @@
           <app-select *ngIf="item === 'select'" [index]="i" ></app-select>
         </div>
       </div>
-
+        
     </div>
   </div>
 </div>
-<button (click)="check()">Check</button>
+
+
+<!-- <button (click)="check()">Check</button> -->
