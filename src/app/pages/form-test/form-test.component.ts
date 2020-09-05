@@ -11,7 +11,7 @@ export class FormTestComponent implements OnInit, AfterViewInit {
   observer: MutationObserver;
   // elRef: ElementRef;
 
-  masterTodo = [
+  masterFields = [
     'text',
     'email',
     'phone',
@@ -25,10 +25,10 @@ export class FormTestComponent implements OnInit, AfterViewInit {
     'select'
   ];
 
-  todo = [...this.masterTodo];
+  fields = [...this.masterFields];
 
-  done = [
-    // 'text',
+  components = [
+    'text',
     // 'email',
   ];
 
@@ -36,7 +36,7 @@ export class FormTestComponent implements OnInit, AfterViewInit {
     this.observer = new MutationObserver(mutations => {
       mutations.forEach(function(mutation) {
         console.log(mutation.type);
-      });  
+      }); 
     });
     var config = { attributes: true, childList: true, characterData: true };
 
@@ -56,12 +56,12 @@ export class FormTestComponent implements OnInit, AfterViewInit {
                         event.container.data,
                         event.previousIndex,
                         event.currentIndex);
-      this.todo = [...this.masterTodo];
+      this.fields = [...this.masterFields];
     }
   }
 
   check() {
-    console.log('final list', this.done)
+    console.log('final list', this.components)
   }
 
 

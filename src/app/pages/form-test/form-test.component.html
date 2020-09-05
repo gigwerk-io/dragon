@@ -119,65 +119,141 @@
 
  -->
 
-
-
- 
 <div class="grid grid-cols-4 mt-10">
-    <div class="col-span-1">
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-font mr-2"></i>
-            Text
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-envelope mr-2"></i>
-            Email
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-phone-alt mr-2"></i>
-            Phone Number
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-calculator mr-2"></i>
-            Number
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-calendar-alt mr-2"></i>
-            Date
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-clock mr-2"></i>
-            Date-time
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-align-left mr-2"></i>
-            Textarea
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-paragraph mr-2"></i>
-            Paragraph
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-check-square mr-2"></i>
-            Checkbox
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="far fa-circle mr-2"></i>
-            Radio Button
-        </div>
-        <div class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border">
-            <i class="fas fa-mouse-pointer mr-2"></i>
-            Select
-        </div>
+  <div
+    class="col-span-1"
+    cdkDropList
+    #fieldsList="cdkDropList"
+    [cdkDropListData]="fields"
+    [cdkDropListConnectedTo]="[componentsList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <div *ngFor="let item of fields">
+      <div
+        *ngIf="item === 'text'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-font mr-2"></i>
+        Text
+      </div>
+      <div
+        *ngIf="item === 'email'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-envelope mr-2"></i>
+        Email
+      </div>
+      <div
+        *ngIf="item === 'phone'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-phone-alt mr-2"></i>
+        Phone Number
+      </div>
+      <div
+        *ngIf="item === 'number'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-calculator mr-2"></i>
+        Number
+      </div>
+      <div
+        *ngIf="item === 'date'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-calendar-alt mr-2"></i>
+        Date
+      </div>
+      <div
+        *ngIf="item === 'date-time'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-clock mr-2"></i>
+        Date-time
+      </div>
+      <div
+        *ngIf="item === 'textarea'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-align-left mr-2"></i>
+        Textarea
+      </div>
+      <div
+        *ngIf="item === 'paragraph'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-paragraph mr-2"></i>
+        Paragraph
+      </div>
+      <div
+        *ngIf="item === 'checkbox'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-check-square mr-2"></i>
+        Checkbox
+      </div>
+      <div
+        *ngIf="item === 'radio'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="far fa-circle mr-2"></i>
+        Radio Button
+      </div>
+      <div
+        *ngIf="item === 'select'"
+        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
+        cdkDrag
+      >
+        <i class="fas fa-mouse-pointer mr-2"></i>
+        Select
+      </div>
     </div>
-    <div class="col-span-3 bg-white">
-        <div class="grid grid-cols-2">
-            <h4 class="text-xl ml-10 mt-10">
-                Drag and drop items below to build your custom application form:
-            </h4>
-            <div class="flex justify-center items-center text-gray-400 col-span-2 border-dashed border-2 border-gray-400 mx-20 py-20 mt-10">
-                Drag and Drop
-            </div>
+  </div>
+  <div class="col-span-3 bg-white">
+    <div class="grid grid-cols-1">
+      <h4 class="text-xl ml-10 mt-10">
+        Drag and drop items below to build your custom application form:
+      </h4>
+      <div
+        class="flex justify-center items-center text-gray-400 col-span-2 border-dashed border-2 border-gray-400 mx-20 py-20 mt-10"
+        cdkDropList
+        #componentsList="cdkDropList"
+        [cdkDropListData]="components"
+        [cdkDropListConnectedTo]="[fieldsList]"
+        class="example-list"
+        (cdkDropListDropped)="drop($event)"
+      >
+        <div
+          class="example-box"
+          *ngFor="let item of components; let i = index"
+          cdkDrag
+        >
+          <app-text *ngIf="item === 'text'"></app-text>
+          <app-email *ngIf="item === 'email'"></app-email>
+          <app-phone *ngIf="item === 'phone'"></app-phone>
+          <app-number *ngIf="item === 'number'"></app-number>
+          <app-date *ngIf="item === 'date'"></app-date>
+          <app-date-time *ngIf="item === 'date-time'"></app-date-time>
+          <app-textarea *ngIf="item === 'textarea'"></app-textarea>
+          <app-paragraph *ngIf="item === 'paragraph'"></app-paragraph>
+          <app-checkbox *ngIf="item === 'checkbox'"></app-checkbox>
+          <app-radio *ngIf="item === 'radio'"></app-radio>
+          <app-select *ngIf="item === 'select'"></app-select>
         </div>
-    
+      </div>
+
+      <!-- Drag and Drop -->
     </div>
+  </div>
 </div>
