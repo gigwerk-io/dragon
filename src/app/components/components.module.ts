@@ -37,6 +37,7 @@ import { ParagraphComponent } from './form-builder/paragraph/paragraph.component
 import { CheckboxComponent } from './form-builder/checkbox/checkbox.component';
 import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
+import { SubmitComponent } from './form-builder/submit/submit.component';
 
 @NgModule({
   imports: [
@@ -82,6 +83,7 @@ import { SelectComponent } from './form-builder/select/select.component';
     CheckboxComponent,
     RadioComponent,
     SelectComponent,
+    SubmitComponent,
   ],
   exports: [
     FooterComponent,
@@ -115,7 +117,7 @@ import { SelectComponent } from './form-builder/select/select.component';
     CheckboxComponent,
     RadioComponent,
     SelectComponent,
-
+    SubmitComponent,
   ]
 })
 export class ComponentsModule {

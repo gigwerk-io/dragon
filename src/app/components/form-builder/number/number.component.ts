@@ -1,16 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-number',
   templateUrl: './number.component.html',
   styleUrls: ['./number.component.css']
 })
-export class NumberComponent implements OnInit {
+export class NumberComponent implements OnInit, OnDestroy, OnChanges {
 
   // tslint:disable-next-line: no-input-rename
   @Input('index') index: number;
 
+  submitFormSubscription: Subscription;
 
   transition = false;
   show = true;
@@ -19,16 +21,29 @@ export class NumberComponent implements OnInit {
     placeholder: '',
     label: 'Number',
     name: `number-${Date.now()}`,
+    index: this.index
   };
+
+  ngOnChanges() {
+    this.numberObject.index = this.index;
+  }
 
   constructor(
     private formBuilderService: FormBuilderService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.numberObject.index = this.index;
+    this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
+    .subscribe(() => this.formBuilderService.componentOptions.push(this.numberObject));
+  }
 
   deleteComponentFromArray() {
     this.formBuilderService.deleteComponentFromArray.next(this.index);
+  }
+
+  ngOnDestroy() {
+    this.submitFormSubscription.unsubscribe();
   }
 
 }

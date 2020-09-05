@@ -25,16 +25,19 @@ export class FormTestComponent implements OnInit, OnDestroy {
     'paragraph',
     'checkbox',
     'radio',
-    'select'
+    'select',
+    'submit'
   ];
 
-  formTitle = '';
-  formDescription = '';
+  formHeader = {
+    formTitle: '',
+    formDescription: ''
+  }
+
 
   fields = [...this.masterFields];
 
   components = [
-    'text'
   ];
 
 
@@ -58,8 +61,10 @@ export class FormTestComponent implements OnInit, OnDestroy {
     }
   }
 
-  check() {
-    console.log('final list', this.components)
+  submitForm() {
+    this.components = [...this.components]
+    this.formBuilderService.gatherComponentsOptions.next('submit form');
+    this.formBuilderService.organizeComponents(this.components, this.formHeader)
   }
 
   ngOnDestroy() {
