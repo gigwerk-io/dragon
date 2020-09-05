@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
+import { FormBuilderService } from '../../../utils/services/form-builder.service';
 
 @Component({
   selector: 'app-text',
@@ -6,6 +7,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./text.component.css']
 })
 export class TextComponent implements OnInit {
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('index') index: number;
+
+
   transition = false;
   show = true;
   textObject = {
@@ -15,11 +21,17 @@ export class TextComponent implements OnInit {
     name: `text-${Date.now()}`,
   };
 
-  constructor() { }
 
-  ngOnInit() {
+
+  constructor(
+    private formBuilderService: FormBuilderService
+  ) { }
+
+  ngOnInit() {}
+
+  deleteComponentFromArray() {
+    this.formBuilderService.deleteComponentFromArray.next(this.index);
   }
 
 
 }
- 

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
 @Component({
   selector: 'app-date',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date.component.css']
 })
 export class DateComponent implements OnInit {
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('index') index: number;
+
 
   transition = false;
   show = true;
@@ -16,10 +21,15 @@ export class DateComponent implements OnInit {
     name: `date-${Date.now()}`,
   };
 
-  constructor() { }
+  constructor(
+    private formBuilderService: FormBuilderService
+  ) { }
 
   ngOnInit() {
   }
 
+  deleteComponentFromArray() {
+    this.formBuilderService.deleteComponentFromArray.next(this.index);
+  }
+
 }
- 

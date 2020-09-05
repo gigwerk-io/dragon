@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
 @Component({
   selector: 'app-email',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./email.component.css']
 })
 export class EmailComponent implements OnInit {
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('index') index: number;
+
+
   transition = false;
   show = true;
   emailObject = {
@@ -15,9 +21,14 @@ export class EmailComponent implements OnInit {
     name: `email-${Date.now()}`,
   };
 
-  constructor() { }
+  constructor(
+    private formBuilderService: FormBuilderService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  deleteComponentFromArray() {
+    this.formBuilderService.deleteComponentFromArray.next(this.index);
   }
 
 }

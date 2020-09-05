@@ -25,7 +25,7 @@ export class FinanceService extends RESTService {
   ) {
     super(http, storage);
 
-  }
+  } 
 
   getInvoice(): Promise<Response<Invoice>> {
     return this.makeHttpRequest<Response<Invoice>>(`invoices`, 'GET')

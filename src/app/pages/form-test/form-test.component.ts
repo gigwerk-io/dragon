@@ -1,15 +1,18 @@
-import { Component, OnInit, OnDestroy, OnChanges, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-form-test',
   templateUrl: './form-test.component.html',
   styleUrls: ['./form-test.component.css']
 })
-export class FormTestComponent implements OnInit, AfterViewInit {
+export class FormTestComponent implements OnInit, OnDestroy {
 
-  observer: MutationObserver;
-  // elRef: ElementRef;
+  @ViewChild('componentContainer', {static: false}) cmptContainer;
+
+  deleteComponentSubscription: Subscription;
 
   masterFields = [
     'text',
@@ -32,20 +35,13 @@ export class FormTestComponent implements OnInit, AfterViewInit {
     // 'email',
   ];
 
-  ngAfterViewInit() {
-    this.observer = new MutationObserver(mutations => {
-      mutations.forEach(function(mutation) {
-        console.log(mutation.type);
-      }); 
-    });
-    var config = { attributes: true, childList: true, characterData: true };
 
-    // this.observer.observe(this.elRef.nativeElement, config);
-  }
-  constructor() { }
+  constructor(
+    private formBuilderService: FormBuilderService
+  ) { }
 
   ngOnInit() {
-
+    this.formBuilderService.deleteComponentFromArray.subscribe(index => this.components.splice(index, 1));
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -62,6 +58,10 @@ export class FormTestComponent implements OnInit, AfterViewInit {
 
   check() {
     console.log('final list', this.components)
+  }
+
+  ngOnDestroy() {
+    this.deleteComponentSubscription.unsubscribe();
   }
 
 

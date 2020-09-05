@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
 @Component({
   selector: 'app-select',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./select.component.css']
 })
 export class SelectComponent implements OnInit {
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('index') index: number;
+
   transition = false;
   show = true;
   selectObject = {
@@ -26,9 +31,14 @@ export class SelectComponent implements OnInit {
 
  
 
-  constructor() { }
+  constructor(
+    private formBuilderService: FormBuilderService
+  ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  deleteComponentFromArray() {
+    this.formBuilderService.deleteComponentFromArray.next(this.index);
   }
 
   addOption() {
