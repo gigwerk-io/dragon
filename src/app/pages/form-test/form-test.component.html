@@ -1,4 +1,4 @@
-<app-text></app-text>
+<!-- <app-text></app-text>
 <app-text></app-text>
 <app-email></app-email>
 <app-phone></app-phone>
@@ -9,4 +9,116 @@
 <app-paragraph></app-paragraph>
 <app-checkbox></app-checkbox>
 <app-radio></app-radio>
-<app-select></app-select>
+<app-select></app-select> -->
+
+<div id="dnd-container">
+    <!-- Three columns -->
+<div class="flex mb-4" >
+
+    <div class="w-1/3  px-1 h-full"
+    cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+     >
+        <div class="text-left mb-4">
+            <h1 class="font-semibold pl-2">Select Field</h1>
+            <p>Customize your form by drag and drop below fields to the form area.</p>
+        </div>
+        <hr>
+
+        <div *ngFor="let item of todo">
+            <div *ngIf="item === 'text'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-font mr-2 "></i>  <span class="text-semibold">Text</span></h4>
+            </div>
+            <div *ngIf="item === 'email'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-envelope mr-2 "></i>  <span class="text-semibold">Email</span></h4>
+            </div>
+            <div *ngIf="item === 'phone'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-phone-alt mr-2 "></i>  <span class="text-semibold">Phone</span></h4>
+            </div>
+            <div *ngIf="item === 'number'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-sort-numeric-up mr-2 "></i>  <span class="text-semibold">Number</span></h4>
+            </div>
+            <div *ngIf="item === 'date'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-calendar-alt mr-2 "></i>  <span class="text-semibold">Date</span></h4>
+            </div>
+            <div *ngIf="item === 'date-time'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-calendar-alt mr-2 "></i>  <span class="text-semibold">Datetime</span></h4>
+            </div>
+            <div *ngIf="item === 'textarea'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-align-left mr-2 "></i>  <span class="text-semibold">Textarea</span></h4>
+            </div>
+            <div *ngIf="item === 'paragraph'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-paragraph mr-2 "></i>  <span class="text-semibold">Paragraph</span></h4>
+            </div>
+            <div *ngIf="item === 'checkbox'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-list-ol mr-2 "></i>  <span class="text-semibold">Checkbox</span></h4>
+            </div>
+            <div *ngIf="item === 'radio'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-list mr-2 "></i>  <span class="text-semibold">Radio</span></h4>
+            </div>
+            <div *ngIf="item === 'select'" class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" cdkDrag >
+                <h4><i class="fas fa-list-ul mr-2 "></i>  <span class="text-semibold">Select</span></h4>
+            </div>
+        </div>
+
+        <!-- <div class="border border-transparent cursor-pointer hover:border-gray-200 hover:shadow-lg rounded pl-3 my-3" *ngFor="let item of todo" cdkDrag>
+            {{item}}
+        </div> -->
+
+        
+
+    </div>
+    <!-- <div class="w-1/3 bg-gray-500 h-12"></div> -->
+    <div class="w-2/3  min-h-full p-3">
+        <div>
+            <label for="company_website" class="block text-sm font-medium leading-5 text-gray-700">
+              Form Name
+            </label>
+            <div class="mt-1 flex rounded-md shadow-sm">
+              <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
+                <i class="fas fa-list"></i>
+              </span>
+              <input id="formName" class="form-input flex-1 block w-full px-3 py-2 rounded-none rounded-r-md sm:text-sm sm:leading-5" placeholder="My Form">
+            </div>
+          </div>
+          <div class="mt-5">
+            <label for="form-description" class="sr-only">Form Description</label>
+            <div class="relative rounded-md shadow-sm">
+              <input id="form-description" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Form Description">
+            </div>
+          </div>
+
+          <!-- FORM -->
+
+          <div class=" w-full" [ngClass]="{'form-border': done.length === 0}" style="height: 400px; margin-top: 10px;"
+          cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+        >
+            <div class="example-box" *ngFor="let item of done; let i = index" cdkDrag>
+                <app-text *ngIf="item === 'text'" ></app-text>
+                <app-email *ngIf="item === 'email'"></app-email>
+                <app-phone *ngIf="item === 'phone'"></app-phone>
+                <app-number *ngIf="item === 'number'"></app-number>
+                <app-date *ngIf="item === 'date'"></app-date>
+                <app-date-time *ngIf="item === 'date-time'"></app-date-time>
+                <app-textarea *ngIf="item === 'textarea'"></app-textarea>
+                <app-paragraph *ngIf="item === 'paragraph'"></app-paragraph>
+                <app-checkbox *ngIf="item === 'checkbox'"></app-checkbox>
+                <app-radio *ngIf="item === 'radio'"></app-radio>
+                <app-select *ngIf="item === 'select'"></app-select>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+<button (click)="check()">Check </button>
+
+

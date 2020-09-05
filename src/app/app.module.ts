@@ -35,7 +35,8 @@ import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
     IonicModule.forRoot(),
     NgxStripeModule.forRoot(environment.stripePublicKey),
     CreditCardDirectivesModule,
-    GuidedTourModule
+    GuidedTourModule,
+    
   ],
   declarations: [
     AppComponent,

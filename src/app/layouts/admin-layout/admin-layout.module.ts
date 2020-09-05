@@ -23,6 +23,8 @@ import { PlanComponent } from '../../pages/plan/plan.component';
 import { GuidedTourModule } from 'ngx-guided-tour';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { FormTestComponent } from '../../pages/form-test/form-test.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 
 @NgModule({
   imports: [
@@ -37,6 +39,8 @@ import { FormTestComponent } from '../../pages/form-test/form-test.component';
     ReactiveFormsModule,
     IonicModule,
     GuidedTourModule,
+    DragDropModule
+
   ],
   declarations: [
     DashboardComponent,

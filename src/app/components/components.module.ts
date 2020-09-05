@@ -45,7 +45,8 @@ import { SelectComponent } from './form-builder/select/select.component';
     FormsModule,
     ReactiveFormsModule,
     NgxStripeModule,
-    IonicModule
+    IonicModule,
+
   ],
   declarations: [
     SidebarComponent,
@@ -114,6 +115,7 @@ import { SelectComponent } from './form-builder/select/select.component';
     CheckboxComponent,
     RadioComponent,
     SelectComponent,
+
   ]
 })
 export class ComponentsModule {
