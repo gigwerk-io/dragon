@@ -27,8 +27,8 @@
       <li
         *ngFor="let applicant of applicants | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index"
         [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
-        <a [routerLink]="'/applicant/' + applicant.id"
-          class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
+        <a (click)="applicantID = applicant.user.id"
+          class="cursor-pointer block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
           <div class="flex items-center px-4 py-4 sm:px-6">
             <div class="min-w-0 flex-1 flex items-center">
               <div class="flex-shrink-0">
@@ -122,3 +122,6 @@
   </ng-container>
 
 </div>
+
+
+<app-profile-slide-over [userID]="applicantID"></app-profile-slide-over>
