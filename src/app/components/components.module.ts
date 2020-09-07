@@ -28,6 +28,7 @@ import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
 import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
 import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
+import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/profile-slide-over.component';
 
 @NgModule({
   imports: [
@@ -63,6 +64,7 @@ import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
     NotificationsListComponent,
     StackedNavComponent,
     MobileMenuComponent,
+    ProfileSlideOverComponent,
   ],
   exports: [
     FooterComponent,
@@ -85,7 +87,8 @@ import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
     PaymentMethodModalComponent,
     PeopleGridComponent,
     NotificationsListComponent,
-    StackedNavComponent
+    StackedNavComponent,
+    ProfileSlideOverComponent
   ]
 })
 export class ComponentsModule {

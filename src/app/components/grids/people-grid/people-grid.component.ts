@@ -14,6 +14,7 @@ export class PeopleGridComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('people') people: User[];
   allPeople: User[];
+  profileUserID = undefined;
 
   windowSize = 12;
 
@@ -41,6 +42,11 @@ export class PeopleGridComponent implements OnInit, OnChanges {
     ];
     this.people = this.tableService.filterTable(event, this.people, this.allPeople, tablefilterParams);
     this.paginationService.setupPagination(this.people, this.windowSize);
+  }
+
+
+  viewProfile(userID: number) {
+    this.profileUserID = userID;
   }
 
 }
