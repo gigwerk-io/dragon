@@ -26,6 +26,8 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
+import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
+import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
 import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/profile-slide-over.component';
 
 @NgModule({
@@ -60,6 +62,8 @@ import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/prof
     PaymentMethodModalComponent,
     PeopleGridComponent,
     NotificationsListComponent,
+    StackedNavComponent,
+    MobileMenuComponent,
     ProfileSlideOverComponent,
   ],
   exports: [
@@ -83,6 +87,7 @@ import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/prof
     PaymentMethodModalComponent,
     PeopleGridComponent,
     NotificationsListComponent,
+    StackedNavComponent,
     ProfileSlideOverComponent
   ]
 })

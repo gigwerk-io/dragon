@@ -1,0 +1,7 @@
+.inactive {
+  @tailwind border-transparent hover:text-primary-hover hover:border-primary-hover text-gray-500  focus:text-gray-700 focus:border-gray-300;
+}
+
+.active {
+  @tailwind border-primary-dominant focus:border-primary-active text-gray-900;
+}
