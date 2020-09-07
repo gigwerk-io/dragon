@@ -26,6 +26,8 @@ import { NgxStripeModule } from 'ngx-stripe';
 import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
+import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
+import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
 
 @NgModule({
   imports: [
@@ -59,6 +61,8 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
     PaymentMethodModalComponent,
     PeopleGridComponent,
     NotificationsListComponent,
+    StackedNavComponent,
+    MobileMenuComponent,
   ],
   exports: [
     FooterComponent,
@@ -80,7 +84,8 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
     JobsListComponent,
     PaymentMethodModalComponent,
     PeopleGridComponent,
-    NotificationsListComponent
+    NotificationsListComponent,
+    StackedNavComponent
   ]
 })
 export class ComponentsModule {
