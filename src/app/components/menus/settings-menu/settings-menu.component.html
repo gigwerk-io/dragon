@@ -1,0 +1,50 @@
+<nav class="bg-white shadow-lg rounded-lg divide-y border-gray-50">
+  <a routerLink="/settings/general"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     [ngClass]="router.isActive('/settings/general', true) ? active(): inactive()"
+     aria-current="page">
+    <p class="truncate">
+      General
+    </p>
+  </a>
+  <a routerLink="/settings/billing"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     [ngClass]="router.isActive('/settings/billing', true) ? active(): inactive()"
+     aria-current="page">
+    <p class="truncate">
+      Billing
+    </p>
+  </a>
+  <a routerLink="/settings/integrations"
+     [ngClass]="router.isActive('/settings/integrations', true) ? active(): inactive()"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     aria-current="page">
+    <p class="truncate">
+      Integrations
+    </p>
+  </a>
+  <a routerLink="/settings/app"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     [ngClass]="router.isActive('/settings/app', true) ? active(): inactive()"
+     aria-current="page">
+    <p class="truncate">
+      Field Service App
+    </p>
+  </a>
+  <a routerLink="/settings/forms"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     [ngClass]="router.isActive('/settings/forms', true) ? active(): inactive()"
+     aria-current="page">
+    <p class="truncate">
+      Application Forms
+    </p>
+  </a>
+  <a routerLink="/settings/team"
+     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     [ngClass]="router.isActive('/settings/forms', true) ? active(): inactive()"
+     aria-current="page">
+    <p class="truncate">
+      Team
+    </p>
+  </a>
+</nav>

@@ -1,0 +1,21 @@
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 w-full">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Analytics Integrations</h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">
+        Use our analytics integrations to track how your workers use your field service app.
+      </p>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <app-business-integrations-form [integrations]="integration"></app-business-integrations-form>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 w-full mt-6">
+  <app-google-integration-form [integration]="integration"></app-google-integration-form>
+</div>
+
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 w-full mt-6">
+  <app-quickbooks-integration-form></app-quickbooks-integration-form>
+</div>

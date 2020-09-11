@@ -11,7 +11,6 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ComponentsModule } from '../../components/components.module';
-import { SettingsComponent } from '../../pages/settings/settings.component';
 import { ApplicantsComponent } from '../../pages/applicants/applicants.component';
 import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
@@ -22,6 +21,7 @@ import { SubscriptionComponent } from '../../pages/subscription/subscription.com
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { GuidedTourModule } from 'ngx-guided-tour';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
+import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
 
 @NgModule({
   imports: [
@@ -39,7 +39,6 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
   ],
   declarations: [
     DashboardComponent,
-    SettingsComponent,
     ApplicantsComponent,
     ApplicantComponent,
     JobComponent,
@@ -47,7 +46,8 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
     SubscriptionComponent,
     PlanComponent,
     PeopleComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    SettingsLayoutComponent
   ]
 })
 

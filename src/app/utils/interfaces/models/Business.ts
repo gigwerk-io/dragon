@@ -1,5 +1,7 @@
 import {BusinessProfile} from './BusinessProfile';
 import {BusinessLocation} from './BusinessLocation';
+import {User} from './User';
+import {BusinessIntegration} from './BusinessIntegration';
 
 export interface Business {
   id?: number;
@@ -13,4 +15,12 @@ export interface Business {
   pivot?: object;
   profile?: BusinessProfile;
   location?: BusinessLocation;
+  integration?: BusinessIntegration;
+  owner?: User;
+  stripe_id?: string;
+  card_brand?: string;
+  card_last_four?: number;
+  trials_ends_at?: string;
+  is_accepting_applications?: boolean;
+  is_approved?: boolean;
 }

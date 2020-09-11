@@ -33,7 +33,7 @@
               Applicants
             </a>
 
-            <a routerLink="/settings" [ngClass]="router.isActive('/settings', true) ? active(): inactive()"
+            <a routerLink="/settings/general" [ngClass]="router.url.includes('/settings') ? active(): inactive()"
                class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
               Settings
             </a>

@@ -11,15 +11,17 @@ import {UpdateBusinessRequest} from '../../../utils/interfaces/requests/settings
 })
 export class BusinessInfoFormComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
-  @Input('business') business: Business;
+  @Input('business') business: Business|null;
 
   constructor(private settingsService: SettingsService) {
   }
 
   ngOnInit() {
-    this.toDataURL(this.business.profile.image, (image) => {
-      this.business.profile.image = image;
-    });
+    if (this.business !== null) {
+      this.toDataURL(this.business.profile.image, (image) => {
+        this.business.profile.image = image;
+      });
+    }
   }
 
   onFileChange(event) {

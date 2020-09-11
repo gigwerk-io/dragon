@@ -29,6 +29,12 @@ import { NotificationsListComponent } from './lists/notifications-list/notificat
 import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
 import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
 import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/profile-slide-over.component';
+import { SettingsMenuComponent } from './menus/settings-menu/settings-menu.component';
+import { BusinessIntegrationsFormComponent } from './forms/business-integrations-form/business-integrations-form.component';
+import { ConnectGoogleButtonComponent } from './button/connect-google-button/connect-google-button.component';
+import { GoogleIntegrationFormComponent } from './forms/google-integration-form/google-integration-form.component';
+import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integration-form/quickbooks-integration-form.component';
+import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
 
 @NgModule({
   imports: [
@@ -65,6 +71,12 @@ import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/prof
     StackedNavComponent,
     MobileMenuComponent,
     ProfileSlideOverComponent,
+    SettingsMenuComponent,
+    BusinessIntegrationsFormComponent,
+    ConnectGoogleButtonComponent,
+    GoogleIntegrationFormComponent,
+    QuickbooksIntegrationFormComponent,
+    ConnectQboButtonComponent,
   ],
   exports: [
     FooterComponent,
@@ -88,7 +100,11 @@ import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/prof
     PeopleGridComponent,
     NotificationsListComponent,
     StackedNavComponent,
-    ProfileSlideOverComponent
+    ProfileSlideOverComponent,
+    SettingsMenuComponent,
+    BusinessIntegrationsFormComponent,
+    GoogleIntegrationFormComponent,
+    QuickbooksIntegrationFormComponent
   ]
 })
 export class ComponentsModule {

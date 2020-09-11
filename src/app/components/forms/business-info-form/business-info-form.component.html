@@ -1,63 +1,82 @@
 <form role="form" #businessForm="ngForm" novalidate>
-  <div class="shadow sm:rounded-md sm:overflow-hidden">
-    <div class="px-4 py-5 bg-white sm:p-6">
-      <div class="grid grid-cols-3 gap-6">
-        <div class="col-span-3 sm:col-span-2">
-          <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
-            Business Name
-          </label>
-          <div class="mt-1 flex rounded-md shadow-sm">
-            <input id="name"
-                   [(ngModel)]="business.name"
-                   name="name"
-                   type="text"
-                   #name="ngModel"
-                   class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
-          </div>
-        </div>
+  <div>
+    <label for="name" class="block text-sm font-medium leading-5 text-gray-700">
+      Business Name
+    </label>
+    <ng-container *ngIf="business; else nameSkeleton">
+      <div class="mt-1 flex rounded-md shadow-sm">
+        <input id="name"
+               [(ngModel)]="business.name"
+               name="name"
+               type="text"
+               #name="ngModel"
+               class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm transition duration-100 ease-in-out sm:text-sm sm:leading-5 form-input focus:outline-none focus:shadow-outline-green focus:border-primary-dominant"/>
       </div>
+    </ng-container>
+    <ng-template #nameSkeleton>
+      <div class="mt-1 flex">
+        <ion-skeleton-text animated="false" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+      </div>
+    </ng-template>
+  </div>
 
-      <div class="mt-6">
-        <label for="short_description" class="block text-sm leading-5 font-medium text-gray-700">
-          SEO Description
-        </label>
-        <div class="rounded-md shadow-sm">
+  <div class="mt-6">
+    <label for="short_description" class="block text-sm leading-5 font-medium text-gray-700">
+      SEO Description
+    </label>
+    <ng-container *ngIf="business; else seoDescriptionSkeleton">
+      <div class="rounded-md shadow-sm">
           <textarea id="short_description"
                     rows="1"
                     [(ngModel)]="business.profile.short_description"
                     name="short_description"
                     type="text"
                     #short_description="ngModel"
-                    class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
-        </div>
-        <p class="mt-2 text-sm text-gray-500">
-          Brief description for your business's SEO.
-        </p>
+                    class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-dominant"></textarea>
       </div>
+      <p class="mt-2 text-sm text-gray-500">
+        Brief description for your business's SEO.
+      </p>
+    </ng-container>
+    <ng-template #seoDescriptionSkeleton>
+      <div class="mt-1 flex">
+        <ion-skeleton-text animated="false" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+      </div>
+    </ng-template>
+  </div>
 
-      <div class="mt-6">
-        <label for="long_description" class="block text-sm leading-5 font-medium text-gray-700">
-          Business Description
-        </label>
-        <div class="rounded-md shadow-sm">
+  <div class="mt-6">
+    <label for="long_description" class="block text-sm leading-5 font-medium text-gray-700">
+      Business Description
+    </label>
+    <ng-container *ngIf="business; else longDescriptionSkeleton">
+      <div class="rounded-md shadow-sm">
           <textarea id="long_description"
                     rows="3"
                     [(ngModel)]="business.profile.long_description"
                     name="long_description"
                     type="text"
                     #long_description="ngModel"
-                    class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
-        </div>
-        <p class="mt-2 text-sm text-gray-500">
-          Description for your business profile.
-        </p>
+                    class="form-textarea mt-1 block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-dominant"></textarea>
       </div>
+      <p class="mt-2 text-sm text-gray-500">
+        Description for your business profile.
+      </p>
+    </ng-container>
+    <ng-template #longDescriptionSkeleton>
+      <div class="mt-1 flex">
+        <ion-skeleton-text animated="false" class="block w-full mt-1 py-8 px-3 h-auto rounded-md"></ion-skeleton-text>
+      </div>
+    </ng-template>
 
-      <div class="mt-6">
-        <label class="block text-sm leading-5 font-medium text-gray-700">
-          Logo
-        </label>
-        <div class="mt-2 flex items-center">
+  </div>
+
+  <div class="mt-6">
+    <label class="block text-sm leading-5 font-medium text-gray-700">
+      Logo
+    </label>
+    <ng-container *ngIf="business; else imageSkeleton">
+      <div class="mt-2 flex items-center">
           <span class="inline-block h-24 w-24 rounded-full overflow-hidden bg-gray-100 shadow-md">
             <img class="h-full w-full"
                  alt="avatar"
@@ -67,58 +86,39 @@
                 d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"/>
             </svg>
           </span>
-          <input
-            id="image"
-            type='file'
-            accept="image/*"
-            class="hidden"
-            name="image"
-            (change)="onFileChange($event)"
-            #image
-          />
-          <span class="ml-5 rounded-md shadow-sm">
+        <input
+          id="image"
+          type='file'
+          accept="image/*"
+          class="hidden"
+          name="image"
+          (change)="onFileChange($event)"
+          #image
+        />
+        <span class="ml-5 rounded-md shadow-sm">
             <button type="button"
                     (click)="image.click()"
-                    class="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                    class="py-2 px-3 border border-gray-300 shadow-md rounded-md text-sm leading-4 font-medium text-primary-dominant hover:text-primary-hover focus:outline-none focus:border-green-300 focus:shadow-outline-green active:text-primary-active transition duration-150 ease-in-out">
               Change
             </button>
           </span>
-        </div>
       </div>
+    </ng-container>
+    <ng-template #imageSkeleton>
+      <div class="mt-1 flex">
+        <ion-skeleton-text animated="false" class="h-24 w-24 rounded-full block mt-1"></ion-skeleton-text>
+      </div>
+    </ng-template>
 
-      <!--      <div class="mt-6">-->
-      <!--        <label class="block text-sm leading-5 font-medium text-gray-700">-->
-      <!--          Cover photo-->
-      <!--        </label>-->
-      <!--        <div class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">-->
-      <!--          <div class="text-center">-->
-      <!--            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">-->
-      <!--              <path-->
-      <!--                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"-->
-      <!--                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>-->
-      <!--            </svg>-->
-      <!--            <p class="mt-1 text-sm text-gray-600">-->
-      <!--              <button-->
-      <!--                class="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition duration-150 ease-in-out">-->
-      <!--                Upload a file-->
-      <!--              </button>-->
-      <!--              or drag and drop-->
-      <!--            </p>-->
-      <!--            <p class="mt-1 text-xs text-gray-500">-->
-      <!--              PNG, JPG, GIF up to 10MB-->
-      <!--            </p>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
-    </div>
-    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <span class="inline-flex rounded-md shadow-sm">
-              <button type="submit" (click)="onSubmit(businessForm)"
-                      id="update-business-button"
-                      class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-                Save
-              </button>
-            </span>
-    </div>
+  </div>
+
+  <div class="px-4 py-3 text-right sm:px-6">
+    <span class="inline-flex rounded-md shadow-sm">
+      <button type="submit" (click)="onSubmit(businessForm)"
+              id="update-business-button"
+              class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-indigo active:bg-primary-active transition duration-150 ease-in-out">
+        Save
+      </button>
+    </span>
   </div>
 </form>
