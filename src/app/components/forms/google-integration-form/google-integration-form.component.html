@@ -1,0 +1,25 @@
+<h3 class="text-lg leading-6 font-medium text-gray-900" id="renew-headline">
+  Google Calendar
+</h3>
+<div class="mt-2 sm:flex sm:items-start sm:justify-between">
+  <div class="max-w-xl text-sm leading-5 text-gray-500">
+    <p id="renew-description">
+      Using our Google Calendar integration, you can add events such as phone screenings & interviews to your calendar.
+    </p>
+    <p class="text-xs text-gray-600 mt-3">
+      If you want to revoke access please visit
+      <a target="_blank" class="text-gray-900 font-bold" href="https://support.google.com/accounts/thread/15463926?hl=en">Google Support</a>.
+    </p>
+  </div>
+  <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+    <ng-container *ngIf="integration; else integrationSkeleton">
+      <svg *ngIf="integration.calendar_enabled" class="h-12 w-12 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <app-connect-google-button *ngIf="!integration.calendar_enabled" (click)="connectGoogle()"></app-connect-google-button>
+    </ng-container>
+    <ng-template #integrationSkeleton>
+      <ion-skeleton-text class="w-12" [animated]="true"></ion-skeleton-text>
+    </ng-template>
+  </div>
+</div>
