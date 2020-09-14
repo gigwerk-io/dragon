@@ -1,21 +1,6 @@
 <div class="pb-5 border-b border-gray-200 space-y-3 sm:space-y-4 sm:pb-0">
   <h3 class="text-lg leading-6 font-medium text-gray-900">
     Candidates
-  </h3>
-  <div>
-    <!-- Dropdown menu on small screens -->
-<!--    <div class="sm:hidden">-->
-<!--      <select aria-label="Selected tab"-->
-<!--              class="form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-green sm:text-sm sm:leading-5 transition ease-in-out duration-150">-->
-<!--        <option>Applied</option>-->
-
-<!--        <option>Phone Screening</option>-->
-
-<!--        <option selected>Interview</option>-->
-
-<!--        <option>Approved</option>-->
-<!--      </select>-->
-<!--    </div>-->
     <a class="float-right" routerLink="/settings/forms">
       <svg viewBox="0 0 20 20" fill="currentColor" class="cog w-6 h-6 text-gray-400 hover:text-primary-dominant">
         <path fill-rule="evenodd"
@@ -23,10 +8,9 @@
               clip-rule="evenodd"/>
       </svg>
     </a>
-    <!-- Tabs at small breakpoint and up -->
-    <div class="hidden sm:block">
-      <app-applicant-tabs (tab)="tab($event)"></app-applicant-tabs>
-    </div>
+  </h3>
+  <div>
+    <app-applicant-tabs (tab)="tab($event)"></app-applicant-tabs>
   </div>
 </div>
 
