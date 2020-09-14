@@ -1,4 +1,33 @@
+<div class="pb-5 border-b border-gray-200 space-y-3 sm:space-y-4 sm:pb-0">
+  <h3 class="text-lg leading-6 font-medium text-gray-900">
+    Candidates
+  </h3>
+  <div>
+    <!-- Dropdown menu on small screens -->
+<!--    <div class="sm:hidden">-->
+<!--      <select aria-label="Selected tab"-->
+<!--              class="form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-green sm:text-sm sm:leading-5 transition ease-in-out duration-150">-->
+<!--        <option>Applied</option>-->
 
-<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-  <app-applicant-list [applicants]="applicants"></app-applicant-list>
+<!--        <option>Phone Screening</option>-->
+
+<!--        <option selected>Interview</option>-->
+
+<!--        <option>Approved</option>-->
+<!--      </select>-->
+<!--    </div>-->
+    <a class="float-right" routerLink="/settings/forms">
+      <svg viewBox="0 0 20 20" fill="currentColor" class="cog w-6 h-6 text-gray-400 hover:text-primary-dominant">
+        <path fill-rule="evenodd"
+              d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+              clip-rule="evenodd"/>
+      </svg>
+    </a>
+    <!-- Tabs at small breakpoint and up -->
+    <div class="hidden sm:block">
+      <app-applicant-tabs (tab)="tab($event)"></app-applicant-tabs>
+    </div>
+  </div>
 </div>
+
+<app-applicant-list [applicants]="applicants"></app-applicant-list>

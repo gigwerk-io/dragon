@@ -21,10 +21,15 @@ export class ApplicantsComponent implements OnInit {
     this.getApplicants();
   }
 
-  getApplicants() {
-    this.applicantService.getApplicants().then(res => {
-      this.applicants = res.data;
+  getApplicants(filter = 1) {
+    return this.applicantService.getApplicants(filter).then(res => {
+      console.log(res.data);
+      return this.applicants = res.data;
     });
   }
 
+  tab(e) {
+    this.applicants = undefined;
+    this.getApplicants(e);
+  }
 }
