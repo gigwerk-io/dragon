@@ -17,4 +17,8 @@ export class ApplicantTabsComponent implements OnInit {
     this.selected = tab;
     this.tab.emit(tab);
   }
+
+  foop(e) {
+    console.log(e.target.value);
+  }
 }
