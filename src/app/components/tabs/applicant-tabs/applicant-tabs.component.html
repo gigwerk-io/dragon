@@ -1,0 +1,8 @@
+<nav class="-mb-px flex space-x-8">
+  <span *ngFor="let status of statuses"
+     (click)="changeTab(status.value)"
+     class="whitespace-no-wrap pb-4 px-1 border-b-2 font-medium text-sm leading-5 focus:outline-none cursor-pointer"
+     [ngClass]="status.value === selected? 'text-primary-dominant border-primary-dominant focus:border-primary-active focus:text-primary-active': 'border-transparent text-gray-500 hover:border-primary-hover hover:text-primary-hover'">
+    {{status.description}}
+  </span>
+</nav>

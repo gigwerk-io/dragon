@@ -8,6 +8,8 @@ export interface Application {
   created_at?: string;
   updated_at?: string;
   user?: User;
-  status?: { id: number, name: string };
-  averageRating?: number;
+  status: number;
+  status_description?: string;
+  scheduled: string;
+  average_rating?: number;
 }

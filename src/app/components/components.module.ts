@@ -35,6 +35,7 @@ import { ConnectGoogleButtonComponent } from './button/connect-google-button/con
 import { GoogleIntegrationFormComponent } from './forms/google-integration-form/google-integration-form.component';
 import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integration-form/quickbooks-integration-form.component';
 import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
+import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.component';
 
 @NgModule({
   imports: [
@@ -77,35 +78,37 @@ import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-q
     GoogleIntegrationFormComponent,
     QuickbooksIntegrationFormComponent,
     ConnectQboButtonComponent,
+    ApplicantTabsComponent,
   ],
-  exports: [
-    FooterComponent,
-    SidebarComponent,
-    TimeAgoPipe,
-    BarChartComponent,
-    LineChartComponent,
-    NotificationDropdownComponent,
-    UserDropdownComponent,
-    LeaderboardListComponent,
-    ArrowPercentageComponent,
-    BusinessLocationFormComponent,
-    BusinessInfoFormComponent,
-    GenericToastComponent,
-    StatsCardComponent,
-    PaginationComponent,
-    ApplicantListComponent,
-    StarRatingComponent,
-    JobsListComponent,
-    PaymentMethodModalComponent,
-    PeopleGridComponent,
-    NotificationsListComponent,
-    StackedNavComponent,
-    ProfileSlideOverComponent,
-    SettingsMenuComponent,
-    BusinessIntegrationsFormComponent,
-    GoogleIntegrationFormComponent,
-    QuickbooksIntegrationFormComponent
-  ]
+    exports: [
+        FooterComponent,
+        SidebarComponent,
+        TimeAgoPipe,
+        BarChartComponent,
+        LineChartComponent,
+        NotificationDropdownComponent,
+        UserDropdownComponent,
+        LeaderboardListComponent,
+        ArrowPercentageComponent,
+        BusinessLocationFormComponent,
+        BusinessInfoFormComponent,
+        GenericToastComponent,
+        StatsCardComponent,
+        PaginationComponent,
+        ApplicantListComponent,
+        StarRatingComponent,
+        JobsListComponent,
+        PaymentMethodModalComponent,
+        PeopleGridComponent,
+        NotificationsListComponent,
+        StackedNavComponent,
+        ProfileSlideOverComponent,
+        SettingsMenuComponent,
+        BusinessIntegrationsFormComponent,
+        GoogleIntegrationFormComponent,
+        QuickbooksIntegrationFormComponent,
+        ApplicantTabsComponent
+    ]
 })
 export class ComponentsModule {
 }

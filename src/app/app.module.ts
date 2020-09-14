@@ -45,7 +45,7 @@ import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
   providers: [
     GuidedTourService,
     PusherServiceProvider,
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    // { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
