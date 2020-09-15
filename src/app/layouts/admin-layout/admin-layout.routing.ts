@@ -7,7 +7,7 @@ import { JobComponent } from '../../pages/job/job.component';
 import { JobsComponent } from '../../pages/jobs/jobs.component';
 import { SubscriptionComponent } from '../../pages/subscription/subscription.component';
 import { PlanComponent } from '../../pages/plan/plan.component';
-import { PeopleComponent } from '../../pages/people/people.component';
+import { WorkersComponent } from '../../pages/workers/workers.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
 
@@ -19,7 +19,7 @@ export const AdminLayoutRoutes: Routes = [
   { path: 'jobs', component: JobsComponent },
   { path: 'manage-subscription', component: SubscriptionComponent },
   { path: 'plan', component: PlanComponent },
-  { path: 'members', component: PeopleComponent },
+  { path: 'workers', component: WorkersComponent },
   { path: 'notifications', component: NotificationsComponent },
   {
     path: 'settings',

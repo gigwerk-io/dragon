@@ -3,7 +3,7 @@ import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Role } from '../interfaces/enum/constants';
 import { ToastrService } from 'ngx-toastr';
 import { Response } from '../interfaces/responses/GenericResponse';
@@ -24,9 +24,10 @@ export class PeopleService extends RESTService {
     private toast: ToastrService
   ) {
     super(http, storage);
+
+    // GETS ALL THE USERS WHEN THE SERVICE IS LOADED
     if (this.AllUsers === undefined) {
       this.getAllUsers().then(res => this.AllUsers = res.data).catch(err => {
-        // In the future an error message should be displayed to the visitor
         console.log('could not load all the users', err);
       });
     }

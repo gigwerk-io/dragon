@@ -1,4 +1,4 @@
-<ng-container *ngIf="people; else skeletonPeople">
+<ng-container *ngIf="workers; else SkeletonWorkers">
   <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-2">
       <h3 class="text-xl leading-6 font-medium text-gray-100">
@@ -19,27 +19,27 @@
       </div>
     </div>
   </div>
-  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" *ngIf="people.length">
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" *ngIf="workers.length">
 
     <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
-      *ngFor="let person of people | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index"
+      *ngFor="let worker of workers | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index"
       [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
       <div class="flex-1 flex flex-col p-8">
-        <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="{{person.profile.image}}" alt="">
-        <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">{{person.first_name}}
-          {{person.last_name}}
+        <img class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full" src="{{worker.profile.image}}" alt="">
+        <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">{{workers.first_name}}
+          {{worker.last_name}}
         </h3>
         <dl class="mt-1 flex-grow flex flex-col justify-between">
           <dt class="sr-only">Title</dt>
-          <dd class="text-gray-500 text-sm leading-5">{{person.role}}</dd>
+          <dd class="text-gray-500 text-sm leading-5">{{worker.profile.description}}</dd>
           <dt class="sr-only">Role</dt>
           <dd class="mt-3">
             <span class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
-              *ngIf="person.isActive">
+              *ngIf="worker.isActive">
               Active
             </span>
             <span class="px-2 py-1 text-red-800 text-xs leading-4 font-medium bg-red-100 rounded-full"
-              *ngIf="!person.isActive">
+              *ngIf="!worker.isActive">
               Inactive
             </span>
           </dd>
@@ -47,25 +47,11 @@
       </div>
       <div class="border-t border-gray-200">
         <div class="-mt-px flex">
-          <div class="w-0 flex-1 flex border-r border-gray-200">
-            <a href="mailto:{{person.email}}"
-              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-              <svg class="w-5 h-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-              </svg>
-              <span class="ml-3">Email</span>
-            </a>
-          </div>
-          <div class="-ml-px w-0 flex-1 flex" (click)="viewProfile(person.profile.id)">
+          <div class="-ml-px w-0 flex-1 flex" (click)="viewProfile(worker.profile.id)">
             <a 
               class="cursor-pointer relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150">
-              <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                  clip-rule="evenodd"></path>
-              </svg>
-              <span class="ml-3" >View Profile</span>
+              
+              <span class="ml-3 text-primary-dominant text-base" > <i class="fas fa-eye text-primary-dominant w-5 h-5"></i> View </span>
             </a>
           </div>
         </div>
@@ -74,7 +60,7 @@
     </li>
 
   </ul>
-  <ul class="" *ngIf="!people.length">
+  <ul class="" *ngIf="!workers.length">
 
     <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
 
@@ -91,11 +77,11 @@
 
   <app-pagination (page)="paginationService.setActivePage($event)" [activePage]="paginationService.activePage"
     [maxPage]="paginationService.maxPage" [maxPages]="paginationService.maxPages"
-    [pagination]="paginationService.pagination" [windowSize]="windowSize" [results]="people.length">
+    [pagination]="paginationService.pagination" [windowSize]="windowSize" [results]="workers.length">
   </app-pagination>
 </ng-container>
 
-<ng-template #skeletonPeople>
+<ng-template #SkeletonWorkers>
   <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-2">
       <h3 class="h-5 pt-2 text-lg leading-6 font-medium text-gray-900">
@@ -107,7 +93,7 @@
   <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
     <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
-      *ngFor="let person of [1,2,3,4,5,6,7,8,9,10,11,12];  let i = index"
+      *ngFor="let workers of [1,2,3,4,5,6,7,8,9,10,11,12];  let i = index"
       [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
       <div class="flex-1 flex flex-col p-8">
         <ion-skeleton-text class="w-32 h-32 flex-shrink-0 mx-auto rounded-full"></ion-skeleton-text>
