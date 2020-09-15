@@ -3,17 +3,21 @@ import {browser, by, element, ExpectedConditions} from 'protractor';
 
 describe('login page', () => {
   const page = new LoginPage();
-
-  beforeEach(() => {
+  
+  it('should fill out form', () => {
     page.load();
+    element(by.id('email')).sendKeys('admin_one');
+    element(by.id('password')).sendKeys('password');
+    expect(element(by.id('email')).getAttribute('value')).toBe('admin_one')
+    expect(element(by.id('password')).getAttribute('value')).toBe('password')
   });
 
-  afterEach(() => {
-    page.restartBrowser();
-  });
-
-  it('should go to login', function () {
+  it('should submit form and succeed', () => {
     page.load();
-    expect(page.wentToNextPage()).toBe(browser.baseUrl + 'login');
-  });
+
+    element(by.id('email')).sendKeys('admin_one');
+    element(by.id('password')).sendKeys('password');
+    element(by.id('login-button')).click();
+    browser.wait(expect(page.wentToNextPage()).toBe(browser.baseUrl + 'dashboard'), 5000)
+  })
 });

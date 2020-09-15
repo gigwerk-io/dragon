@@ -10,7 +10,7 @@
     "prod": "ngtw build && ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e --port=4100 --configuration=test",
     "prestart": "ngtw build"
   },
   "private": true,
