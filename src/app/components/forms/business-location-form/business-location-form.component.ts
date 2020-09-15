@@ -5,6 +5,7 @@ import {SettingsService} from '../../../utils/services/settings.service';
 import {states} from '../../../utils/interfaces/enum/States';
 import {UpdateLocationRequest} from '../../../utils/interfaces/requests/settings/UpdateLocationRequest';
 import {error} from 'util';
+import { NotyfService } from 'ng-notyf';
 
 @Component({
   selector: 'app-business-location-form',
@@ -15,7 +16,7 @@ export class BusinessLocationFormComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('location') location: BusinessLocation;
   states = states;
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private notyfService: NotyfService) { }
 
   ngOnInit() {
   }
@@ -30,9 +31,9 @@ export class BusinessLocationFormComponent implements OnInit {
       };
 
       this.settingsService.updateLocation(locationRequest).then(res => {
-        // TODO: Add a toast message here.
+        this.notyfService.success(res.message);
       }).catch(err => {
-        // TODO: Add a toast message here.
+        this.notyfService.error(err.error.message);
       });
     }
   }

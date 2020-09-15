@@ -5,6 +5,8 @@ import {FinanceService} from '../../../utils/services/finance.service';
 import {Subscription as StripeSubscription} from '../../../utils/interfaces/models/Subscription';
 import {PaymentMethod} from '../../../utils/interfaces/models/PaymentMethod';
 import {Invoice} from '../../../utils/interfaces/models/invoice';
+import { NotyfService } from 'ng-notyf';
+import { error } from 'util';
 
 @Component({
   selector: 'app-billing',
@@ -21,7 +23,8 @@ export class BillingComponent implements OnInit {
 
   constructor(
     private subscriptionService: SubscriptionService,
-    private financeService: FinanceService
+    private financeService: FinanceService,
+    private notyfService: NotyfService
   ) {
   }
 
@@ -34,6 +37,7 @@ export class BillingComponent implements OnInit {
       console.log('Payment Subscription', res);
       this.financeService.savePaymentMethod(res).then(response => {
         console.log('back from saving card with', response);
+        this.notyfService.success();
       }).catch(err => {
         console.log('error saving card method', err);
       });
@@ -51,9 +55,13 @@ export class BillingComponent implements OnInit {
   deletePaymentMethod(id: string) {
     this.financeService.deletePaymentMethod(id)
       .then(res => {
-        console.log(res);
+        this.paymentMethods = this.paymentMethods.filter((paymentMethod) => {
+          return paymentMethod.id !== id;
+        })
+        
+        this.notyfService.success(res.message);
       }).catch(err => {
-        console.log(err);
+        this.notyfService.error(err.error.message);
     });
   }
 

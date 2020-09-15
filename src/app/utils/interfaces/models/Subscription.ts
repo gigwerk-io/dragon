@@ -8,7 +8,14 @@ export interface Subscription {
   items: object[];
   name: string;
   quantity: number;
-  stripeSubscription: object;
+  stripeSubscription: {
+    current_period_start: number;
+    current_period_end: number;
+    plan: {
+      interval: number;
+      amount: number;
+    }
+  };
   stripe_id: string;
   stripe_plan?: string;
   trial_ends_at?: string;

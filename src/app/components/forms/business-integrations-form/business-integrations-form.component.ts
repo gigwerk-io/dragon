@@ -3,6 +3,7 @@ import {SettingsService} from '../../../utils/services/settings.service';
 import {NgForm} from '@angular/forms';
 import {BusinessIntegration} from '../../../utils/interfaces/models/BusinessIntegration';
 import {UpdateIntegrationsRequest} from '../../../utils/interfaces/requests/settings/UpdateIntegrationsRequest';
+import { NotyfService } from 'ng-notyf';
 
 @Component({
   selector: 'app-business-integrations-form',
@@ -12,7 +13,7 @@ import {UpdateIntegrationsRequest} from '../../../utils/interfaces/requests/sett
 export class BusinessIntegrationsFormComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('integrations') integrations: BusinessIntegration|null;
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService, private notyfService: NotyfService) { }
 
   ngOnInit() {
   }
@@ -26,9 +27,9 @@ export class BusinessIntegrationsFormComponent implements OnInit {
 
       this.settingsService.updateIntegrations(updateIntegrationsRequest)
         .then(res => {
-          console.log(res);
+          this.notyfService.success(res.message);
         }).catch(err => {
-          console.log(err);
+          this.notyfService.error(err.error.message)
       });
     }
   }
