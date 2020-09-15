@@ -5,6 +5,11 @@ export interface PaymentMethod {
   object: string;
   type: string;
   created: number;
-  card: object;
+  card: {
+    last4: number;
+    exp_month: number;
+    exp_year: number;
+  };
   billing_details: object;
+  default: boolean;
 }

@@ -33,7 +33,7 @@ export interface Invoice {
     hosted_invoice_url?: string;
     id?: string;
     invoice_pdf?: string;
-    lines?: InvoiceLines[];
+    lines?: InvoiceLines;
     livemode?: boolean;
     metadata?: any;
     next_payment_attempt?: any;
@@ -69,4 +69,9 @@ export interface InvoiceLines {
     discountable?: boolean;
     livemode?: boolean;
     metadata?: any;
+    data: any;
+}
+
+export interface InvoiceData {
+    description: string;
 }

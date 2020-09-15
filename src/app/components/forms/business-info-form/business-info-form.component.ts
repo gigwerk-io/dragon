@@ -3,6 +3,7 @@ import {Business} from '../../../utils/interfaces/models/Business';
 import {SettingsService} from '../../../utils/services/settings.service';
 import {NgForm} from '@angular/forms';
 import {UpdateBusinessRequest} from '../../../utils/interfaces/requests/settings/UpdateBusinessRequest';
+import { NotyfService } from 'ng-notyf';
 
 @Component({
   selector: 'app-business-info-form',
@@ -12,8 +13,9 @@ import {UpdateBusinessRequest} from '../../../utils/interfaces/requests/settings
 export class BusinessInfoFormComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   @Input('business') business: Business|null;
+  imageChanged = false;
 
-  constructor(private settingsService: SettingsService) {
+  constructor(private settingsService: SettingsService, private notyfService: NotyfService) {
   }
 
   ngOnInit() {
@@ -31,6 +33,7 @@ export class BusinessInfoFormComponent implements OnInit {
     reader.onload = () => {
       if (typeof reader.result === 'string') {
         this.business.profile.image = reader.result;
+        this.imageChanged = true;
       }
     };
   }
@@ -53,16 +56,16 @@ export class BusinessInfoFormComponent implements OnInit {
     if (form.valid) {
       const updateBusinessRequest: UpdateBusinessRequest = {
         name: this.business.name,
-        image: this.business.profile.image,
+        image: this.imageChanged ? this.business.profile.image: undefined,
         short_description: this.business.profile.short_description,
         long_description: this.business.profile.long_description
       };
 
       this.settingsService.updateBusiness(updateBusinessRequest).then(res => {
         console.log(res);
-        // TODO: Add a toast message here.
+        this.notyfService.success(res.message);
       }).catch(err => {
-        // TODO: Add a toast message here.
+        this.notyfService.error(err.error.message);
       });
     }
   }
