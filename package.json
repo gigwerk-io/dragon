@@ -11,7 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e --port=4100 --configuration=test",
-    "prestart": "ngtw build"
+    "prestart": "ngtw build",
+    "postinstall": "webdriver-manager update --standalone false --gecko false"
   },
   "private": true,
   "dependencies": {
