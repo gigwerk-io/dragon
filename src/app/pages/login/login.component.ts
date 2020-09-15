@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../utils/services/authentication.servi
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import {NotyfService} from 'ng-notyf';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,8 @@ export class LoginComponent implements OnInit {
   loginSubscription: Subscription;
 
   constructor(private router: Router,
-    private auth: AuthenticationService,
-    private toast: ToastrService) { }
+              private auth: AuthenticationService,
+              private notyfService: NotyfService) { }
 
   ngOnInit() {
   }
@@ -30,10 +31,9 @@ export class LoginComponent implements OnInit {
     this.submitted = form.valid;
     if (form.valid) {
       this.loginSubscription = this.auth.login(this.loginRequest).subscribe((res) => {
-        console.log(res);
         this.router.navigateByUrl('/dashboard');
       }, error => {
-        this.toast.error(error.error.message);
+        this.notyfService.error(error.error.message);
       });
     }
   }

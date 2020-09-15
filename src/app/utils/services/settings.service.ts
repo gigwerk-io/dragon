@@ -1,11 +1,8 @@
-import { Injectable } from '@angular/core';
-import { RESTService } from './rest.service';
-import { HttpClient } from '@angular/common/http';
-import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs';
-import { StorageKeys } from '../interfaces/enum/constants';
-import { environment } from '../../../environments/environment';
-import { MissingSteps } from '../interfaces/user/User';
+import {Injectable} from '@angular/core';
+import {RESTService} from './rest.service';
+import {HttpClient} from '@angular/common/http';
+import {Storage} from '@ionic/storage';
+import {Observable} from 'rxjs';
 import {Response, UrlResponse} from '../interfaces/responses/GenericResponse';
 import {Business} from '../interfaces/models/Business';
 import {UpdateLocationRequest} from '../interfaces/requests/settings/UpdateLocationRequest';
