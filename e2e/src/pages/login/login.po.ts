@@ -6,10 +6,4 @@ export class LoginPage extends PageObjectBase {
   constructor() {
     super('/login');
   }
-
-  async fieldIsRequired(id: string, text = '') {
-    const el = element(by.id(id));
-    await this.waitForSelector(el);
-    return el.getText();
-  }
 }

@@ -10,8 +10,9 @@
     "prod": "ngtw build && ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prestart": "ngtw build"
+    "e2e": "ng e2e --port=4100 --configuration=test",
+    "prestart": "ngtw build",
+    "postinstall": "webdriver-manager update --standalone false --gecko false"
   },
   "private": true,
   "dependencies": {
@@ -57,6 +58,7 @@
     "@angular/cli": "8.3.15",
     "@angular/compiler-cli": "8.2.12",
     "@angular/language-service": "8.2.12",
+    "@ionic/angular-toolkit": "latest",
     "@types/jasmine": "3.3.8",
     "@types/jasminewd2": "2.0.3",
     "@types/node": "8.9.4",
@@ -73,7 +75,7 @@
     "ts-node": "7.0.0",
     "tslint": "5.15.0",
     "typescript": "3.5.3",
-    "@ionic/angular-toolkit": "latest"
+    "webdriver-manager": "^12.1.7"
   },
   "husky": {
     "hooks": {
