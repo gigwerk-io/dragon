@@ -13,11 +13,15 @@ jobs:
     # TODO: Add ability to run e2e tests.
     steps:
       - uses: actions/checkout@master
-      - uses: nanasess/setup-chromedriver@master
-      - run: |
+      - uses: ./
+      - name: setup
+        run: |
+          google-chrome --version
+          sudo pip3 install selenium
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # disable headless mode
+          python3 $GITHUB_WORKSPACE/__tests__/chromedriver.py
       - name: Use Node.js 12.8
         uses: actions/setup-node@v1
         with:
