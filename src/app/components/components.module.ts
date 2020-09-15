@@ -17,7 +17,6 @@ import { FinishAccountSetupModalComponent } from './modal/finish-account-setup-m
 import { BusinessInfoFormComponent } from './forms/business-info-form/business-info-form.component';
 import { BusinessLocationFormComponent } from './forms/business-location-form/business-location-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GenericToastComponent } from './toast/generic-toast/generic-toast.component';
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
 import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
@@ -62,7 +61,6 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
     FinishAccountSetupModalComponent,
     BusinessInfoFormComponent,
     BusinessLocationFormComponent,
-    GenericToastComponent,
     StatsCardComponent,
     ApplicantListComponent,
     JobsListComponent,
@@ -92,7 +90,6 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
         ArrowPercentageComponent,
         BusinessLocationFormComponent,
         BusinessInfoFormComponent,
-        GenericToastComponent,
         StatsCardComponent,
         PaginationComponent,
         ApplicantListComponent,

@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { SentryErrorHandler } from './utils/handlers/SentryErrorHandler';
 import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
+import {NotyfModule} from 'ng-notyf';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
     IonicModule.forRoot(),
     NgxStripeModule.forRoot(environment.stripePublicKey),
     CreditCardDirectivesModule,
-    GuidedTourModule
+    GuidedTourModule,
+    NotyfModule
   ],
   declarations: [
     AppComponent,
