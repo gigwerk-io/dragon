@@ -10,13 +10,30 @@ import {MarketplaceJob} from "../../utils/interfaces/models/MarketplaceJob";
 export class JobsComponent implements OnInit {
 
   jobs: MarketplaceJob[];
+  activePage = 1;
+  maxPages: number;
+  maxPage: number;
+  pagination: number[];
+  windowSize = 5;
 
   constructor(
     private jobsService: JobsService
   ) { }
 
   ngOnInit() {
-    this.jobsService.getAllJobs().then(res => this.jobs = res.data);
+    this.getAllJobs();
+  }
+
+  getAllJobs(filter = 1) {
+    return this.jobsService.getAllJobs(filter).then(res => {
+      console.log(res.data);
+      return this.jobs = res.data;
+    });
+  }
+
+  tab(e) {
+    this.jobs = undefined;
+    this.getAllJobs(e);
   }
 
 }
