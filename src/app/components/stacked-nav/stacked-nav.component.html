@@ -42,7 +42,7 @@
         </div>
         <div class="flex items-center">
           <div class="flex-shrink-0">
-            <button (click)="showJobSlideOver = true" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant shadow-sm hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-green active:border-primary-active transition ease-in-out duration-150">
+            <button (click)="showJobSlideOver = !showJobSlideOver" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant shadow-sm hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-green active:border-primary-active transition ease-in-out duration-150">
               <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
               </svg>
@@ -82,25 +82,16 @@
         </div>
       </div>
     </div>
-
-<!--    <job-posting-slideover :show="showJobSlideOver" @dismiss="showJobSlideOver = false"/>-->
-
-    <!--
-      Mobile menu, toggle classes based on menu state.
-
-      Open: "block", closed: "hidden"
-    -->
+    <app-new-job-slideover [display]="showJobSlideOver" (dismiss)="handleJobSlideOver()"></app-new-job-slideover>
     <app-mobile-menu [show]="showMobile"></app-mobile-menu>
   </nav>
 
   <div class="py-10">
     <main>
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <!-- Replace with your content -->
         <div class="px-4 py-8 sm:px-0">
           <ng-content></ng-content>
         </div>
-        <!-- /End replace -->
       </div>
     </main>
   </div>

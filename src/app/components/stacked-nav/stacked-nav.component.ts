@@ -23,4 +23,8 @@ export class StackedNavComponent implements OnInit {
     // tslint:disable-next-line:max-line-length
     return `border-transparent hover:text-primary-hover hover:border-primary-hover text-gray-500 focus:text-gray-700 focus:border-gray-300`;
   }
+
+  handleJobSlideOver($event) {
+    this.showJobSlideOver = $event;
+  }
 }
