@@ -12,6 +12,7 @@ export class ProfileSlideOverComponent implements OnInit, OnChanges {
 
   transition: boolean;
   profile: User;
+  showDropdown = false;
   // tslint:disable-next-line: no-input-rename
   @Input('userID') UserID: number;
 

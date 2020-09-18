@@ -17,6 +17,7 @@ export interface User {
   created_at?: string;
   updated_at?: string;
   isActive?: boolean;
+  is_active?: boolean;
   profile?: UserProfile;
   payouts?: object;
   payments?: object;
