@@ -35,6 +35,8 @@ import { GoogleIntegrationFormComponent } from './forms/google-integration-form/
 import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integration-form/quickbooks-integration-form.component';
 import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
 import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.component';
+import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
+import { JobFormComponent } from './forms/job-form/job-form.component';
 
 @NgModule({
   imports: [
@@ -77,6 +79,8 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
     QuickbooksIntegrationFormComponent,
     ConnectQboButtonComponent,
     ApplicantTabsComponent,
+    NewJobSlideoverComponent,
+    JobFormComponent,
   ],
     exports: [
         FooterComponent,
