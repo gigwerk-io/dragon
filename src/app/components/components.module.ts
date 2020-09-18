@@ -22,7 +22,7 @@ import { ApplicantListComponent } from './lists/applicant-list/applicant-list.co
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import { NgxStripeModule } from 'ngx-stripe';
-import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
+import { WorkersGridComponent } from './grids/workers-grid/workers-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
 import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
@@ -65,7 +65,7 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
     ApplicantListComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
-    PeopleGridComponent,
+    WorkersGridComponent,
     NotificationsListComponent,
     StackedNavComponent,
     MobileMenuComponent,
@@ -96,7 +96,7 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
         StarRatingComponent,
         JobsListComponent,
         PaymentMethodModalComponent,
-        PeopleGridComponent,
+        WorkersGridComponent,
         NotificationsListComponent,
         StackedNavComponent,
         ProfileSlideOverComponent,

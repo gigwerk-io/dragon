@@ -16,12 +16,12 @@ import { ApplicantComponent } from '../../pages/applicant/applicant.component';
 import { IonicModule } from '@ionic/angular';
 import { JobComponent } from '../../pages/job/job.component';
 import { JobsComponent } from '../../pages/jobs/jobs.component';
-import { PeopleComponent } from 'src/app/pages/people/people.component';
 import { SubscriptionComponent } from '../../pages/subscription/subscription.component';
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { GuidedTourModule } from 'ngx-guided-tour';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
+import { WorkersComponent } from 'src/app/pages/workers/workers.component';
 
 @NgModule({
   imports: [
@@ -45,7 +45,7 @@ import {SettingsLayoutComponent} from '../settings-layout/settings-layout.compon
     JobsComponent,
     SubscriptionComponent,
     PlanComponent,
-    PeopleComponent,
+    WorkersComponent,
     NotificationsComponent,
     SettingsLayoutComponent
   ]
