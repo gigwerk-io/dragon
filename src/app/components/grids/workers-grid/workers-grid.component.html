@@ -4,9 +4,43 @@
       <h3 class="text-xl leading-6 font-medium text-gray-100">
         Current Freelancers
       </h3>
-    </div>
+    </div> 
     <div>
-      <div class="mt-1 relative rounded-md shadow-sm">
+      <div class="mb-4">
+        <div class="mt-1 flex rounded-md shadow-sm">
+          <div class="relative flex-grow focus-within:z-10">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <!-- Heroicon name: users -->
+              <!-- <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z" />
+              </svg> -->
+              <i class="fas fa-search h-5 w-5 text-gray-400"></i>
+            </div>
+            <input id="email" class="form-input block w-full rounded-none rounded-l-md pl-10 transition ease-in-out duration-150 sm:text-sm sm:leading-5" placeholder="John Doe" style="border: 1px solid #dbdbdb !important;">
+          </div>
+          <div class="ml-px relative inline-flex items-center  border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+            <svg class="h-5 w-5 text-gray-400 mr-2 ml-2" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <select id='select' style="width:40px;-webkit-appearance: none; " class="focus:outline-none" value="Sort">
+              <option value="volvo"  >All</option>
+              <option value="saab"  >Rating</option>
+              <option value="mercedes" >A-Z</option>
+              <option value="audi" >Z-A</option>
+            </select>
+            <i class="fas fa-chevron-down ml-2 mr-2  text-gray-400" ></i>
+          </div>
+          
+          <!-- <button class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-gray-50 hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+            </svg>
+            <span class="ml-2">Sort </span>
+            <i class="fas fa-chevron-down ml-2  text-gray-400" ></i>
+          </button> -->
+        </div>
+      </div>
+      <!-- <div class="mt-1 relative rounded-md shadow-sm">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd"
@@ -16,7 +50,7 @@
         </div>
         <input id="email" class="form-input block w-full ml-3 sm:ml-0 pl-10 sm:text-sm mb-3 sm:leading-5"
           placeholder="Search Freelancers" (input)="filterTable($event.target.value)" />
-      </div>
+      </div> -->
     </div>
   </div>
   <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4" *ngIf="workers.length">
@@ -32,17 +66,8 @@
         <dl class="mt-1 flex-grow flex flex-col justify-between">
           <dt class="sr-only">Title</dt>
           <dd class="text-gray-500 text-sm leading-5">{{worker.profile.description}}</dd>
-          <dt class="sr-only">Role</dt>
-          <dd class="mt-3">
-            <span class="px-2 py-1 text-teal-800 text-xs leading-4 font-medium bg-teal-100 rounded-full"
-              *ngIf="worker.isActive">
-              Active
-            </span>
-            <span class="px-2 py-1 text-red-800 text-xs leading-4 font-medium bg-red-100 rounded-full"
-              *ngIf="!worker.isActive">
-              Inactive
-            </span>
-          </dd>
+          <dt class="sr-only">Rating</dt>
+          <dd class="text-sm leading-5 mx-auto mt-2" ><app-star-rating [rating]="worker.rating" ></app-star-rating></dd>
         </dl>
       </div>
       <div class="border-t border-gray-200">
@@ -75,7 +100,7 @@
     </li>
   </ul>
 
-  <app-pagination (page)="paginationService.setActivePage($event)" [activePage]="paginationService.activePage"
+  <app-pagination  (page)="paginationService.setActivePage($event)" [activePage]="paginationService.activePage"
     [maxPage]="paginationService.maxPage" [maxPages]="paginationService.maxPages"
     [pagination]="paginationService.pagination" [windowSize]="windowSize" [results]="workers.length">
   </app-pagination>
