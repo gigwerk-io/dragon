@@ -27,6 +27,8 @@ export class JobsComponent implements OnInit {
   getAllJobs(filter = 1) {
     return this.jobsService.getAllJobs(filter).then(res => {
       console.log(res.data);
+      this.jobs = res.data;
+      console.log(typeof this.jobs);
       return this.jobs = res.data;
     });
   }
