@@ -8,17 +8,27 @@ import { JobsService } from '../../../utils/services/jobs.service';
   styleUrls: ['./new-job-slideover.component.css']
 })
 export class NewJobSlideoverComponent implements
-  OnInit {
+  OnInit, OnChanges {
+
+  openSlider = false;
+  // tslint:disable-next-line: no-input-rename
   @Input('display') display: boolean;
   @Output() dismiss = new EventEmitter<boolean>();
   constructor(private jobService: JobsService) { }
 
-  ngOnInit() {
-    
-  }
+    ngOnChanges() {
+      if (this.display === true) {
+        setTimeout(() => this.openSlider = true, 200);
+      }
+    }
+
+  ngOnInit() {}
 
   toggle() {
-    this.display = false;
-    this.dismiss.emit(this.display);
+    this.openSlider = false;
+    setTimeout(() => {
+      this.display = false;
+      this.dismiss.emit(this.display);
+    }, 600);
   }
 }
