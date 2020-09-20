@@ -78,4 +78,3 @@ export class JobsService extends RESTService {
       .then((res: Observable<any>) => res.toPromise());
   }
 }
- 

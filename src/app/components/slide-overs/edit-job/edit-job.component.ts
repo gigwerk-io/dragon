@@ -58,7 +58,6 @@ export class EditJobComponent implements OnInit, OnChanges {
   }
 
   buildForm() {
-    console.log('building form');
     this.createJobRequest.description = this.job.description;
     this.createJobRequest.complete_before = this.job.complete_before.replace(' ', 'T');
     this.createJobRequest.street_address = this.job.location.street_address;
@@ -74,32 +73,30 @@ export class EditJobComponent implements OnInit, OnChanges {
     this.createJobRequest.intensity_id = this.job.intensity_id;
   }
 
- 
-
   getJob() {
     this.jobsService.getJob(this.jobID).then((res) => {
       this.job = res.data;
-      console.log('job', this.job);
       this.buildForm();
-
+    }).catch(() => {
+      this.notyfService.error('Something went wrong');
+      this.clear();
     });
   }
 
   onSubmit(form: NgForm) {
-    console.log('form', form.value)
+    if (form.valid) {
+      form.value.zip = Number(form.value.zip);
+      form.value.price = Number(form.value.price);
+      form.value.complete_before = form.value.complete_before.replace('T', ' ');
+      this.jobsService.updateJob(this.job.id, form.value).then(res => {
+        this.notyfService.success('Form updated');
+        this.clear();
+      }).catch((err) => this.notyfService.error('Could not update job. Please check that the form is correct'));
+    } else {
+      this.notyfService.error('Form is not valid');
+    }
 
-    // if (form.valid) {
-    //   this.jobsService.createJob(this.createJobRequest).then(res => {
-    //     setTimeout(() => {
-    //       this.notyfService.success(res.message);
-    //     }, 1000);
-    //   }).catch(err => {
-    //     console.log(err);
-    //     this.notyfService.error(err.error.message);
-    //   });
-    // } else {
-    //   console.log('form not valid', form);
-    // }
+
   }
 
   clear() {
