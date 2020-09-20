@@ -3,7 +3,7 @@ import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { CreateJobRequest } from '../interfaces/requests/CreateJobRequest';
 
@@ -11,6 +11,8 @@ import { CreateJobRequest } from '../interfaces/requests/CreateJobRequest';
   providedIn: 'root'
 })
 export class JobsService extends RESTService {
+
+  clearJobSliderover = new Subject<any>();
 
   constructor(public http: HttpClient, public storage: Storage) {
     super(http, storage);
@@ -49,7 +51,18 @@ export class JobsService extends RESTService {
   }
 
   updateJob(id: number,
-    body: { description: string, complete_before: string, street_address: string, city: string, state: string, zip: string })
+    body:
+    {
+      description: string,
+      complete_before: string,
+      street_address: string,
+      city: string,
+      state: string,
+      zip: number,
+      intensity_id: number,
+      price: number,
+      category_id: number;
+    })
     : Promise<any> {
     return this.makeHttpRequest(`marketplace/job/${id}`, 'PATCH', body)
       .then((res: Observable<any>) => res.toPromise());

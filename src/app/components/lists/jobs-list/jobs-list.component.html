@@ -7,7 +7,7 @@
     <li class="bg-white shadow-lg rounded-lg sm:rounded-md"
         *ngFor="let job of jobs | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
       <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out cursor-pointer">
-        <div class="flex items-center px-4 py-4 sm:px-6">
+        <div class="flex items-center px-4 py-4 sm:px-6" (click)="displayJob(i)">
           <div class="min-w-0 flex-1 flex items-center">
             <div class="flex-shrink-0">
               <img class="h-12 w-12 rounded-full"
@@ -37,7 +37,7 @@
 
               <div class="hidden md:block">
                 <div>
-                  <div class="text-sm font-medium leading-5 text-gray-900 text-primary-dominant">
+                  <div class="text-sm font-medium leading-5  text-primary-dominant">
                     Price
                   </div>
                   <div class="flex mt-2 items-center text-sm leading-5 text-gray-500">
@@ -71,6 +71,8 @@
     </app-pagination>
   </ng-container>
 </div>
+
+<app-edit-job [jobID]="selectedJob"></app-edit-job>
 
 
 

@@ -1,0 +1,276 @@
+<div *ngIf="showPage">
+<div class="fixed inset-0 overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden" >
+      <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16 transform transition ease-in-out duration-500 sm:duration-700" [ngClass]="{'translate-x-full': !openSlider, 'translate-x-0': !openSlider}">
+        <!--
+          Slide-over panel, show/hide based on slide-over state.
+  
+          Entering: "transform transition ease-in-out duration-500 sm:duration-700"
+            From: "translate-x-full"
+            To: "translate-x-0"
+          Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
+            From: "translate-x-0"
+            To: "translate-x-full"
+        -->
+        <div class="w-screen max-w-2xl">
+          <div class="h-full flex flex-col bg-white shadow-xl overflow-y-scroll">
+            <header class="px-4 py-6 sm:px-6">
+              <div class="flex items-start justify-between space-x-3">
+                <h2 class="text-lg leading-7 font-medium text-gray-900">
+                  Edit Job
+                </h2>
+                <div class="h-7 flex items-center">
+                  <button aria-label="Close panel" class="text-gray-400 hover:text-gray-500 transition ease-in-out duration-150" (click)="clear()" >
+                    <!-- Heroicon name: x -->
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </header>
+            <!-- Main -->
+            <form role="form" #jobForm="ngForm">
+                <!-- Divider container -->
+                <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
+                    <!-- Project name -->
+                    <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                        <div>
+                            <label for="client_name" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                                Client Name <span class="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <div class="rounded-md shadow-sm">
+                                <input id="client_name" name="client_name" [(ngModel)]="createJobRequest.client_name"
+                                    #client_name="ngModel"
+                                    class="form-input block w-full sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"
+                                    placeholder="Jim Jones" required>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1"
+                                *ngIf="client_name.invalid && (client_name.dirty || client_name.touched)">
+                                Client name is required
+                            </small>
+                        </div>
+            
+                    </div>
+            
+                    <!-- Project description -->
+                    <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                        <div>
+                            <label for="description" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                                Description <span class="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <div class="flex rounded-md shadow-sm">
+                                <textarea id="description" name="description" rows="3" placeholder="Your Job Description"
+                                    [(ngModel)]="createJobRequest.description" #description="ngModel" required
+                                    class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"></textarea>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1"
+                                *ngIf="description.invalid && (description.dirty || description.touched)">
+                                Job description is required
+                            </small>
+                        </div>
+                    </div>
+            
+                    <!-- Pirce -->
+                    <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                        <div>
+                            <label for="price" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                                Price <span class="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <p class="text-gray-500 sm:text-sm sm:leading-5">
+                                        $
+                                    </p>
+                                </div>
+                                <input id="price" name="price" type="number" [(ngModel)]="createJobRequest.price" #price="ngModel"
+                                    class="form-input block w-full pl-7 pr-12 sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"
+                                    placeholder="0.00" aria-describedby="price-currency" [min]="5" required>
+                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                    <p class="text-gray-500 sm:text-sm sm:leading-5" id="price-currency">
+                                        USD
+                                    </p>
+                                </div>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1" *ngIf="price.invalid && (price.dirty || price.touched)">
+                                Price is required
+                            </small>
+                        </div>
+                    </div>
+            
+                    <!-- deadline -->
+                    <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                        <div>
+                            <label class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                                Deadline <span class="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <div class="mt-1 relative rounded-md shadow-sm">
+                                <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700">Date</label>
+                                <input name="complete_before" id="start_date" type="datetime-local"
+                                    [(ngModel)]="createJobRequest.complete_before" #complete_before="ngModel"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1"
+                                *ngIf="complete_before.invalid && (complete_before.dirty || complete_before.touched)">
+                                Deadline is required
+                            </small>
+                            <!-- <div class="mt-4 relative rounded-md shadow-sm flex items-center">
+                                <div class="w-2/5">
+                                    <label for="start_time" class="block text-sm font-medium leading-5 text-gray-700">Start</label>
+                                    <input name="start_time" id="start_time" type="time"
+                                        class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        aria-required="true" aria-invalid="false">
+                                </div>
+                                <span class="w-1/5 text-center mt-3">-</span>
+                                <div class="w-2/5">
+                                    <label for="end_time" class="block text-sm font-medium leading-5 text-gray-700">End</label>
+                                    <input name="end_time" id="end_time" type="time"
+                                        class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                        aria-required="true" aria-invalid="false">
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+            
+                    <!-- location -->
+                    <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+                        <div>
+                            <label class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                                Location <span class="text-red-500">*</span>
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <div class="relative rounded-md shadow-sm">
+                                <label for="street_address" class="block text-sm font-medium leading-5 text-gray-700">Street</label>
+                                <input name="street_address" id="address" type="text" placeholder="123 Main Street"
+                                    [(ngModel)]="createJobRequest.street_address" #street_address="ngModel"
+                                    class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1"
+                                *ngIf="street_address.invalid && (street_address.dirty || street_address.touched)">
+                                Street is required
+                            </small>
+                            <div class="mt-4 relative rounded-md shadow-sm">
+                                <label for="city" class="block text-sm font-medium leading-5 text-gray-700">City</label>
+                                <input name="city" id="city" type="text" placeholder="Rochester" [(ngModel)]="createJobRequest.city"
+                                    #city="ngModel"
+                                    class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1" *ngIf="city.invalid && (city.dirty || city.touched)">
+                                City is required
+                            </small>
+                            <div class="mt-4 relative rounded-md shadow-sm">
+                                <label for="state" class="block text-sm font-medium leading-5 text-gray-700">State</label>
+                                <select id="state" [(ngModel)]="createJobRequest.state" name="state" #state="ngModel" required
+                                    class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-green focus:border-primary-dominant transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                    <option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</option>
+                                </select>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1" *ngIf="state.invalid && (state.dirty || state.touched)">
+                                State is required
+                            </small>
+                            <div class="mt-4 relative rounded-md shadow-sm">
+                                <label for="zip" class="block text-sm font-medium leading-5 text-gray-700">Zip/Postal</label>
+                                <input name="zip" id="zip" type="text" placeholder="55901" [(ngModel)]="createJobRequest.zip"
+                                    #zip="ngModel"
+                                    class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                                    aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <small class="text-red-500 text-xs mt-1" *ngIf="zip.invalid && (zip.dirty || zip.touched)">
+                                Zip code is required
+                            </small>
+                        </div>
+                    </div>
+            
+                    <!-- Categories -->
+                    <div class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:px-6 sm:py-5">
+                        <div>
+                            <h3 class="text-sm font-medium leading-5 text-gray-900">
+                                Category <span class="text-red-500">*</span>
+                            </h3>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <select id="category" name="category_id" [(ngModel)]="createJobRequest.category_id"
+                                #category_id="ngModel" required
+                                class="mt-1 form-select w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                     <!-- Categories -->
+                     <div class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:px-6 sm:py-5">
+                        <div>
+                            <h3 class="text-sm font-medium leading-5 text-gray-900">
+                                Intensity <span class="text-red-500">*</span>
+                            </h3>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <select id="category" name="intensity_id" [(ngModel)]="createJobRequest.intensity_id"
+                                #intensity_id="ngModel" required
+                                class="mt-1 form-select w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                <option *ngFor="let intensity of intensities" [value]="intensity.id">{{intensity.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+            
+                    <!-- Image -->
+                    <!-- <div class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:px-6 sm:py-5">
+                        <div>
+                            <h3 class="text-sm font-medium leading-5 text-gray-900">
+                                Image(s)
+                            </h3>
+                            <p class="text-xs font-normal text-gray-500 mt-1">Optional</p>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label
+                                class="w-64 flex flex-col items-center px-4 py-6 bg-white text-primary-dominant rounded-lg shadow-lg tracking-wide uppercase border border-primary-dominant cursor-pointer hover:bg-primary-hover hover:text-white">
+                                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path
+                                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                                </svg>
+                                <span class="mt-2 text-base leading-normal">Select an image</span>
+                                <input type='file' class="hidden" />
+                            </label>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- Action buttons -->
+                <div class="flex-shrink-0 px-4 border-t border-gray-200 py-5 sm:px-6">
+                    <div class="space-x-3 flex justify-end">
+                        <!-- <span class="inline-flex rounded-md shadow-sm">
+                    <button type="button" (click)="clear()"
+                        class="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-green active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
+                        Cancel
+                    </button>
+                </span> -->
+                        <span class="inline-flex rounded-md shadow-sm">
+                            <button type="submit" (click)="onSubmit(jobForm)"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-greeb active:bg-primary-active transition duration-150 ease-in-out">
+                                Create
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+          </div>
+
+
+          
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+  
