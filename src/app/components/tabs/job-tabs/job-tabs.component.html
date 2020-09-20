@@ -1,0 +1,19 @@
+<div class="sm:hidden">
+    <select aria-label="Selected tab"
+            (change)="changeTab($event.target.value)"
+            class="form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-green sm:text-sm sm:leading-5 transition ease-in-out duration-150">
+        <option *ngFor="let status of statuses"
+                [value]="status.value"
+                [selected]="status.value === selected">{{status.name}}</option>
+    </select>
+</div>
+<div class="hidden sm:block">
+    <nav class="-mb-px flex space-x-8">
+        <span *ngFor="let status of statuses"
+            (click)="changeTab(status.value)"
+            class="whitespace-no-wrap pb-4 px-1 border-b-2 font-medium text-sm leading-5 focus:outline-none cursor-pointer"
+            [ngClass]="status.value === selected? 'text-primary-dominant border-primary-dominant focus:border-primary-active focus:text-primary-active': 'border-transparent text-gray-500 hover:border-primary-hover hover:text-primary-hover'">
+        {{status.name}}
+        </span>
+    </nav>
+</div>

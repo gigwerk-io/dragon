@@ -35,6 +35,7 @@ import { GoogleIntegrationFormComponent } from './forms/google-integration-form/
 import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integration-form/quickbooks-integration-form.component';
 import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
 import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.component';
+import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
 import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
 import { JobFormComponent } from './forms/job-form/job-form.component';
 
@@ -79,6 +80,7 @@ import { JobFormComponent } from './forms/job-form/job-form.component';
     QuickbooksIntegrationFormComponent,
     ConnectQboButtonComponent,
     ApplicantTabsComponent,
+    JobTabsComponent,
     NewJobSlideoverComponent,
     JobFormComponent,
   ],
@@ -108,7 +110,8 @@ import { JobFormComponent } from './forms/job-form/job-form.component';
         BusinessIntegrationsFormComponent,
         GoogleIntegrationFormComponent,
         QuickbooksIntegrationFormComponent,
-        ApplicantTabsComponent
+        ApplicantTabsComponent,
+        JobTabsComponent,
     ]
 })
 export class ComponentsModule {

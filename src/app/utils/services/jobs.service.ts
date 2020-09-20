@@ -16,11 +16,14 @@ export class JobsService extends RESTService {
     super(http, storage);
   }
 
-  getAllJobs(): Promise<Response<MarketplaceJob[]>> {
-    return this.makeHttpRequest<Response<MarketplaceJob[]>>('jobs', 'GET')
-      .then((res) => {
-        return res.toPromise().then((jobsRes) => jobsRes);
-      });
+  getAllJobs(status: number = null): Promise<Response<MarketplaceJob[]>> {
+    let params = null;
+    if (status != null) {
+     params = {status};
+    }
+
+      return this.makeHttpRequest(`jobs`, `GET`, params)
+        .then((res:  Observable<Response<MarketplaceJob[]>>) => res.toPromise());
   }
 
 
