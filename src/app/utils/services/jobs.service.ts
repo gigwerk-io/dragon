@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
 import { Observable } from 'rxjs';
 import { Response } from '../interfaces/responses/GenericResponse';
+import { CreateJobRequest } from '../interfaces/requests/CreateJobRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,11 @@ export class JobsService extends RESTService {
 
   getJob(id: number): Promise<Response<MarketplaceJob>> {
     return this.makeHttpRequest<Response<MarketplaceJob>>(`job/${id}`, `GET`)
+      .then((res) => res.toPromise());
+  }
+
+  createJob(body: CreateJobRequest): Promise<Response<MarketplaceJob>> {
+    return this.makeHttpRequest<Response<MarketplaceJob>>(`marketplace/job`, `POST`, body)
       .then((res) => res.toPromise());
   }
 

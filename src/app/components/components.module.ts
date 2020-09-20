@@ -22,7 +22,7 @@ import { ApplicantListComponent } from './lists/applicant-list/applicant-list.co
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import { NgxStripeModule } from 'ngx-stripe';
-import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
+import { WorkersGridComponent } from './grids/workers-grid/workers-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
 import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
@@ -36,6 +36,8 @@ import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integrati
 import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
 import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.component';
 import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
+import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
+import { JobFormComponent } from './forms/job-form/job-form.component';
 
 @NgModule({
   imports: [
@@ -66,7 +68,7 @@ import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
     ApplicantListComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
-    PeopleGridComponent,
+    WorkersGridComponent,
     NotificationsListComponent,
     StackedNavComponent,
     MobileMenuComponent,
@@ -79,6 +81,8 @@ import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
     ConnectQboButtonComponent,
     ApplicantTabsComponent,
     JobTabsComponent,
+    NewJobSlideoverComponent,
+    JobFormComponent,
   ],
     exports: [
         FooterComponent,
@@ -98,7 +102,7 @@ import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
         StarRatingComponent,
         JobsListComponent,
         PaymentMethodModalComponent,
-        PeopleGridComponent,
+        WorkersGridComponent,
         NotificationsListComponent,
         StackedNavComponent,
         ProfileSlideOverComponent,
