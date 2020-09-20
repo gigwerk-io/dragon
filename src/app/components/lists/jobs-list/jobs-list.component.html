@@ -7,7 +7,7 @@
     <li class="bg-white shadow-lg rounded-lg sm:rounded-md"
         *ngFor="let job of jobs | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
       <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out cursor-pointer">
-        <div class="flex items-center px-4 py-4 sm:px-6">
+        <div class="flex items-center px-4 py-4 sm:px-6" (click)="displayJob(i)">
           <div class="min-w-0 flex-1 flex items-center">
             <div class="flex-shrink-0">
               <img class="h-12 w-12 rounded-full"
@@ -71,6 +71,8 @@
     </app-pagination>
   </ng-container>
 </div>
+
+<app-edit-job [jobID]="selectedJob"></app-edit-job>
 
 
 

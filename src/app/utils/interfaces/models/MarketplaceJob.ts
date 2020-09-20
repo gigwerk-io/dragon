@@ -23,4 +23,5 @@ export interface MarketplaceJob {
   customer: User;
   location: MarketplaceLocation;
   proposals: MarketplaceProposal;
+  client_name?: string;
 }
