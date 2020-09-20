@@ -50,9 +50,8 @@ export class JobsService extends RESTService {
       .then((res: Observable<any>) => res.toPromise());
   }
 
-  updateJob(id: number,
-    body:
-    {
+  // update job needs params:
+    /*
       description: string,
       complete_before: string,
       street_address: string,
@@ -61,8 +60,10 @@ export class JobsService extends RESTService {
       zip: number,
       intensity_id: number,
       price: number,
-      category_id: number;
-    })
+      category_id: number
+    */
+
+  updateJob(id: number, body: any)
     : Promise<any> {
     return this.makeHttpRequest(`marketplace/job/${id}`, 'PATCH', body)
       .then((res: Observable<any>) => res.toPromise());
