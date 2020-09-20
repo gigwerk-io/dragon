@@ -1,0 +1,27 @@
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 w-full">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Business Information</h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">
+        Manage your business profile and information.
+      </p>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <app-business-info-form [business]="business"></app-business-info-form>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6 w-full mt-6">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <h3 class="text-lg font-medium leading-6 text-gray-900">Business Location</h3>
+      <p class="mt-1 text-sm leading-5 text-gray-500">
+        Use a permanent address where you can receive mail.
+      </p>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <app-business-location-form [location]="location"></app-business-location-form>
+    </div>
+  </div>
+</div>

@@ -1,124 +1,82 @@
-<div class="bg-white shadow overflow-hidden sm:rounded-md">
-  <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
-    <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
-      <div class="ml-4 mt-2">
-        <h3 class="text-lg leading-6 font-medium text-gray-900">
-          Active Applications
-        </h3>
-      </div>
-      <div class="ml-4 mt-2 flex-shrink-0">
-        <span class="inline-flex rounded-md shadow-sm">
-          <span class="inline-flex rounded-md shadow-sm">
-            <button type="button"
-              class="inline-flex items-center px-2.5 py-1.5 border border-gray-200 text-xs leading-4 font-medium rounded text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
-              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                  clip-rule="evenodd"></path>
-              </svg>
-            </button>
-          </span>
-        </span>
-      </div>
-    </div>
+<div class="overflow-hidden my-4">
+  <div class="container mx-auto flex justify-center items-center" *ngIf="applicants && applicants.length < 1">
+    <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="w-full" alt="no results">
   </div>
-  <ul>
+  <ul class="space-y-4 mb-8">
     <ng-container *ngIf="applicants; else skeletonApplicants">
-      <li
-        *ngFor="let applicant of applicants | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index"
-        [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
-        <a [routerLink]="'/applicant/' + applicant.id"
-          class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-          <div class="flex items-center px-4 py-4 sm:px-6">
-            <div class="min-w-0 flex-1 flex items-center">
-              <div class="flex-shrink-0">
-                <img class="h-12 w-12 rounded-full" [src]="applicant.user.profile.image"
-                  alt="applicant profile photo" />
-              </div>
-              <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                <div>
-                  <div class="text-sm leading-5 font-medium text-indigo-600 truncate">{{applicant.user.first_name}}
-                    {{applicant.user.last_name}}
-                  </div>
-                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                    <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                    <span class="truncate">{{applicant.user.email}}
-                    </span>
-                  </div>
-                </div>
-                <div class="hidden md:block">
-                  <div>
-                    <div class="text-sm leading-5 text-gray-900">
-                      Applied on
-                      <time datetime="2020-01-07">January 7, 2020
-                      </time>
-                    </div>
-                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd" />
-                      </svg>
-                      Completed phone screening
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <li class="bg-white shadow-lg rounded-lg sm:rounded-md"
+        *ngFor="let applicant of applicants | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
+      <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out cursor-pointer">
+        <div class="flex items-center px-4 py-4 sm:px-6">
+          <div class="min-w-0 flex-1 flex items-center">
+            <div class="flex-shrink-0">
+              <img class="h-12 w-12 rounded-full"
+                   [src]="applicant.user.profile.image"
+                   alt="image">
             </div>
-            <div>
-              <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd" />
-              </svg>
+            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
+              <div>
+                <div class="text-sm leading-5 font-medium text-primary-dominant truncate">{{applicant.user.first_name}} {{applicant.user.last_name}}</div>
+                <div class="flex mt-2 items-center text-sm leading-5 text-gray-500 md:hidden">
+                  <app-star-rating *ngIf="applicant.average_rating" [rating]="applicant.average_rating"></app-star-rating>
+                  <span *ngIf="!applicant.average_rating">N/A</span>
+                </div>
+                <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
+                  <div class="sm:flex">
+
+                    <div class="flex items-center text-xs leading-5 text-gray-500">
+                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                      </svg>
+                      {{applicant.user.email}}
+                    </div>
+                    <div class="md:ml-4 flex items-center text-xs leading-5 text-gray-500 mt-1 md:mt-0">
+                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                           fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                              clip-rule="evenodd"/>
+                      </svg>
+                      {{applicant.scheduled}}
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="hidden md:block">
+                <div>
+                  <div class="text-sm font-medium leading-5 text-gray-900">
+                    Gigwerk Rating
+                  </div>
+                  <div class="flex mt-2 items-center text-sm leading-5 text-gray-500">
+                    <app-star-rating *ngIf="applicant.average_rating" [rating]="applicant.average_rating"></app-star-rating>
+                    <span *ngIf="!applicant.average_rating">N/A</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </a>
-      </li>
-    </ng-container>
-    <ng-template #skeletonApplicants>
-      <li *ngFor="let applicant of [1,2,3,4,5];  let i = index" [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
-        <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-          <div class="flex items-center px-4 py-4 sm:px-6">
-            <div class="min-w-0 flex-1 flex items-center">
-              <div class="flex-shrink-0">
-                <ion-skeleton-text class="h-12 w-12 rounded-full"></ion-skeleton-text>
-              </div>
-              <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-                <div>
-                  <div class="text-sm leading-5 font-medium text-indigo-600 truncate">
-                    <ion-skeleton-text class="w-20"></ion-skeleton-text>
-                  </div>
-                  <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                    <ion-skeleton-text class="w-40"></ion-skeleton-text>
-                  </div>
-                </div>
-                <div class="hidden md:block">
-                  <div>
-                    <div class="text-sm leading-5 text-gray-900">
-                      <ion-skeleton-text class="w-40"></ion-skeleton-text>
-                    </div>
-                    <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                      <ion-skeleton-text class="w-40"></ion-skeleton-text>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div>
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd"/>
+            </svg>
           </div>
         </div>
-      </li>
+      </div>
+    </li>
+    </ng-container>
+    <ng-template #skeletonApplicants>
+      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
     </ng-template>
   </ul>
   <ng-container
     *ngIf="applicants && paginationService.maxPages && paginationService.activePage && paginationService.maxPage && paginationService.pagination && windowSize">
     <app-pagination (page)="paginationService.setActivePage($event)" [activePage]="paginationService.activePage"
-      [maxPage]="paginationService.maxPage" [maxPages]="paginationService.maxPages"
-      [pagination]="paginationService.pagination" [windowSize]="windowSize" [results]="applicants.length">
+                    [maxPage]="paginationService.maxPage" [maxPages]="paginationService.maxPages"
+                    [pagination]="paginationService.pagination" [windowSize]="windowSize" [results]="applicants.length">
     </app-pagination>
   </ng-container>
-
 </div>

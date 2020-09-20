@@ -16,8 +16,13 @@ export class ApplicantsService extends RESTService {
     super(http, storage);
   }
 
-  getApplicants(): Promise<Response<Application[]>> {
-    return this.makeHttpRequest(`applicants`, `GET`)
+  getApplicants(status: number = null): Promise<Response<Application[]>> {
+    let params = null;
+    if (status != null) {
+     params = {status};
+    }
+
+    return this.makeHttpRequest(`applicants`, `GET`, params)
       .then((res:  Observable<Response<Application[]>>) => res.toPromise());
   }
 

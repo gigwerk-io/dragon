@@ -10,8 +10,9 @@
     "prod": "ngtw build && ng build --configuration=production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "prestart": "ngtw build"
+    "e2e": "ng e2e --port=4100 --configuration=test",
+    "prestart": "ngtw build",
+    "postinstall": "webdriver-manager update --standalone false --gecko false"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "cz-conventional-changelog": "^3.1.0",
     "git-cz": "^4.3.1",
     "husky": "^4.2.3",
+    "ng-notyf": "^0.4.0",
     "ng-tailwindcss": "^2.2.1",
     "ngx-clipboard": "^12.0.1",
     "ngx-guided-tour": "^1.1.10",
@@ -56,6 +58,7 @@
     "@angular/cli": "8.3.15",
     "@angular/compiler-cli": "8.2.12",
     "@angular/language-service": "8.2.12",
+    "@ionic/angular-toolkit": "latest",
     "@types/jasmine": "3.3.8",
     "@types/jasminewd2": "2.0.3",
     "@types/node": "8.9.4",
@@ -68,11 +71,11 @@
     "karma-jasmine": "2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "5.4.0",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^1.8.5",
     "ts-node": "7.0.0",
     "tslint": "5.15.0",
     "typescript": "3.5.3",
-    "@ionic/angular-toolkit": "latest"
+    "webdriver-manager": "^12.1.7"
   },
   "husky": {
     "hooks": {

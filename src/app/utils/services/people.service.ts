@@ -3,11 +3,12 @@ import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Role } from '../interfaces/enum/constants';
 import { ToastrService } from 'ngx-toastr';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { User } from '../interfaces/models/User';
+import { UserAgent } from '@sentry/browser/dist/integrations';
 
 
 @Injectable({
@@ -15,12 +16,32 @@ import { User } from '../interfaces/models/User';
 })
 export class PeopleService extends RESTService {
 
+  AllUsers: User[];
+
   constructor(
     public http: HttpClient,
     public storage: Storage,
     private toast: ToastrService
   ) {
     super(http, storage);
+
+    // GETS ALL THE USERS WHEN THE SERVICE IS LOADED
+    if (this.AllUsers === undefined) {
+      this.getAllUsers().then(res => this.AllUsers = res.data).catch(err => {
+        console.log('could not load all the users', err);
+      });
+    }
+  }
+
+  searchForUser(id: number): User {
+    let currentUser;
+    if (this.AllUsers) {
+      this.AllUsers.some(user => {
+        currentUser = user;
+        return user.profile.id === id;
+      });
+    }
+    return currentUser;
   }
 
   getAllUsers(): Promise<Response<User[]>> {

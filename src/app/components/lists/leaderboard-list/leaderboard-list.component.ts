@@ -19,6 +19,7 @@ export class LeaderboardListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('top wokers', this.topWorkers)
     this.maxPages = (this.topWorkers.length / this.windowSize) - ((this.topWorkers.length % this.windowSize) / this.windowSize);
     if (this.maxPages < 19) {
       this.pagination = Array(this.maxPages).fill(undefined).map((x, i) => i + 1);

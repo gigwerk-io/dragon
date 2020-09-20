@@ -17,15 +17,27 @@ import { FinishAccountSetupModalComponent } from './modal/finish-account-setup-m
 import { BusinessInfoFormComponent } from './forms/business-info-form/business-info-form.component';
 import { BusinessLocationFormComponent } from './forms/business-location-form/business-location-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GenericToastComponent } from './toast/generic-toast/generic-toast.component';
 import { StatsCardComponent } from './cards/stats-card/stats-card.component';
 import { ApplicantListComponent } from './lists/applicant-list/applicant-list.component';
 import { JobsListComponent } from './lists/jobs-list/jobs-list.component';
 import { PaymentMethodModalComponent } from './modal/payment-method-modal/payment-method-modal.component';
 import { NgxStripeModule } from 'ngx-stripe';
-import { PeopleGridComponent } from './grids/people-grid/people-grid.component';
+import { WorkersGridComponent } from './grids/workers-grid/workers-grid.component';
 import { IonicModule } from '@ionic/angular';
 import { NotificationsListComponent } from './lists/notifications-list/notifications-list.component';
+import { StackedNavComponent } from './stacked-nav/stacked-nav.component';
+import { MobileMenuComponent } from './menus/mobile-menu/mobile-menu.component';
+import { ProfileSlideOverComponent } from './slide-overs/profile-slide-over/profile-slide-over.component';
+import { SettingsMenuComponent } from './menus/settings-menu/settings-menu.component';
+import { BusinessIntegrationsFormComponent } from './forms/business-integrations-form/business-integrations-form.component';
+import { ConnectGoogleButtonComponent } from './button/connect-google-button/connect-google-button.component';
+import { GoogleIntegrationFormComponent } from './forms/google-integration-form/google-integration-form.component';
+import { QuickbooksIntegrationFormComponent } from './forms/quickbooks-integration-form/quickbooks-integration-form.component';
+import { ConnectQboButtonComponent } from './button/connect-qbo-button/connect-qbo-button.component';
+import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.component';
+import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
+import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
+import { JobFormComponent } from './forms/job-form/job-form.component';
 import { TextComponent } from './form-builder/text/text.component';
 import { EmailComponent } from './form-builder/email/email.component';
 import { PhoneComponent } from './form-builder/phone/phone.component';
@@ -65,13 +77,25 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     FinishAccountSetupModalComponent,
     BusinessInfoFormComponent,
     BusinessLocationFormComponent,
-    GenericToastComponent,
     StatsCardComponent,
     ApplicantListComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
-    PeopleGridComponent,
+    WorkersGridComponent,
     NotificationsListComponent,
+    StackedNavComponent,
+    MobileMenuComponent,
+    ProfileSlideOverComponent,
+    SettingsMenuComponent,
+    BusinessIntegrationsFormComponent,
+    ConnectGoogleButtonComponent,
+    GoogleIntegrationFormComponent,
+    QuickbooksIntegrationFormComponent,
+    ConnectQboButtonComponent,
+    ApplicantTabsComponent,
+    JobTabsComponent,
+    NewJobSlideoverComponent,
+    JobFormComponent,
     TextComponent,
     EmailComponent,
     PhoneComponent,
@@ -97,14 +121,12 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     ArrowPercentageComponent,
     BusinessLocationFormComponent,
     BusinessInfoFormComponent,
-    GenericToastComponent,
     StatsCardComponent,
     PaginationComponent,
     ApplicantListComponent,
     StarRatingComponent,
     JobsListComponent,
     PaymentMethodModalComponent,
-    PeopleGridComponent,
     TextComponent,
     NotificationsListComponent,
     EmailComponent,
@@ -118,6 +140,20 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     RadioComponent,
     SelectComponent,
     SubmitComponent,
+    StackedNavComponent,
+    MobileMenuComponent,
+    ProfileSlideOverComponent,
+    SettingsMenuComponent,
+    BusinessIntegrationsFormComponent,
+    ConnectGoogleButtonComponent,
+    GoogleIntegrationFormComponent,
+    QuickbooksIntegrationFormComponent,
+    ConnectQboButtonComponent,
+    ApplicantTabsComponent,
+    JobTabsComponent,
+    NewJobSlideoverComponent,
+    JobFormComponent,
+    WorkersGridComponent,
   ]
 })
 export class ComponentsModule {

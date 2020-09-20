@@ -1,0 +1,188 @@
+<ng-container *ngIf="subscription; else subscriptionSkeleton">
+  <div class="bg-white shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6">
+      <div>
+        <h3 class="text-lg leading-6 font-medium text-gray-900">
+          Manage subscription
+          <span
+            class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium leading-5 bg-purple-100 text-purple-800" *ngIf="subscription">
+            {{subscription.name}}
+          </span>
+        </h3>
+        <h3 class="object-right-top">
+          {{(subscription.stripeSubscription.plan.amount / 100)| currency}} / {{subscription.stripeSubscription.plan.interval}}
+        </h3>
+      </div>
+
+
+      <div class="mt-2 sm:flex sm:items-start sm:justify-between">
+        <div class="max-w-xl text-sm leading-5 text-gray-500">
+          <p class="font-base text-md">
+            Current billing period runs from
+            <strong class="font-semibold">{{subscription.stripeSubscription.current_period_start* 1000 | date: 'MMM d'}}</strong>
+            to
+            <strong class="font-semibold">{{subscription.stripeSubscription.current_period_end* 1000 | date: 'MMM d'}}</strong>
+          </p>
+        </div>
+        <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+          <p class="inline-flex rounded-md shadow-sm">
+            <button type="button" routerLink="/plan"
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-green active:bg-primary-active transition ease-in-out duration-150">
+              Change plan
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #subscriptionSkeleton>
+  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg shadow-lg" [animated]="true"></ion-skeleton-text>
+</ng-template>
+
+<ng-container *ngIf="paymentMethods; else paymentMethodsSkeleton">
+  <div class="bg-white shadow sm:rounded-lg mt-5" *ngIf="paymentMethods">
+    <div class="px-4 py-5 sm:p-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Payment methods
+      </h3>
+      <div class="mt-5">
+        <div class="rounded-md bg-gray-50 px-6 py-5 sm:flex sm:items-start sm:justify-between my-2"
+             *ngFor="let method of paymentMethods; let i = index">
+          <div class="sm:flex sm:items-start">
+            <svg class="h-8 w-auto sm:flex-shrink-0 sm:h-6" fill="none" viewBox="0 0 36 24" role="img"
+                 aria-labelledby="svg-visa">
+              <title id="svg-visa">VISA</title>
+              <rect width="36" height="24" fill="#224DBA" rx="4" />
+              <path fill="#fff" fill-rule="evenodd"
+                    d="M10.925 15.673H8.874l-1.538-6c-.073-.276-.228-.52-.456-.635A6.575 6.575 0 005 8.403v-.231h3.304c.456 0 .798.347.855.75l.798 4.328 2.05-5.078h1.994l-3.076 7.5zm4.216 0h-1.937L14.8 8.172h1.937l-1.595 7.5zm4.101-5.422c.057-.404.399-.635.798-.635a3.54 3.54 0 011.88.346l.342-1.615A4.808 4.808 0 0020.496 8c-1.88 0-3.248 1.039-3.248 2.481 0 1.097.969 1.673 1.653 2.02.74.346 1.025.577.968.923 0 .519-.57.75-1.139.75a4.795 4.795 0 01-1.994-.462l-.342 1.616a5.48 5.48 0 002.108.404c2.108.057 3.418-.981 3.418-2.539 0-1.962-2.678-2.077-2.678-2.942zm9.457 5.422L27.16 8.172h-1.652a.858.858 0 00-.798.577l-2.848 6.924h1.994l.398-1.096h2.45l.228 1.096h1.766zm-2.905-5.482l.57 2.827h-1.596l1.026-2.827z"
+                    clip-rule="evenodd" />
+            </svg>
+            <div class="mt-3 sm:mt-0 sm:ml-4">
+              <div class="text-sm leading-5 font-medium text-gray-900">
+                Ending with {{method.card.last4}}
+                <p *ngIf="method.default"
+                   class="inline-flex items-center mx-2 px-2 py-0.5 rounded text-xs font-medium leading-4 bg-green-100 text-green-800">
+                  Default
+                </p>
+              </div>
+              <div class="mt-1 text-sm leading-5 text-gray-600 sm:flex sm:items-center">
+                <div>
+                  Expires {{method.card.exp_month}}/{{method.card.exp_year.toString().slice(-2)}}
+                </div>
+                <p class="hidden sm:mx-2 sm:inline" aria-hidden="true">
+                  &middot;
+                </p>
+                <div class="mt-1 sm:mt-0">
+                  Card added on {{method.created * 1000 | date}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 sm:mt-0 sm:ml-6 sm:flex-shrink-0">
+            <span class="inline-flex rounded-md shadow-sm text-red-500 cursor-pointer" (click)="deletePaymentMethod(method.id)">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="my-4 sm:flex sm:items-start sm:justify-between">
+        <div class="max-w-xl text-sm leading-5 text-gray-500">
+
+        </div>
+        <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
+          <p class="inline-flex rounded-md shadow-sm">
+            <button type="button" (click)="showPaymentModal = true"
+                    class="inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-indigo active:bg-primary-active transition ease-in-out duration-150">
+              Add Payment Method
+            </button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #paymentMethodsSkeleton>
+  <ion-skeleton-text class="w-full h-64 px-4 py-5 sm:p-6 rounded-lg shadow-lg mt-5" [animated]="true"></ion-skeleton-text>
+</ng-template>
+
+<ng-container *ngIf="paymentMethods; else invoiceSkeleton">
+  <div class="bg-white shadow sm:rounded-lg mt-5" *ngIf="invoice">
+    <div class="px-2 py-1 sm:p-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900 mb-4">
+        Invoices
+      </h3>
+      <div class="flex flex-col">
+        <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+          <div
+            class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+            <table class="min-w-full">
+              <thead>
+              <tr>
+                <th
+                  class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Description
+                </th>
+                <th
+                  class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
+                <th
+                  class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Price
+                </th>
+                <th
+                  class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+                  Date
+                </th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+              </tr>
+              </thead>
+              <tbody class="bg-white">
+              <tr *ngFor="let payment of invoice">
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                  {{payment.lines.data[0].description}}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500 font-medium">
+                  {{payment.status}}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500 font-medium">
+                  {{payment.amount_paid/100 | currency}}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500 font-medium">
+                  {{payment.created*1000 | date}}
+                </td>
+                <td
+                  class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                  <a href="{{payment.invoice_pdf}}"
+                     class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-indigo active:bg-primary-active transition ease-in-out duration-150">
+                    <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd"
+                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #invoiceSkeleton>
+  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg shadow-lg mt-5" [animated]="true"></ion-skeleton-text>
+</ng-template>
+
+<app-payment-method-modal [show]="showPaymentModal" (close)="showPaymentModal = false"></app-payment-method-modal>

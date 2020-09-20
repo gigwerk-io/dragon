@@ -5,8 +5,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Storage } from '@ionic/storage';
 import { Payment } from '../interfaces/models/Payment';
 import { Response } from '../interfaces/responses/GenericResponse';
-import { Subject } from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import { Invoice } from '../interfaces/models/invoice';
+import {PaymentMethod} from '../interfaces/models/PaymentMethod';
 
 
 
@@ -27,8 +28,8 @@ export class FinanceService extends RESTService {
 
   } 
 
-  getInvoice(): Promise<Response<Invoice>> {
-    return this.makeHttpRequest<Response<Invoice>>(`invoices`, 'GET')
+  getInvoice(): Promise<Response<Invoice[]>> {
+    return this.makeHttpRequest<Response<Invoice[]>>(`invoices`, 'GET')
       .then((res) => res.toPromise());
   }
 
@@ -37,13 +38,18 @@ export class FinanceService extends RESTService {
       .then((res) => res.toPromise());
   }
 
+  deletePaymentMethod(id: string) {
+    return this.makeHttpRequest(`payment-method/${id}`, `DELETE`)
+      .then((res: Observable<Response<null>>) => res.toPromise());
+  }
+
   getAllPayments(): Promise<Response<Payment[]>> {
     return this.makeHttpRequest<Response<Payment[]>>(`payments`, 'GET')
       .then((res) => res.toPromise());
   }
 
-  getAllPaymentMethods(): Promise<Response<Payment[]>> {
-    return this.makeHttpRequest<Response<Payment[]>>(`payment-methods`, 'GET')
+  getAllPaymentMethods(): Promise<Response<PaymentMethod[]>> {
+    return this.makeHttpRequest<Response<PaymentMethod[]>>(`payment-methods`, 'GET')
       .then((res) => res.toPromise());
   }
 

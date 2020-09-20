@@ -1,0 +1,98 @@
+<div class="h-full bg-gray-100 overflow-y-scroll">
+  <nav class="bg-white shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <a routerLink="/">
+              <img class="block lg:hidden h-8 w-auto"
+                   src="https://gigwerk-disk.s3.amazonaws.com/logo.png" alt="Gigwerk logo">
+              <img class="hidden lg:block h-8 w-auto"
+                   src="https://gigwerk-disk.s3.amazonaws.com/logo.png" alt="Gigwerk logo">
+            </a>
+          </div>
+          <div class="hidden sm:ml-6 space-x-8 sm:flex">
+            <a routerLink="/dashboard" [ngClass]="router.isActive('/dashboard', true) ? active(): inactive()"
+                       class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+              Dashboard
+            </a>
+
+            <a routerLink="/jobs" [ngClass]="router.isActive('/jobs', true) ? active(): inactive()"
+               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+              Jobs
+            </a>
+
+            <a routerLink="/workers" [ngClass]="router.isActive('/workers', true) ? active(): inactive()"
+               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+              Workers
+            </a>
+
+
+            <a routerLink="/applicants" [ngClass]="router.isActive('/applicants', true) ? active(): inactive()"
+               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+              Applicants
+            </a>
+
+            <a routerLink="/settings/general" [ngClass]="router.url.includes('/settings') ? active(): inactive()"
+               class="inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out">
+              Settings
+            </a>
+
+          </div>
+        </div>
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <button (click)="showJobSlideOver = !showJobSlideOver" type="button" class="relative inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant shadow-sm hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-green active:border-primary-active transition ease-in-out duration-150">
+              <svg class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
+              </svg>
+              <span>New Job</span>
+            </button>
+          </div>
+          <div class="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
+            <div class="relative">
+              <div>
+                <button (click)="showNotifications = !showNotifications" class="p-1 border-2 border-transparent text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:text-gray-500 focus:bg-gray-100 transition duration-150 ease-in-out" aria-label="Notifications">
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                </button>
+              </div>
+<!--              <notification-dropdown :show="showNotifications"/>-->
+            </div>
+
+            <!-- Profile dropdown -->
+            <app-profile-dropdown></app-profile-dropdown>
+          </div>
+        </div>
+        <div class="-mr-2 flex items-center sm:hidden">
+          <!-- Mobile menu button -->
+          <button
+            (click)="showMobile = !showMobile"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-green-50 focus:outline-none focus:bg-green-50 focus:text-gray-500 transition duration-150 ease-in-out">
+            <!-- Menu open: "hidden", Menu closed: "block" -->
+            <svg class="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <!-- Menu open: "block", Menu closed: "hidden" -->
+            <svg class="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <app-new-job-slideover [display]="showJobSlideOver" (dismiss)="handleJobSlideOver()"></app-new-job-slideover>
+    <app-mobile-menu [show]="showMobile"></app-mobile-menu>
+  </nav>
+
+  <div class="py-10">
+    <main>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="px-4 py-8 sm:px-0">
+          <ng-content></ng-content>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
