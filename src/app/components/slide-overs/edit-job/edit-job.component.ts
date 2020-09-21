@@ -45,6 +45,7 @@ export class EditJobComponent implements OnInit, OnChanges {
   clear() {
     setTimeout(() => this.openSlider = false, 50);
     setTimeout(() => this.showPage = false, 600);
+    this.job = null;
     this.jobsService.clearJobSliderover.next();
   }
 
