@@ -6,6 +6,7 @@ import { MarketplaceJob } from '../interfaces/models/MarketplaceJob';
 import { Observable, Subject } from 'rxjs';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { CreateJobRequest } from '../interfaces/requests/CreateJobRequest';
+import { UpdateJobRequest } from '../interfaces/requests/UpdateJobRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -50,22 +51,9 @@ export class JobsService extends RESTService {
       .then((res: Observable<any>) => res.toPromise());
   }
 
-  updateJob(id: number,
-    body:
-    {
-      description: string,
-      complete_before: string,
-      street_address: string,
-      city: string,
-      state: string,
-      zip: number,
-      intensity_id: number,
-      price: number,
-      category_id: number;
-    })
-    : Promise<any> {
-    return this.makeHttpRequest(`marketplace/job/${id}`, 'PATCH', body)
-      .then((res: Observable<any>) => res.toPromise());
+  updateJob(id: number,body: UpdateJobRequest) : Promise<Response<null>> {
+    return this.makeHttpRequest<Response<null>>(`marketplace/job/${id}`, 'PATCH', body)
+      .then((res) => res.toPromise());
   }
 
   updateLocation(id: number, body: { street_address: string, city: string, state: string, zip: string }): Promise<any> {

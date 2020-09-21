@@ -1,0 +1,233 @@
+<form role="form" #editJobForm="ngForm">
+    <!-- Divider container -->
+    <div class="py-6 space-y-6 sm:py-0 sm:space-y-0 sm:divide-y sm:divide-gray-200">
+        <!-- Project name -->
+        <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+            <div>
+                <label for="client_name" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                    Client Name <span class="text-red-500">*</span>
+                </label>
+            </div>
+            <div class="sm:col-span-2">
+                <ng-container *ngIf="updateJobRequest != null; else clientSkeleton">
+                    <div class="rounded-md shadow-sm">
+                        <input id="client_name" name="client_name" [(ngModel)]="updateJobRequest.client_name"
+                            #client_name="ngModel"
+                            class="form-input block w-full sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"
+                            placeholder="Jim Jones" required>
+                    </div>
+                    <small class="text-red-500 text-xs mt-1"
+                        *ngIf="client_name.invalid && (client_name.dirty || client_name.touched)">
+                        Client name is required
+                    </small>
+                </ng-container>
+                <ng-template #clientSkeleton>
+                  <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+                </ng-template>
+            </div>
+
+        </div>
+
+        <!-- Project description -->
+        <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+            <div>
+                <label for="description" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                    Description <span class="text-red-500">*</span>
+                </label>
+            </div>
+            <div class="sm:col-span-2">
+              <ng-container *ngIf="updateJobRequest != null; else descriptionSkeleton">
+                <div class="flex rounded-md shadow-sm">
+                    <textarea id="description" name="description" rows="3" placeholder="Your Job Description"
+                        [(ngModel)]="updateJobRequest.description" #description="ngModel" required
+                        class="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"></textarea>
+                </div>
+                <small class="text-red-500 text-xs mt-1"
+                    *ngIf="description.invalid && (description.dirty || description.touched)">
+                    Job description is required
+                </small>
+              </ng-container>
+              <ng-template #descriptionSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-16 rounded-md"></ion-skeleton-text>
+              </ng-template>
+            </div>
+        </div>
+
+        <!-- Pirce -->
+        <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+            <div>
+                <label for="price" class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                    Price <span class="text-red-500">*</span>
+                </label>
+            </div>
+            <div class="sm:col-span-2">
+              <ng-container *ngIf="updateJobRequest != null; else priceSkeleton">
+                <div class="mt-1 relative rounded-md shadow-sm">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <p class="text-gray-500 sm:text-sm sm:leading-5">
+                            $
+                        </p>
+                    </div>
+                    <input id="price" name="price" type="number" [(ngModel)]="updateJobRequest.price" #price="ngModel"
+                        class="form-input block w-full pl-7 pr-12 sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"
+                        placeholder="0.00" aria-describedby="price-currency" [min]="5" required>
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                        <p class="text-gray-500 sm:text-sm sm:leading-5" id="price-currency">
+                            USD
+                        </p>
+                    </div>
+                </div>
+                <small class="text-red-500 text-xs mt-1" *ngIf="price.invalid && (price.dirty || price.touched)">
+                  Price is required
+                </small>
+              </ng-container>
+              <ng-template #priceSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+            </div>
+        </div>
+
+        <!-- deadline -->
+        <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+            <div>
+                <label class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                    Deadline <span class="text-red-500">*</span>
+                </label>
+            </div>
+            <div class="sm:col-span-2">
+              <ng-container *ngIf="updateJobRequest != null; else deadlineSkeleton">
+                <div class="mt-1 relative rounded-md shadow-sm">
+                    <label for="start_date" class="block text-sm font-medium leading-5 text-gray-700">Date</label>
+                    <input name="complete_before" id="start_date" type="datetime-local"
+                        [(ngModel)]="updateJobRequest.complete_before" #complete_before="ngModel"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        aria-required="true" aria-invalid="false" required>
+                </div>
+                <small class="text-red-500 text-xs mt-1"
+                    *ngIf="complete_before.invalid && (complete_before.dirty || complete_before.touched)">
+                    Deadline is required
+                </small>
+              </ng-container>
+              <ng-template #deadlineSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+            </div>
+        </div>
+
+        <!-- location -->
+        <div class="space-y-1 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 sm:py-5">
+            <div>
+                <label class="block text-sm font-medium leading-5 text-gray-900 sm:mt-px sm:pt-2">
+                    Location <span class="text-red-500">*</span>
+                </label>
+            </div>
+            <div class="sm:col-span-2">
+              <ng-container *ngIf="updateJobRequest != null; else addressSkeleton">
+                <div class="relative rounded-md shadow-sm">
+                    <label for="street_address" class="block text-sm font-medium leading-5 text-gray-700">Street</label>
+                    <input name="street_address" id="street_address" type="text" placeholder="123 Main Street"
+                        [(ngModel)]="updateJobRequest.street_address" #street_address="ngModel"
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        aria-required="true" aria-invalid="false" required>
+                </div>
+                <small class="text-red-500 text-xs mt-1"
+                    *ngIf="street_address.invalid && (street_address.dirty || street_address.touched)">
+                    Street is required
+                </small>
+              </ng-container>
+              <ng-template #addressSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+              <ng-container *ngIf="updateJobRequest != null; else citySkeleton">
+                <div class="mt-4 relative rounded-md shadow-sm">
+                    <label for="city" class="block text-sm font-medium leading-5 text-gray-700">City</label>
+                    <input name="city" id="city" type="text" placeholder="Rochester" [(ngModel)]="updateJobRequest.city"
+                        #city="ngModel"
+                        class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        aria-required="true" aria-invalid="false" required>
+                </div>
+                <small class="text-red-500 text-xs mt-1" *ngIf="city.invalid && (city.dirty || city.touched)">
+                    City is required
+                </small>
+              </ng-container>
+              <ng-template #citySkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+              <ng-container *ngIf="updateJobRequest != null; else stateSkeleton">
+                <div class="mt-4 relative rounded-md shadow-sm">
+                    <label for="state" class="block text-sm font-medium leading-5 text-gray-700">State</label>
+                    <select id="state" [(ngModel)]="updateJobRequest.state" name="state" #state="ngModel" required
+                        class="mt-1 block form-select w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:shadow-outline-green focus:border-primary-dominant transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <option *ngFor="let state of states" [value]="state.abbreviation">{{state.name}}</option>
+                    </select>
+                </div>
+                <small class="text-red-500 text-xs mt-1" *ngIf="state.invalid && (state.dirty || state.touched)">
+                    State is required
+                </small>
+              </ng-container>
+              <ng-template #stateSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+              <ng-container *ngIf="updateJobRequest != null; else zipSkeleton">
+                <div class="mt-4 relative rounded-md shadow-sm">
+                    <label for="zip" class="block text-sm font-medium leading-5 text-gray-700">Zip/Postal</label>
+                    <input name="zip" id="zip" type="text" placeholder="55901" [(ngModel)]="updateJobRequest.zip"
+                        #zip="ngModel"
+                        class="appearance-none w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5"
+                        aria-required="true" aria-invalid="false" required>
+                </div>
+                <small class="text-red-500 text-xs mt-1" *ngIf="zip.invalid && (zip.dirty || zip.touched)">
+                    Zip code is required
+                </small>
+              </ng-container>
+              <ng-template #zipSkeleton>
+                <ion-skeleton-text [animated]="true" class="block w-full mt-1 py-4 px-3 h-auto rounded-md"></ion-skeleton-text>
+              </ng-template>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:px-6 sm:py-5">
+            <div>
+                <h3 class="text-sm font-medium leading-5 text-gray-900">
+                    Category <span class="text-red-500">*</span>
+                </h3>
+            </div>
+            <div class="sm:col-span-2">
+                <select id="category" name="category_id" [(ngModel)]="updateJobRequest.category_id"
+                    #category_id="ngModel" required
+                    class="mt-1 form-select w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                    <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+            </div>
+        </div>
+
+         <!-- Categories -->
+         <div class="space-y-2 px-4 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:px-6 sm:py-5">
+            <div>
+                <h3 class="text-sm font-medium leading-5 text-gray-900">
+                    Intensity <span class="text-red-500">*</span>
+                </h3>
+            </div>
+            <div class="sm:col-span-2">
+                <select id="category" name="intensity_id" [(ngModel)]="updateJobRequest.intensity_id"
+                    #intensity_id="ngModel" required
+                    class="mt-1 form-select w-full block px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-green focus:border-primary-active transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                    <option *ngFor="let intensity of intensities" [value]="intensity.id">{{intensity.name}}</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+    <!-- Action buttons -->
+    <div class="flex-shrink-0 px-4 border-t border-gray-200 py-5 sm:px-6">
+        <div class="space-x-3 flex justify-end">
+            <span class="inline-flex rounded-md shadow-sm">
+                <button type="submit" (click)="onSubmit(editJobForm)"
+                    class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-primary-dominant hover:bg-primary-hover focus:outline-none focus:border-primary-active focus:shadow-outline-greeb active:bg-primary-active transition duration-150 ease-in-out">
+                    Save
+                </button>
+            </span>
+        </div>
+    </div>
+</form>

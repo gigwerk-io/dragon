@@ -39,6 +39,7 @@ import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
 import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
 import { JobFormComponent } from './forms/job-form/job-form.component';
 import { EditJobComponent } from './slide-overs/edit-job/edit-job.component';
+import { EditJobFormComponent } from './forms/edit-job-form/edit-job-form.component';
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { EditJobComponent } from './slide-overs/edit-job/edit-job.component';
     NewJobSlideoverComponent,
     JobFormComponent,
     EditJobComponent,
+    EditJobFormComponent,
   ],
     exports: [
         FooterComponent,
