@@ -38,6 +38,8 @@ import { ApplicantTabsComponent } from './tabs/applicant-tabs/applicant-tabs.com
 import { JobTabsComponent } from './tabs/job-tabs/job-tabs.component';
 import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-job-slideover.component';
 import { JobFormComponent } from './forms/job-form/job-form.component';
+import { EditJobComponent } from './slide-overs/edit-job/edit-job.component';
+import { EditJobFormComponent } from './forms/edit-job-form/edit-job-form.component';
 import { TextComponent } from './form-builder/text/text.component';
 import { EmailComponent } from './form-builder/email/email.component';
 import { PhoneComponent } from './form-builder/phone/phone.component';
@@ -96,6 +98,8 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     JobTabsComponent,
     NewJobSlideoverComponent,
     JobFormComponent,
+    EditJobComponent,
+    EditJobFormComponent,
     TextComponent,
     EmailComponent,
     PhoneComponent,
