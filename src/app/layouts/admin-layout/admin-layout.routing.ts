@@ -10,6 +10,7 @@ import { PlanComponent } from '../../pages/plan/plan.component';
 import { WorkersComponent } from '../../pages/workers/workers.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
+import { FormTestComponent } from '../../pages/form-test/form-test.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -30,5 +31,6 @@ export const AdminLayoutRoutes: Routes = [
         loadChildren: '../settings-layout/settings-layout.module#SettingsLayoutModule'
       }
     ]
-  }
+  },
+  { path: 'formtest', component: FormTestComponent }, // THIS FORM IS ONLY FOR TESTING OUT FORM COMPONENTS. NEEDS TO BE DELETED
 ];

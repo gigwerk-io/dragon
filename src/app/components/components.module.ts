@@ -40,6 +40,18 @@ import { NewJobSlideoverComponent } from './slide-overs/new-job-slideover/new-jo
 import { JobFormComponent } from './forms/job-form/job-form.component';
 import { EditJobComponent } from './slide-overs/edit-job/edit-job.component';
 import { EditJobFormComponent } from './forms/edit-job-form/edit-job-form.component';
+import { TextComponent } from './form-builder/text/text.component';
+import { EmailComponent } from './form-builder/email/email.component';
+import { PhoneComponent } from './form-builder/phone/phone.component';
+import { NumberComponent } from './form-builder/number/number.component';
+import { DateComponent } from './form-builder/date/date.component';
+import { DateTimeComponent } from './form-builder/date-time/date-time.component';
+import { TextareaComponent } from './form-builder/textarea/textarea.component';
+import { ParagraphComponent } from './form-builder/paragraph/paragraph.component';
+import { CheckboxComponent } from './form-builder/checkbox/checkbox.component';
+import { RadioComponent } from './form-builder/radio/radio.component';
+import { SelectComponent } from './form-builder/select/select.component';
+import { SubmitComponent } from './form-builder/submit/submit.component';
 
 @NgModule({
   imports: [
@@ -48,7 +60,8 @@ import { EditJobFormComponent } from './forms/edit-job-form/edit-job-form.compon
     FormsModule,
     ReactiveFormsModule,
     NgxStripeModule,
-    IonicModule
+    IonicModule,
+
   ],
   declarations: [
     SidebarComponent,
@@ -87,36 +100,65 @@ import { EditJobFormComponent } from './forms/edit-job-form/edit-job-form.compon
     JobFormComponent,
     EditJobComponent,
     EditJobFormComponent,
+    TextComponent,
+    EmailComponent,
+    PhoneComponent,
+    NumberComponent,
+    DateComponent,
+    DateTimeComponent,
+    TextareaComponent,
+    ParagraphComponent,
+    CheckboxComponent,
+    RadioComponent,
+    SelectComponent,
+    SubmitComponent,
   ],
-    exports: [
-        FooterComponent,
-        SidebarComponent,
-        TimeAgoPipe,
-        BarChartComponent,
-        LineChartComponent,
-        NotificationDropdownComponent,
-        UserDropdownComponent,
-        LeaderboardListComponent,
-        ArrowPercentageComponent,
-        BusinessLocationFormComponent,
-        BusinessInfoFormComponent,
-        StatsCardComponent,
-        PaginationComponent,
-        ApplicantListComponent,
-        StarRatingComponent,
-        JobsListComponent,
-        PaymentMethodModalComponent,
-        WorkersGridComponent,
-        NotificationsListComponent,
-        StackedNavComponent,
-        ProfileSlideOverComponent,
-        SettingsMenuComponent,
-        BusinessIntegrationsFormComponent,
-        GoogleIntegrationFormComponent,
-        QuickbooksIntegrationFormComponent,
-        ApplicantTabsComponent,
-        JobTabsComponent,
-    ]
+  exports: [
+    FooterComponent,
+    SidebarComponent,
+    TimeAgoPipe,
+    BarChartComponent,
+    LineChartComponent,
+    NotificationDropdownComponent,
+    UserDropdownComponent,
+    LeaderboardListComponent,
+    ArrowPercentageComponent,
+    BusinessLocationFormComponent,
+    BusinessInfoFormComponent,
+    StatsCardComponent,
+    PaginationComponent,
+    ApplicantListComponent,
+    StarRatingComponent,
+    JobsListComponent,
+    PaymentMethodModalComponent,
+    TextComponent,
+    NotificationsListComponent,
+    EmailComponent,
+    PhoneComponent,
+    NumberComponent,
+    DateComponent,
+    DateTimeComponent,
+    TextareaComponent,
+    ParagraphComponent,
+    CheckboxComponent,
+    RadioComponent,
+    SelectComponent,
+    SubmitComponent,
+    StackedNavComponent,
+    MobileMenuComponent,
+    ProfileSlideOverComponent,
+    SettingsMenuComponent,
+    BusinessIntegrationsFormComponent,
+    ConnectGoogleButtonComponent,
+    GoogleIntegrationFormComponent,
+    QuickbooksIntegrationFormComponent,
+    ConnectQboButtonComponent,
+    ApplicantTabsComponent,
+    JobTabsComponent,
+    NewJobSlideoverComponent,
+    JobFormComponent,
+    WorkersGridComponent,
+  ]
 })
 export class ComponentsModule {
 }

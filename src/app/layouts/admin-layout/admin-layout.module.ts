@@ -20,6 +20,8 @@ import { SubscriptionComponent } from '../../pages/subscription/subscription.com
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { GuidedTourModule } from 'ngx-guided-tour';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
+import { FormTestComponent } from '../../pages/form-test/form-test.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
 import { WorkersComponent } from 'src/app/pages/workers/workers.component';
 
@@ -36,6 +38,8 @@ import { WorkersComponent } from 'src/app/pages/workers/workers.component';
     ReactiveFormsModule,
     IonicModule,
     GuidedTourModule,
+    DragDropModule
+
   ],
   declarations: [
     DashboardComponent,
@@ -47,7 +51,9 @@ import { WorkersComponent } from 'src/app/pages/workers/workers.component';
     PlanComponent,
     WorkersComponent,
     NotificationsComponent,
-    SettingsLayoutComponent
+    SettingsLayoutComponent,
+    NotificationsComponent,
+    FormTestComponent
   ]
 })
 

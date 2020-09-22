@@ -20,10 +20,12 @@ import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { SentryErrorHandler } from './utils/handlers/SentryErrorHandler';
 import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
 import {NotyfModule} from 'ng-notyf';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   imports: [
     BrowserAnimationsModule,
+    DragDropModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
