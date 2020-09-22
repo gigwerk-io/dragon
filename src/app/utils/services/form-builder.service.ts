@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import {SettingsService} from './settings.service';
+import {OnboardingForm} from '../interfaces/models/OnboardingForm';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class FormBuilderService {
   componentOptions = [];
 
 
-  constructor() { }
+  constructor(private settingsService: SettingsService) { }
 
   deleteComponentFromArray = new Subject<number>();
   gatherComponentsOptions = new Subject<string>();
@@ -28,9 +30,14 @@ export class FormBuilderService {
     }
     tempArr.push(formHeader);
     this.componentOptions = tempArr;
+    const form: OnboardingForm = {
+      formHeader,
+      formComponents: tempArr
+    };
 
-    console.log('This is what would be sent to the backend');
-    console.log(this.componentOptions);
+    this.settingsService.updateApplicantForm(form).then(res => {
+      console.log(res);
+    }).catch(err => console.log(err));
 
     this.componentOptions = [];
 

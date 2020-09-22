@@ -9,6 +9,7 @@ import {UpdateLocationRequest} from '../interfaces/requests/settings/UpdateLocat
 import {UpdateBusinessRequest} from '../interfaces/requests/settings/UpdateBusinessRequest';
 import {BusinessIntegration} from '../interfaces/models/BusinessIntegration';
 import {UpdateIntegrationsRequest} from '../interfaces/requests/settings/UpdateIntegrationsRequest';
+import {OnboardingForm} from '../interfaces/models/OnboardingForm';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,15 @@ export class SettingsService extends RESTService {
   updateIntegrations(body: UpdateIntegrationsRequest) {
     return this.makeHttpRequest(`integrations`, `PATCH`, body)
       .then((res: Observable<Response<null>>) => res.toPromise());
+  }
+
+  updateApplicantForm(body: OnboardingForm) {
+    return this.makeHttpRequest(`form`, `PATCH`, body)
+      .then((res) => res.toPromise());
+  }
+
+  getApplicantForm(): Promise<Response<OnboardingForm>> {
+    return this.makeHttpRequest<Response<OnboardingForm>>(`form`, `GET`)
+      .then((res) => res.toPromise());
   }
 }
