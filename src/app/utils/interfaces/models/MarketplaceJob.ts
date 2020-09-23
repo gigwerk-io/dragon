@@ -22,6 +22,6 @@ export interface MarketplaceJob {
   intensity?: string;
   customer: User;
   location: MarketplaceLocation;
-  proposals: MarketplaceProposal;
+  proposals: MarketplaceProposal[];
   client_name?: string;
 }
