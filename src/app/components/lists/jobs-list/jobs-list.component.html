@@ -3,63 +3,81 @@
     <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="w-full" alt="no results">
   </div>
   <ul class="space-y-4 mb-8">
-    <ng-container *ngIf="jobs; else skeletonApplicants">
-    <li class="bg-white shadow-lg rounded-lg sm:rounded-md"
+    <ng-container *ngIf="jobs; else skeletonJob">
+      <li
         *ngFor="let job of jobs | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
-      <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out cursor-pointer">
-        <div class="flex items-center px-4 py-4 sm:px-6" (click)="displayJob(i)">
-          <div class="min-w-0 flex-1 flex items-center">
-            <div class="flex-shrink-0">
-              <img class="h-12 w-12 rounded-full"
-                   [src]="job.customer.profile.image"
-                   alt="image">
-            </div>
-            <div class="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
-              <div>
-                <div class="text-sm leading-5 font-medium text-primary-dominant truncate">{{job.customer.first_name}} {{job.customer.last_name}}</div>
-                <div class="flex mt-2 items-center text-sm leading-5 text-gray-500 md:hidden">
-                  <app-star-rating *ngIf="job.average_rating" ></app-star-rating>
-                  <span>N/A</span>
-                </div>
-                <div class="mt-2 flex items-center text-sm leading-5 text-gray-500">
-                  <div class="sm:flex">
-                    <div class="flex items-center text-xs leading-5 text-gray-500">
-                      <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
-                      </svg>
-                      {{job.customer.email}}
-                    </div>
-                  </div>
-
+        <div (click)="displayJob(i)"
+             class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out bg-white rounded-md shadow-md cursor-pointer">
+          <div class="px-4 py-4 sm:px-6">
+            <div class="flex items-center justify-between">
+              <div class="text-sm leading-5 font-medium text-primary-dominant truncate">
+                {{job.client_name}}
+                <div class="text-xs leading-3 font-medium text-gray-500 truncate mt-1">
+                  {{job.description}}
                 </div>
               </div>
-
               <div class="hidden md:block">
-                <div>
-                  <div class="text-sm font-medium leading-5  text-primary-dominant">
-                    Price
-                  </div>
-                  <div class="flex mt-2 items-center text-sm leading-5 text-gray-500">
-                    <app-star-rating *ngIf="job.average_rating"></app-star-rating>
-                    <span>${{job.price}}</span>
-                  </div>
+
+              </div>
+              <div class="ml-2 flex-shrink-0 flex mt-4">
+                <div class="flex overflow-hidden">
+                  <img class="inline-block h-8 w-8 rounded-full text-white shadow-solid"
+                       *ngFor="let proposal of job.proposals"
+                       [src]="proposal.user.profile.image"
+                       [alt]="proposal.user.first_name + ' ' + proposal.user.last_name">
                 </div>
               </div>
             </div>
-          </div>
-          <div>
-            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clip-rule="evenodd"/>
-            </svg>
+            <div class="mt-2 sm:flex sm:justify-between">
+              <div class="sm:flex">
+
+                <div class="flex items-center text-xs leading-5 text-gray-500">
+                  <svg viewBox="0 0 20 20" fill="currentColor"
+                       class="currency-dollar w-5 h-5 flex-shrink-0 mr-1.5 text-gray-400">
+                    <path
+                      d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                    <path fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z"
+                          clip-rule="evenodd"/>
+                  </svg>
+                  {{job.price | currency}}
+                </div>
+                <div class="md:ml-4 flex items-center text-xs leading-5 text-gray-500 mt-1 md:mt-0">
+                  <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                          clip-rule="evenodd"/>
+                  </svg>
+                  {{job.location.city}}, {{job.location.state}}
+                </div>
+                <div class="md:ml-4 flex items-center text-xs leading-5 text-gray-500 mt-1 md:mt-0">
+                  <svg class="mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  {{job.views}}
+                </div>
+              </div>
+              <div class="mt-1 flex items-center text-xs leading-5 text-gray-500 md:mt-0">
+                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd"
+                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                        clip-rule="evenodd"/>
+                </svg>
+                <p>
+                  Closing on
+                  <time>{{job.complete_before | date: 'shortDate'}}</time>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
+      </li>
     </ng-container>
-    <ng-template #skeletonApplicants>
+    <ng-template #skeletonJob>
       <ion-skeleton-text [animated]="true"></ion-skeleton-text>
     </ng-template>
   </ul>
@@ -73,171 +91,3 @@
 </div>
 
 <app-edit-job [jobID]="selectedJob"></app-edit-job>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<div class="flex flex-col">
-  <div class="mx-auto mt-2 flex-shrink-0 mb-5">
-
-    <div>
-      <label for="email" class="sr-only">Search
-      </label>
-      <div class="relative rounded-md shadow-sm">
-        <input id="email" class="form-input block w-full sm:text-sm sm:leading-5" placeholder="Search"
-          (input)="filterTable($event.target.value)" />
-      </div>
-    </div>
-  </div>
-  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-      <table class="min-w-full">
-        <thead>
-          <tr>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Name
-            </th>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              intensity
-            </th>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Status
-            </th>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              price
-            </th>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Due Date
-            </th>
-            <th
-              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-              Views
-            </th>
-            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-          </tr>
-        </thead>
-        <ng-container *ngIf="jobs; else skeletonJobs">
-          <tbody class="bg-white">
-            <tr
-              *ngFor="let job of jobs | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <a [routerLink]="['/profile', job.customer.id]">
-                  <div class="flex items-center">
-                    <div class="flex-shrink-0 h-10 w-10">
-                      <img class="h-10 w-10 rounded-full" [src]="job.customer.profile.image" alt="worker image" />
-                    </div>
-                    <div class="ml-4">
-                      <div class="text-sm leading-5 font-medium text-gray-900">
-                        {{job.customer.first_name}}
-                        {{job.customer.last_name}}</div>
-                      <div class="text-sm leading-5 text-gray-500">{{job.customer.email}}</div>
-                    </div>
-                  </div>
-                </a>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                  *ngIf="job.intensity === 'Hard'">
-                  Hard
-                </span>
-                <span
-                  class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"
-                  *ngIf="job.intensity === 'Medium'">
-                  Medium
-                </span>
-                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                  *ngIf="job.intensity === 'easy'">
-                  Easy
-                </span>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                {{job.status}}
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                {{job.price | currency}}
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <div class="text-sm leading-5 text-gray-900">
-                  {{job.complete_before | date:'fullDate'}}
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <div class="text-sm leading-5 text-gray-900">
-                  {{job.views}}
-                </div>
-              </td>
-              <td
-                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                <a [routerLink]="['/job', job.id]" class="text-indigo-600 hover:text-indigo-900">View</a>
-              </td>
-            </tr>
-          </tbody>
-        </ng-container>
-        <ng-template #skeletonJobs>
-          <tbody class="bg-white">
-            <tr *ngFor="let job of [1, 2, 3, 4, 5]">
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <div class="flex items-center">
-                  <div class="flex-shrink-0 h-10 w-10">
-                    <ion-skeleton-text class="h-10 w-10 rounded-full"></ion-skeleton-text>
-                  </div>
-                  <div class="ml-4">
-                    <div class="text-sm leading-5 font-medium text-gray-900">
-                      <ion-skeleton-text class="w-20"></ion-skeleton-text>
-                    </div>
-                    <div class="text-sm leading-5 text-gray-500">
-                      <ion-skeleton-text class="w-40"></ion-skeleton-text>
-                    </div>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <ion-skeleton-text></ion-skeleton-text>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <ion-skeleton-text></ion-skeleton-text>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <ion-skeleton-text></ion-skeleton-text>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <ion-skeleton-text></ion-skeleton-text>
-              </td>
-              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                <ion-skeleton-text></ion-skeleton-text>
-              </td>
-              <td
-                class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-              </td>
-            </tr>
-          </tbody>
-        </ng-template>
-      </table>
-      <ng-container *ngIf="jobs">
-        <app-pagination (page)="paginationService.setActivePage($event)" [activePage]="paginationService.activePage"
-          [maxPage]="paginationService.maxPage" [maxPages]="paginationService.maxPages"
-          [pagination]="paginationService.pagination" windowSize="5" [results]="jobs.length">
-        </app-pagination>
-      </ng-container>
-    </div>
-  </div>
-</div>
--->
