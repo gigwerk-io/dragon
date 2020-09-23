@@ -21,7 +21,7 @@ jobs:
       - name: Webdriver Update
         run: ./node_modules/protractor/bin/webdriver-manager update
       - name: Webdriver Start
-        run: node_modules\protractor\bin\webdriver-manager start
+        run: ./node_modules/protractor/bin/webdriver-manager start
       - name: E2E
         run: npm run e2e
   deploy-dev:
