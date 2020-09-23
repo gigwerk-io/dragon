@@ -12,7 +12,7 @@ export class FormTestComponent implements OnInit, OnDestroy {
 
   @ViewChild('componentContainer', {static: false}) cmptContainer;
 
-  deleteComponentSubscription: Subscription;
+  // deleteComponentSubscription: Subscription;
 
   masterFields = [
     'text',
@@ -32,7 +32,7 @@ export class FormTestComponent implements OnInit, OnDestroy {
   formHeader = {
     formTitle: '',
     formDescription: ''
-  }
+  };
 
 
   fields = [...this.masterFields];
@@ -62,13 +62,13 @@ export class FormTestComponent implements OnInit, OnDestroy {
   }
 
   submitForm() {
-    this.components = [...this.components]
+    this.components = [...this.components];
     this.formBuilderService.gatherComponentsOptions.next('submit form');
-    this.formBuilderService.organizeComponents(this.components, this.formHeader)
+    this.formBuilderService.organizeComponents(this.components, this.formHeader);
   }
 
   ngOnDestroy() {
-    this.deleteComponentSubscription.unsubscribe();
+    // this.deleteComponentSubscription.unsubscribe();
   }
 
 
