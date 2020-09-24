@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class SelectComponent implements OnInit, OnDestroy, OnChanges {
 
   // tslint:disable-next-line: no-input-rename
-  @Input('index') index: number;
+  @Input('index') index = 1;
 
   submitFormSubscription: Subscription;
 
@@ -26,7 +26,7 @@ export class SelectComponent implements OnInit, OnDestroy, OnChanges {
       {text: 'Option 2', value: 'Option 2'},
       {text: 'Option 3', value: 'Option 3'}
     ],
-    index: this.index
+    index : this.index
   };
 
   selectValue = '';
@@ -56,6 +56,14 @@ export class SelectComponent implements OnInit, OnDestroy, OnChanges {
       this.selectObject.selectArr.push({text: this.newSelectText, value: this.newSelectValue});
       this.newSelectText = '';
       this.newSelectValue = '';
+    }
+  }
+
+  updateValue(event: string, index: number, type: string) {
+    if (type === 'text') {
+      this.selectObject.selectArr[index].text = event;
+    } else {
+      this.selectObject.selectArr[index].value = event;
     }
   }
 

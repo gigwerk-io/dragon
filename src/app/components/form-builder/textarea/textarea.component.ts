@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class TextareaComponent implements OnInit, OnDestroy, OnChanges {
 
   // tslint:disable-next-line: no-input-rename
-  @Input('index') index: number;
+  @Input('index') index = 1;
 
   submitFormSubscription: Subscription;
   transition = false;

@@ -10,14 +10,14 @@ import { Subscription } from 'rxjs';
 export class ParagraphComponent implements OnInit, OnDestroy, OnChanges {
 
   // tslint:disable-next-line: no-input-rename
-  @Input('index') index: number;
+  @Input('index') index = 1;
 
   submitFormSubscription: Subscription;
 
   transition = false;
   show = true;
   paragraphObject = {
-    requireToggle: false,
+    required: false,
     placeholder: 'Type your text to display here',
     label: 'Paragraph',
     name: `paragraph-${Date.now()}`,

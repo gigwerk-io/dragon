@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 export class RadioComponent implements OnInit, OnDestroy, OnChanges {
 
   // tslint:disable-next-line: no-input-rename
-  @Input('index') index: number;
+  @Input('index') index = 1;
 
   submitFormSubscription: Subscription;
 
@@ -55,6 +55,14 @@ export class RadioComponent implements OnInit, OnDestroy, OnChanges {
       this.radioObject.radioArr.push({text: this.newOptionText, value: this.newOptionValue});
       this.newOptionText = '';
       this.newOptionValue = '';
+    }
+  }
+
+  updateValue(event: string, index: number, type: string) {
+    if (type === 'text') {
+      this.radioObject.radioArr[index].text = event;
+    } else {
+      this.radioObject.radioArr[index].value = event;
     }
   }
 

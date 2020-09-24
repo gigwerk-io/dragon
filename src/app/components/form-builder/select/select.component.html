@@ -7,7 +7,7 @@
       <div class="flex-initial w-1/3 px-4 py-2 m-2">
           <div>
             <label for="location" class="block text-sm leading-5 font-medium text-gray-700">{{selectObject.label}} <span *ngIf="selectObject.requireToggle" class="text-red-500">*</span></label>
-            <select (change)="selectChanged($event)" id="location" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
+            <select  id="location" class="mt-1 form-select block w-full pl-3 pr-10 py-2 text-base leading-6 border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5">
               <option [selected]="i === 0" *ngFor="let option of selectObject.selectArr; let i = index" value="{{option.value}}" >{{option.text}}</option>
               
             </select>
@@ -37,7 +37,7 @@
                   
                    <!-- FORM -->
 
-                <div class="mt-10 sm:mt-0" style="width: 600px;">
+                <div class="mt-10 sm:mt-0" style="width: 600px">
                   <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="mt-5 md:mt-0 md:col-span-2">
                         <div class="shadow overflow-hidden sm:rounded-md">
@@ -64,11 +64,11 @@
                               <div class="col-span-6 sm:col-span-6 " *ngFor="let option of selectObject.selectArr; let i = index">
                                 <div class="flex ">
                                     <div class="flex-1 mr-4 ">
-                                    <input type="text" value="{{option.text}}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                    <input type="text" value="{{option.text}}" (input)="updateValue($event.target.value, i, 'text')" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
 
                                     </div>
                                     <div class="flex-1 mr-4 ">
-                                    <input type="text" value="{{option.value}}" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                    <input type="text" value="{{option.value}}" (input)="updateValue($event.target.value, i, 'value')" class="mt-1 form-input block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5">
 
                                     </div>
                                     <div class="flex-1  ">
