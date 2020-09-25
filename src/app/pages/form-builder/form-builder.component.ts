@@ -5,11 +5,11 @@ import { OnboardingFormHeader, OnboardingFormComponent } from 'src/app/utils/int
 import { SettingsService } from 'src/app/utils/services/settings.service';
 
 @Component({
-  selector: 'app-form-test',
-  templateUrl: './form-test.component.html',
-  styleUrls: ['./form-test.component.css']
+  selector: 'app-form-builder',
+  templateUrl: './form-builder.component.html',
+  styleUrls: ['./form-builder.component.css']
 })
-export class FormTestComponent implements OnInit {
+export class FormBuilderComponent implements OnInit {
 
   @ViewChild('componentContainer', { static: false }) cmptContainer;
 
@@ -62,22 +62,20 @@ export class FormTestComponent implements OnInit {
         event.container.data,
         event.previousIndex,
         event.currentIndex);
-
-      console.log('components', this.components)
       this.fields = [...this.masterFields];
     }
   }
 
   submitForm() {
     // this.components = [...this.components];
-    const componentBody = this.components.map(el => el.componentName)
+    const componentBody = this.components.map(el => el.componentName);
     this.formBuilderService.gatherComponentsOptions.next('submit form');
     this.formBuilderService.organizeComponents(componentBody, this.formHeader);
   }
 
   getFormFromService() {
     if (this.formBuilderService.form && this.formBuilderService.formHeader) {
-      this.setFormValues(this.formBuilderService.form, this.formBuilderService.formHeader)
+      this.setFormValues(this.formBuilderService.form, this.formBuilderService.formHeader);
     } else {
       this.settingsService.getApplicantForm().then(res => {
         this.setFormValues(res.data.formComponents, res.data.formHeader);

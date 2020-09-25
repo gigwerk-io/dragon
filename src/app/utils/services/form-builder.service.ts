@@ -29,7 +29,6 @@ export class FormBuilderService extends RESTService {
     if (this.form === undefined || this.formHeader === undefined) {
       this.settingsService.getApplicantForm().then((res: Response<OnboardingForm>) => {
         this.form = res.data.formComponents;
-        console.log('form', this.form)
         this.formHeader = res.data.formHeader;
       });
     }

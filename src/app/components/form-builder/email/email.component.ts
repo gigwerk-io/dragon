@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./email.component.css']
 })
 export class EmailComponent implements OnInit, OnDestroy, OnChanges {
- 
+
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
@@ -42,7 +42,7 @@ export class EmailComponent implements OnInit, OnDestroy, OnChanges {
     this.emailObject = this.formBuilderService.setOptions(this.settings, this.emailObject);
     this.emailObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.emailObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.emailObject));
   }
 
   deleteComponentFromArray() {

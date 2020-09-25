@@ -21,7 +21,7 @@ export class FormsComponent implements OnInit {
 
 
   editForm() {
-    this.router.navigate(['/formtest']);
+    this.router.navigate(['/form-builder']);
   }
 
 }

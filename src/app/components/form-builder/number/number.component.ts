@@ -11,14 +11,14 @@ export class NumberComponent implements OnInit, OnDestroy, OnChanges {
 
 
 
-   // tslint:disable-next-line: no-input-rename
-   @Input('index') index = 1;
+  // tslint:disable-next-line: no-input-rename
+  @Input('index') index = 1;
 
-   // tslint:disable-next-line: no-input-rename
-   @Input('settings') settings;
- 
-   // tslint:disable-next-line: no-input-rename
-   @Input('mode') mode: string;
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
 
   submitFormSubscription: Subscription;
 
@@ -44,7 +44,7 @@ export class NumberComponent implements OnInit, OnDestroy, OnChanges {
     this.numberObject = this.formBuilderService.setOptions(this.settings, this.numberObject);
     this.numberObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.numberObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.numberObject));
   }
 
   deleteComponentFromArray() {

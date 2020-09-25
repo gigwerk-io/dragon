@@ -9,8 +9,8 @@ import { SubscriptionComponent } from '../../pages/subscription/subscription.com
 import { PlanComponent } from '../../pages/plan/plan.component';
 import { WorkersComponent } from '../../pages/workers/workers.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-import {SettingsLayoutComponent} from '../settings-layout/settings-layout.component';
-import { FormTestComponent } from '../../pages/form-test/form-test.component';
+import { SettingsLayoutComponent } from '../settings-layout/settings-layout.component';
+import { FormBuilderComponent } from '../../pages/form-builder/form-builder.component';
 
 export const AdminLayoutRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -32,5 +32,5 @@ export const AdminLayoutRoutes: Routes = [
       }
     ]
   },
-  { path: 'formtest', component: FormTestComponent }, // THIS FORM IS ONLY FOR TESTING OUT FORM COMPONENTS. NEEDS TO BE DELETED
+  { path: 'form-builder', component: FormBuilderComponent }, // THIS FORM IS ONLY FOR TESTING OUT FORM COMPONENTS. NEEDS TO BE DELETED
 ];
