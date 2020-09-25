@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import {SettingsService} from './settings.service';
-import {OnboardingForm} from '../interfaces/models/OnboardingForm';
+import {OnboardingForm, OnboardingFormComponent, OnboardingFormHeader} from '../interfaces/models/OnboardingForm';
 import { NotyfService } from 'ng-notyf';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { RESTService } from './rest.service';
@@ -15,6 +15,8 @@ import { Storage } from '@ionic/storage';
 export class FormBuilderService extends RESTService {
 
   componentOptions = [];
+  form: OnboardingFormComponent[];
+  formHeader: OnboardingFormHeader;
 
 
   constructor(
@@ -24,6 +26,14 @@ export class FormBuilderService extends RESTService {
     public storage: Storage
     ) {
       super(http, storage);
+      
+
+      if (this.form === undefined || this.formHeader  === undefined) {
+        this.getForm().then((res: Response<OnboardingForm>) => {
+            this.form = res.data.formComponents;
+            this.formHeader = res.data.formHeader;
+        });
+      }
      }
 
   deleteComponentFromArray = new Subject<number>();
@@ -52,22 +62,23 @@ export class FormBuilderService extends RESTService {
       };
 
       this.settingsService.updateApplicantForm(form)
-      .then((res: Response<null>) => this.notyfService.success(res.message))
+      .then((res: Response<null>) => {
+        this.notyfService.success(res.message);
+        this.formHeader = form.formHeader;
+        this.form = form.formComponents;
+        this.componentOptions = [];
+
+      })
       .catch(err => this.notyfService.error('Error while submitting form'));
 
-      this.componentOptions = [];
     }
 
   }
 
-  getForm() {
-    return this.makeHttpRequest('form', 'GET').then(res => res.toPromise());
+  getForm(): Promise<Response<OnboardingForm>> {
+    return this.makeHttpRequest<Response<OnboardingForm>>('form', 'GET')
+      .then((res) => res.toPromise());
   }
-
-  // getUnreadNotifications(): Promise<Response<Notification[]>> {
-  //   return this.makeHttpRequest<Response<Notification[]>>(`notifications/new`, 'GET')
-  //     .then((res) => res.toPromise());
-  // }
 
 
 

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
-import { Subscription } from 'rxjs';
+import {OnboardingFormHeader, OnboardingFormComponent } from 'src/app/utils/interfaces/models/OnboardingForm';
+import { SettingsService } from 'src/app/utils/services/settings.service';
 
 @Component({
   selector: 'app-form-test',
@@ -13,6 +14,7 @@ export class FormTestComponent implements OnInit, OnDestroy {
   @ViewChild('componentContainer', {static: false}) cmptContainer;
 
   // deleteComponentSubscription: Subscription;
+  form: OnboardingFormComponent[];
 
   masterFields = [
     'text',
@@ -27,9 +29,9 @@ export class FormTestComponent implements OnInit, OnDestroy {
     'radio',
     'select',
     'submit'
-  ];  
+  ];
 
-  formHeader = {
+  formHeader: OnboardingFormHeader = {
     formTitle: '',
     formDescription: ''
   };
@@ -41,11 +43,14 @@ export class FormTestComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private formBuilderService: FormBuilderService
+    private formBuilderService: FormBuilderService,
   ) { }
 
   ngOnInit() {
     this.formBuilderService.deleteComponentFromArray.subscribe(index => this.components.splice(index, 1));
+
+    this.getFormFromService();
+
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -65,6 +70,24 @@ export class FormTestComponent implements OnInit, OnDestroy {
     this.formBuilderService.gatherComponentsOptions.next('submit form');
     this.formBuilderService.organizeComponents(this.components, this.formHeader);
   }
+
+  getFormFromService() {
+    if (this.formBuilderService.form && this.formBuilderService.formHeader) {
+      this.setFormValues(this.formBuilderService.form, this.formBuilderService.formHeader)
+    } else {
+     this.formBuilderService.getForm().then(res => {
+      this.setFormValues(res.data.formComponents, res.data.formHeader);
+     });
+    }
+  }
+
+  setFormValues(form: OnboardingFormComponent[], formHeader: OnboardingFormHeader) {
+    this.formHeader.formTitle = formHeader.formTitle;
+    this.formHeader.formDescription = formHeader.formDescription;
+    this.form = form;
+    this.components = this.form.map(el => el.component);
+  }
+
 
   ngOnDestroy() {
     // this.deleteComponentSubscription.unsubscribe();

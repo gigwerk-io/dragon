@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
@@ -7,31 +7,24 @@ import { FormBuilderService } from 'src/app/utils/services/form-builder.service'
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
-export class FormsComponent implements OnInit {
+export class FormsComponent implements OnInit, OnChanges {
 
-  form;
-  formHeader;
-  formComponentArr: string[];
 
   constructor(
-    private formBuilderService: FormBuilderService,
+    public formBuilderService: FormBuilderService,
     private router: Router
   ) { }
 
-  ngOnInit() {
-    this.formBuilderService.getForm().then(res => {
-      this.form = res.data.formComponents;
-      this.formHeader = res.data.formHeader;
-
-
-      console.log('form', this.form);
-      console.log('formHeader', this.formHeader)
-    });
+  ngOnChanges() {
+    console.log('changes happened')
   }
 
+  ngOnInit() {
+  }
+
+
   editForm() {
-    console.log('click');
-    this.router.navigate(['/formtest']); // Bind the url in Array
+    this.router.navigate(['/formtest']);
   }
 
 }

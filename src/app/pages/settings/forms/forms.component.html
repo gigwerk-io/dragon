@@ -1,8 +1,8 @@
-<div class="col-span-3 bg-white py-3" *ngIf="formHeader && form">
+<div class="col-span-3 bg-white py-3" *ngIf="formBuilderService.formHeader && formBuilderService.form">
   <div class="w-full mx-auto my-5">
     <label for="formHeader.formTitle" class="sr-only">FormBuilder Title</label>
     <div class="relative rounded-md shadow-sm">
-      <h2 class="block w-full ml-3">{{ formHeader.formTitle }}</h2>
+      <h2 class="block w-full ml-3">{{ formBuilderService.formHeader.formTitle }}</h2>
       <!-- <input id="formHeader.formTitle" disabled class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formHeader.formTitle'> -->
     </div>
   </div>
@@ -10,14 +10,14 @@
     <label for="formTitle" class="sr-only">FormBuilder Title</label>
 
     <div class="relative rounded-md shadow-sm">
-      <h4 class="block w-full ml-3">{{ formHeader.formDescription }}</h4>
+      <h4 class="block w-full ml-3">{{ formBuilderService.formHeader.formDescription }}</h4>
 
       <!-- <input id="formHeader.formTitle" class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formHeader.formDescription'> -->
     </div>
   </div>
   <div class="">
     <div class="">
-      <div class="example-box" *ngFor="let item of form; let i = index">
+      <div class="example-box" *ngFor="let item of formBuilderService.form; let i = index">
         <app-text *ngIf="item.component === 'text'" [index]="i"></app-text>
         <app-email *ngIf="item.component === 'email'" [index]="i"></app-email>
         <app-phone *ngIf="item.component === 'phone'" [index]="i"></app-phone>
