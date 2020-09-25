@@ -27,14 +27,13 @@ export class FormTestComponent implements OnInit, OnDestroy {
     'radio',
     'select',
     'submit'
-  ];
+  ];  
 
   formHeader = {
     formTitle: '',
     formDescription: ''
   };
-
-
+  
   fields = [...this.masterFields];
 
   components = [

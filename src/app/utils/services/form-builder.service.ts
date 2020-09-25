@@ -4,19 +4,27 @@ import {SettingsService} from './settings.service';
 import {OnboardingForm} from '../interfaces/models/OnboardingForm';
 import { NotyfService } from 'ng-notyf';
 import { Response } from '../interfaces/responses/GenericResponse';
+import { RESTService } from './rest.service';
+import { HttpClient } from '@angular/common/http';
+import { Storage } from '@ionic/storage';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FormBuilderService {
+export class FormBuilderService extends RESTService {
 
   componentOptions = [];
 
 
   constructor(
     private settingsService: SettingsService,
-    private notyfService: NotyfService
-    ) { }
+    private notyfService: NotyfService,
+    public http: HttpClient,
+    public storage: Storage
+    ) {
+      super(http, storage);
+     }
 
   deleteComponentFromArray = new Subject<number>();
   gatherComponentsOptions = new Subject<string>();
@@ -51,6 +59,15 @@ export class FormBuilderService {
     }
 
   }
+
+  getForm() {
+    return this.makeHttpRequest('form', 'GET').then(res => res.toPromise());
+  }
+
+  // getUnreadNotifications(): Promise<Response<Notification[]>> {
+  //   return this.makeHttpRequest<Response<Notification[]>>(`notifications/new`, 'GET')
+  //     .then((res) => res.toPromise());
+  // }
 
 
 
