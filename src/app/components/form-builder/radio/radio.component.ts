@@ -12,6 +12,12 @@ export class RadioComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
 
   transition = false;
@@ -22,10 +28,10 @@ export class RadioComponent implements OnInit, OnDestroy, OnChanges {
     label: 'Radio',
     name: `radio-${Date.now()}`,
     radioArr: [
-      {text: 'Option 1', value: 'option 1'},
-      {text: 'Option 2', value: 'option 2'},
-      {text: 'Option 3', value: 'option 3'},
-      {text: 'Option 4', value: 'option 4'},
+      { text: 'Option 1', value: 'option 1' },
+      { text: 'Option 2', value: 'option 2' },
+      { text: 'Option 3', value: 'option 3' },
+      { text: 'Option 4', value: 'option 4' },
     ],
     index: this.index
   };
@@ -41,9 +47,10 @@ export class RadioComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.radioObject = this.formBuilderService.setOptions(this.settings, this.radioObject);
     this.radioObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.radioObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.radioObject));
   }
 
   deleteComponentFromArray() {
@@ -52,7 +59,7 @@ export class RadioComponent implements OnInit, OnDestroy, OnChanges {
 
   addOption() {
     if (this.newOptionText.length && this.newOptionValue.length) {
-      this.radioObject.radioArr.push({text: this.newOptionText, value: this.newOptionValue});
+      this.radioObject.radioArr.push({ text: this.newOptionText, value: this.newOptionValue });
       this.newOptionText = '';
       this.newOptionValue = '';
     }

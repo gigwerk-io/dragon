@@ -12,6 +12,12 @@ export class TextareaComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
   transition = false;
   show = true;
@@ -33,9 +39,10 @@ export class TextareaComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.textAreaObject = this.formBuilderService.setOptions(this.settings, this.textAreaObject);
     this.textAreaObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.textAreaObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.textAreaObject));
   }
 
   deleteComponentFromArray() {

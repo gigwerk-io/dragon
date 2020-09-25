@@ -12,6 +12,12 @@ export class CheckboxComponent implements OnInit, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
 
 
@@ -23,10 +29,10 @@ export class CheckboxComponent implements OnInit, OnChanges {
     label: 'Checkbox',
     name: `checkbox-${Date.now()}`,
     checkboxArr: [
-      {text: 'Option 1', value: 'option 1'},
-      {text: 'Option 2', value: 'option 2'},
-      {text: 'Option 3', value: 'option 3'},
-      {text: 'Option 4', value: 'option 4'},
+      { text: 'Option 1', value: 'option 1' },
+      { text: 'Option 2', value: 'option 2' },
+      { text: 'Option 3', value: 'option 3' },
+      { text: 'Option 4', value: 'option 4' },
     ],
     index: this.index
   };
@@ -42,9 +48,10 @@ export class CheckboxComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
+    this.checkboxObject = this.formBuilderService.setOptions(this.settings, this.checkboxObject);
     this.checkboxObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.checkboxObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.checkboxObject));
   }
 
   deleteComponentFromArray() {
@@ -53,7 +60,7 @@ export class CheckboxComponent implements OnInit, OnChanges {
 
   addOption() {
     if (this.newOptionText.length && this.newOptionValue.length) {
-      this.checkboxObject.checkboxArr.push({text: this.newOptionText, value: this.newOptionValue});
+      this.checkboxObject.checkboxArr.push({ text: this.newOptionText, value: this.newOptionValue });
       this.newOptionText = '';
       this.newOptionValue = '';
     }

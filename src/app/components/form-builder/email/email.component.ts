@@ -12,6 +12,12 @@ export class EmailComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
 
   transition = false;
@@ -33,9 +39,10 @@ export class EmailComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.emailObject = this.formBuilderService.setOptions(this.settings, this.emailObject);
     this.emailObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.emailObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.emailObject));
   }
 
   deleteComponentFromArray() {

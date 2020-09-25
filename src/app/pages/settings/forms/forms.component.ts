@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
 @Component({
   selector: 'app-forms',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormsComponent implements OnInit {
 
-  constructor() { }
+  acceptingApplicants = true;
+
+  constructor(
+    public formBuilderService: FormBuilderService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+
+  editForm() {
+    this.router.navigate(['/form-builder']);
   }
 
 }

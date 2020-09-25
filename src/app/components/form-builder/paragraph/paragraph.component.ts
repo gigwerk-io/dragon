@@ -12,6 +12,12 @@ export class ParagraphComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
 
   transition = false;
@@ -33,9 +39,10 @@ export class ParagraphComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.paragraphObject = this.formBuilderService.setOptions(this.settings, this.paragraphObject);
     this.paragraphObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.paragraphObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.paragraphObject));
   }
 
   deleteComponentFromArray() {

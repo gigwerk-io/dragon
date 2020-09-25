@@ -1,6 +1,5 @@
 <div class="grid grid-cols-4 mt-10">
   <div
-
     class="col-span-1"
     cdkDropList
     #fieldsList="cdkDropList"
@@ -11,7 +10,7 @@
   >
     <div *ngFor="let item of fields">
       <div
-        *ngIf="item === 'text'"
+        *ngIf="item.componentName === 'text'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -19,7 +18,7 @@
         Text
       </div>
       <div
-        *ngIf="item === 'email'"
+        *ngIf="item.componentName === 'email'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -27,7 +26,7 @@
         Email
       </div>
       <div
-        *ngIf="item === 'phone'"
+        *ngIf="item.componentName === 'phone'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -35,7 +34,7 @@
         Phone Number
       </div>
       <div
-        *ngIf="item === 'number'"
+        *ngIf="item.componentName === 'number'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -43,7 +42,7 @@
         Number
       </div>
       <div
-        *ngIf="item === 'date'"
+        *ngIf="item.componentName === 'date'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -51,7 +50,7 @@
         Date
       </div>
       <div
-        *ngIf="item === 'date-time'"
+        *ngIf="item.componentName === 'date-time'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -59,7 +58,7 @@
         Date-time
       </div>
       <div
-        *ngIf="item === 'textarea'"
+        *ngIf="item.componentName === 'textarea'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -67,7 +66,7 @@
         Textarea
       </div>
       <div
-        *ngIf="item === 'paragraph'"
+        *ngIf="item.componentName === 'paragraph'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -75,7 +74,7 @@
         Paragraph
       </div>
       <div
-        *ngIf="item === 'checkbox'"
+        *ngIf="item.componentName === 'checkbox'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -83,7 +82,7 @@
         Checkbox
       </div>
       <div
-        *ngIf="item === 'radio'"
+        *ngIf="item.componentName === 'radio'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
@@ -91,36 +90,41 @@
         Radio Button
       </div>
       <div
-        *ngIf="item === 'select'"
+        *ngIf="item.componentName === 'select'"
         class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
         cdkDrag
       >
         <i class="fas fa-mouse-pointer mr-2"></i>
         Select
       </div>
-      <!-- <div
-        *ngIf="item === 'submit'"
-        class="rounded bg-white hover:bg-gray-200 cursor-pointer mr-5 h-12 flex items-center pl-4 font-bold text-xl mb-4 border"
-        cdkDrag
-      >
-        <i class="fas fa-sign-in-alt mr-2"></i>
-        Submit
-      </div> -->
     </div>
   </div>
+
+  <!-- FORM CONTENT -->
+
   <div class="col-span-3 bg-white">
     <div class="w-2/3 mx-auto h-10 mt-5">
       <label for="formTitle" class="sr-only">FormBuilder Title</label>
       <div class="relative rounded-md shadow-sm">
-        <input id="formHeader.formTitle" class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formHeader.formTitle' placeholder="Enter the title of your form">
+        <input
+          id="formHeader.formTitle"
+          class="form-input block w-full sm:text-sm sm:leading-5"
+          [(ngModel)]="formHeader.formTitle"
+          placeholder="Enter the title of your form"
+        />
       </div>
     </div>
     <div class="w-2/3 mx-auto h-10 mt-5">
       <label for="formTitle" class="sr-only">FormBuilder Title</label>
       <div class="relative rounded-md shadow-sm">
-        <input id="formHeader.formTitle" class="form-input block w-full sm:text-sm sm:leading-5" [(ngModel)]='formHeader.formDescription' placeholder="Enter form description">
+        <input
+          id="formHeader.formDescription"
+          class="form-input block w-full sm:text-sm sm:leading-5"
+          [(ngModel)]="formHeader.formDescription"
+          placeholder="Enter form description"
+        />
       </div>
-    </div> 
+    </div>
     <div class="grid grid-cols-1">
       <h4 class="text-xl ml-10 mt-10">
         Drag and drop items below to build your custom application form:
@@ -133,37 +137,92 @@
         [cdkDropListData]="components"
         [cdkDropListConnectedTo]="[fieldsList]"
         class="example-list"
-        style="min-height: 40px;"
+        style="min-height: 40px"
         (cdkDropListDropped)="drop($event)"
       >
         <div
-          class="example-box "
+          class="example-box"
           *ngFor="let item of components; let i = index"
           cdkDrag
         >
-          <app-text *ngIf="item === 'text'" [index]="i"></app-text>
-          <app-email *ngIf="item === 'email'" [index]="i" ></app-email>
-          <app-phone *ngIf="item === 'phone'" [index]="i"></app-phone>
-          <app-number *ngIf="item === 'number'" [index]="i"></app-number>
-          <app-date *ngIf="item === 'date'" [index]="i"></app-date>
-          <app-date-time *ngIf="item === 'date-time'" [index]="i"></app-date-time>
-          <app-textarea *ngIf="item === 'textarea'" [index]="i"></app-textarea>
-          <app-paragraph *ngIf="item === 'paragraph'" [index]="i"></app-paragraph>
-          <app-checkbox *ngIf="item === 'checkbox'" [index]="i"></app-checkbox>
-          <app-radio *ngIf="item === 'radio'" [index]="i"></app-radio>
-          <app-select *ngIf="item === 'select'" [index]="i" ></app-select>
-          <app-submit *ngIf="item === 'submit'" [index]="i" ></app-submit>
+          <app-text
+            *ngIf="item.componentName === 'text'"
+            [index]="i"
+            [mode]="'edit'"
+            [settings]="item.settings"
+          ></app-text>
+          <app-email
+            *ngIf="item.componentName === 'email'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-email>
+          <app-phone
+            *ngIf="item.componentName === 'phone'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-phone>
+          <app-number
+            *ngIf="item.componentName === 'number'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-number>
+          <app-date
+            *ngIf="item.componentName === 'date'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-date>
+          <app-date-time
+            *ngIf="item.componentName === 'date-time'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-date-time>
+          <app-textarea
+            *ngIf="item.componentName === 'textarea'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-textarea>
+          <app-paragraph
+            *ngIf="item.componentName === 'paragraph'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-paragraph>
+          <app-checkbox
+            *ngIf="item.componentName === 'checkbox'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-checkbox>
+          <app-radio
+            *ngIf="item.componentName === 'radio'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-radio>
+          <app-select
+            *ngIf="item.componentName === 'select'"
+            [index]="i"
+            [settings]="item.settings"
+            mode="'edit'"
+          ></app-select>
         </div>
       </div>
 
-      <div class="ml-auto " *ngIf="components.length">
-        <button (click)="submitForm()" type="button" class="inline-flex submit-button mb-3 items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200 transition ease-in-out duration-150">
-          Submit FormBuilder
+      <div class="ml-auto" *ngIf="components.length">
+        <button
+          (click)="submitForm()"
+          type="button"
+          class="inline-flex submit-button mb-3 items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-indigo-700 bg-indigo-100 hover:bg-indigo-50 focus:outline-none focus:border-indigo-300 focus:shadow-outline-indigo active:bg-indigo-200 transition ease-in-out duration-150"
+        >
+          Submit
         </button>
       </div>
-
     </div>
   </div>
 </div>
-
-
