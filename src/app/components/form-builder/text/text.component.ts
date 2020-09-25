@@ -12,6 +12,12 @@ export class TextComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
   transition = false;
   show = true;
@@ -33,10 +39,12 @@ export class TextComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+    this.textObject = this.formBuilderService.setOptions(this.settings, this.textObject);
     this.textObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.textObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.textObject));
   }
+
 
   deleteComponentFromArray() {
     this.formBuilderService.deleteComponentFromArray.next(this.index);

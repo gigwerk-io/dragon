@@ -1,18 +1,18 @@
 
-<div class="m-5 block border border-transparent hover:border-gray-200 hover:shadow-lg rounded"  *ngIf="show">
+<div class="m-5 block border border-transparent rounded" [ngClass]="{'hover:border-gray-200 hover:shadow-lg' :mode !== 'read'}" *ngIf="show">
     <div class="flex  py-5 ">
-        <div class="flex-initial  px-4 py-2 m-2">
+        <div class="flex-initial  px-4 py-2 m-2" *ngIf="mode !== 'read'">
             <i class="fas fa-ellipsis-v"></i>
-        </div>
+        </div> 
         <div class="flex-initial w-1/3 px-4 py-2 m-2">
             <label for="email" class="block text-sm font-medium leading-5 " > {{numberObject.label}} <span *ngIf="numberObject.requireToggle" class="text-red-500">*</span></label>
             <div class="mt-1 relative rounded-md shadow-sm">
-                <input type="text" [required]="numberObject.requireToggle" [id]="name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="numberObject.placeholder">
+                <input type="text" [required]="numberObject.requireToggle" [id]="numberObject.name" class="form-input block w-full sm:text-sm sm:leading-5" [placeholder]="numberObject.placeholder">
             </div>
         </div>
         <div class="ml-auto  py-2 m-2 mr-10">
             <div class="relative inline-block text-left">
-                <div>
+                <div *ngIf="mode !== 'read'">
                   <div class="inline-block  mr-3">
                     <span class="rounded-md shadow-sm ">
                       <button (click)="deleteComponentFromArray()" type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 px-4 py-2 bg-white text-sm leading-5 font-medium text-red-500 hover:text-red-700 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150 "   id="options-menu" aria-haspopup="true" aria-expanded="true">

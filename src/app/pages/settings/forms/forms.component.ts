@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilderService } from 'src/app/utils/services/form-builder.service';
 
@@ -7,17 +7,14 @@ import { FormBuilderService } from 'src/app/utils/services/form-builder.service'
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css']
 })
-export class FormsComponent implements OnInit, OnChanges {
+export class FormsComponent implements OnInit {
 
+  acceptingApplicants = true;
 
   constructor(
     public formBuilderService: FormBuilderService,
     private router: Router
   ) { }
-
-  ngOnChanges() {
-    console.log('changes happened')
-  }
 
   ngOnInit() {
   }

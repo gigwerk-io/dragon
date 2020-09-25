@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import {SettingsService} from './settings.service';
-import {OnboardingForm, OnboardingFormComponent, OnboardingFormHeader} from '../interfaces/models/OnboardingForm';
+import { SettingsService } from './settings.service';
+import { OnboardingForm, OnboardingFormComponent, OnboardingFormHeader } from '../interfaces/models/OnboardingForm';
 import { NotyfService } from 'ng-notyf';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { RESTService } from './rest.service';
@@ -23,24 +23,23 @@ export class FormBuilderService extends RESTService {
     private settingsService: SettingsService,
     private notyfService: NotyfService,
     public http: HttpClient,
-    public storage: Storage
-    ) {
-      super(http, storage);
-      
-
-      if (this.form === undefined || this.formHeader  === undefined) {
-        this.getForm().then((res: Response<OnboardingForm>) => {
-            this.form = res.data.formComponents;
-            this.formHeader = res.data.formHeader;
-        });
-      }
-     }
+    public storage: Storage,
+  ) {
+    super(http, storage);
+    if (this.form === undefined || this.formHeader === undefined) {
+      this.settingsService.getApplicantForm().then((res: Response<OnboardingForm>) => {
+        this.form = res.data.formComponents;
+        console.log('form', this.form)
+        this.formHeader = res.data.formHeader;
+      });
+    }
+  }
 
   deleteComponentFromArray = new Subject<number>();
   gatherComponentsOptions = new Subject<string>();
 
 
-  organizeComponents(componentList: string[], formHeader: {formTitle: string, formDescription: string}) {
+  organizeComponents(componentList: string[], formHeader: { formTitle: string, formDescription: string }) {
 
     const tempArr = [];
 
@@ -51,7 +50,7 @@ export class FormBuilderService extends RESTService {
       for (let i = 0; i < componentList.length; i++) {
         for (let j = 0; j < this.componentOptions.length; j++) {
           if (this.componentOptions[j].index === i) {
-          tempArr.push({component: componentList[i], options: this.componentOptions[j]});
+            tempArr.push({ component: componentList[i], options: this.componentOptions[j] });
           }
         }
       }
@@ -62,22 +61,21 @@ export class FormBuilderService extends RESTService {
       };
 
       this.settingsService.updateApplicantForm(form)
-      .then((res: Response<null>) => {
-        this.notyfService.success(res.message);
-        this.formHeader = form.formHeader;
-        this.form = form.formComponents;
-        this.componentOptions = [];
+        .then((res: Response<null>) => {
+          this.notyfService.success(res.message);
+          this.formHeader = form.formHeader;
+          this.form = form.formComponents;
 
-      })
-      .catch(err => this.notyfService.error('Error while submitting form'));
+        })
+        .catch(err => this.notyfService.error('Error while submitting form'));
 
+      this.componentOptions = [];
     }
 
   }
 
-  getForm(): Promise<Response<OnboardingForm>> {
-    return this.makeHttpRequest<Response<OnboardingForm>>('form', 'GET')
-      .then((res) => res.toPromise());
+  setOptions(settings, defaultSettings) {
+    return settings !== undefined ? settings : defaultSettings;
   }
 
 

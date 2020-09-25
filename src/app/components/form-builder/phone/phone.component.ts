@@ -12,6 +12,12 @@ export class PhoneComponent implements OnInit, OnDestroy, OnChanges {
   // tslint:disable-next-line: no-input-rename
   @Input('index') index = 1;
 
+  // tslint:disable-next-line: no-input-rename
+  @Input('settings') settings;
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('mode') mode: string;
+
   submitFormSubscription: Subscription;
   transition = false;
   show = true;
@@ -34,9 +40,10 @@ export class PhoneComponent implements OnInit, OnDestroy, OnChanges {
 
 
   ngOnInit() {
+    this.phoneObject = this.formBuilderService.setOptions(this.settings, this.phoneObject);
     this.phoneObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
-    .subscribe(() => this.formBuilderService.componentOptions.push(this.phoneObject));
+      .subscribe(() => this.formBuilderService.componentOptions.push(this.phoneObject));
   }
 
   deleteComponentFromArray() {
