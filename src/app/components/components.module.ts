@@ -52,6 +52,7 @@ import { CheckboxComponent } from './form-builder/checkbox/checkbox.component';
 import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
+import { ApplicantsBreakdownComponent } from './pie-charts/applicants-breakdown/applicants-breakdown.component';
 
 @NgModule({
   imports: [
@@ -112,6 +113,7 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     RadioComponent,
     SelectComponent,
     SubmitComponent,
+    ApplicantsBreakdownComponent,
   ],
   exports: [
     FooterComponent,
@@ -158,6 +160,7 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     NewJobSlideoverComponent,
     JobFormComponent,
     WorkersGridComponent,
+    ApplicantsBreakdownComponent
   ]
 })
 export class ComponentsModule {

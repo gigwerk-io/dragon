@@ -61,6 +61,7 @@
         </div>
       </ng-template>
     </div>
+
     <div class="container py-4">
       <div class="items-center flex flex-col md:flex-row">
         <div class="w-full md:w-8/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
@@ -78,7 +79,29 @@
         </ng-template>
       </div>
     </div>
+
+    <!-- PIE CHARTS -->
+
+    <div class="container py-4">
+      <div class="items-center flex flex-col md:flex-row">
+        <div class="w-full md:w-7/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
+          <app-applicants-breakdown [labels]="paymentsChart.labels" [datasets]="paymentsChart.datasets"></app-applicants-breakdown>
+        </div>
+        <ng-template #skeletonPaymentsChart>
+          <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0" style="height: 26rem"></ion-skeleton-text>
+        </ng-template>
+
+        <div class="w-full md:w-5/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
+          <app-bar-chart [labels]="jobsChart.labels" [datasets]="jobsChart.datasets"></app-bar-chart>
+        </div>
+        <ng-template #skeletonJobsChart>
+          <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0" style="height: 26rem"></ion-skeleton-text>
+        </ng-template>
+      </div>
+    </div>
   </div>
+
+  
   <div id="leaderboard">
     <div class="container" *ngIf="topWorkers; else skeletonTopWorkers">
       <h3 class="text-lg leading-6 font-medium text-gray-900 mb-2">

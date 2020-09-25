@@ -2,11 +2,10 @@ import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core'
 import {DashboardService} from '../../utils/services/dashboard.service';
 import {Storage} from '@ionic/storage';
 import {StatsResponse} from '../../utils/interfaces/responses/StatsResponse';
-import {NgxSpinnerService} from 'ngx-spinner';
 import {User} from '../../utils/interfaces/models/User';
 import {Stats} from '../../utils/interfaces/models/Stats';
 import {GuidedTour, GuidedTourService, Orientation, TourStep} from 'ngx-guided-tour';
-import {StorageKeys} from "../../utils/interfaces/enum/constants";
+import {StorageKeys} from '../../utils/interfaces/enum/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,11 +25,10 @@ export class DashboardComponent implements OnInit, AfterContentInit {
   constructor(
     private dashboardService: DashboardService,
     private storage: Storage,
-    private ngxSpinner: NgxSpinnerService,
     private guidedTourService: GuidedTourService
   ) {
   }
-
+ 
   ngOnInit() {
     this.getGraphs();
     this.getStats();
@@ -126,14 +124,12 @@ export class DashboardComponent implements OnInit, AfterContentInit {
   }
 
   getStats() {
-    this.dashboardService.getStats().then(res => {
-      this.stats = res.data;
-      console.log(this.stats);
-    });
+    this.dashboardService.getStats().then(res => this.stats = res.data);
   }
 
   getGraphs() {
     this.dashboardService.getGraphs().then(res => {
+      console.log('paymentChart', res.data)
       this.paymentsChart = res.data.payments;
       this.jobsChart = res.data.jobs;
     });
