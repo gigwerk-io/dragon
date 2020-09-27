@@ -88,10 +88,15 @@
           *ngIf="transition"
           class="z-50 origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg transition ease-out duration-100"
         >
+          <!-- THIS DIV IS THE BACKDROP OF THE DROPDOWN -->
+          <div
+            class="fixed left-0 right-0 top-0 bottom-0"
+            (click)="transition = false"
+          ></div>
           <div class="rounded-md bg-white shadow-xs">
             <!-- FORM -->
 
-            <div class="mt-10 sm:mt-0" style="width: 900px">
+            <div class="mt-10 sm:mt-0 absolute" style="width: 900px">
               <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="mt-5 md:mt-0 md:col-span-2">
                   <div class="shadow overflow-hidden sm:rounded-md">

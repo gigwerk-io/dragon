@@ -1,6 +1,10 @@
 import { Component, OnInit, OnDestroy, Input, OnChanges } from '@angular/core';
 import { FormBuilderService } from '../../../utils/services/form-builder.service';
 import { Subscription } from 'rxjs';
+// import {DragDropModule} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, DragDropModule } from '@angular/cdk/drag-drop';
+
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-text',
@@ -39,6 +43,7 @@ export class TextComponent implements OnInit, OnDestroy, OnChanges {
   ) { }
 
   ngOnInit() {
+
     this.textObject = this.formBuilderService.setOptions(this.settings, this.textObject);
     this.textObject.index = this.index;
     this.submitFormSubscription = this.formBuilderService.gatherComponentsOptions
@@ -50,9 +55,14 @@ export class TextComponent implements OnInit, OnDestroy, OnChanges {
     this.formBuilderService.deleteComponentFromArray.next(this.index);
   }
 
+  backdrop() {
+    console.log('clicked on the backdrop')
+  }
+
 
   ngOnDestroy() {
     this.submitFormSubscription.unsubscribe();
   }
 
 }
+
