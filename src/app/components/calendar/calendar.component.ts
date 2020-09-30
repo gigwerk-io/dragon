@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {months, days, themes} from '../../../app/utils/interfaces/enum/calendar';
 import {CalendarEvent} from '../../utils/interfaces/models/CalendarEvent';
+import {DashboardService} from '../../utils/services/dashboard.service';
 
 @Component({
   selector: 'app-calendar',
@@ -9,35 +10,16 @@ import {CalendarEvent} from '../../utils/interfaces/models/CalendarEvent';
 })
 
 export class CalendarComponent implements OnInit {
+  // tslint:disable-next-line:no-input-rename
+  @Input('events') events: CalendarEvent[];
   months = months;
   days = days;
-  themes = themes;
   month: number;
   year: number;
   no_of_days = [];
   blankdays = [];
-  events: CalendarEvent[] = [
-    {
-      event_date: new Date(2020, 8, 30),
-      event_title: 'April Fool\'s Day',
-      event_theme: 'blue'
-    },
 
-    {
-      event_date: new Date(2020, 8, 30),
-      event_title: 'Birthday',
-      event_theme: 'red'
-    },
-
-    {
-      event_date: new Date(2020, 8, 30),
-      event_title: 'Upcoming Event Event Event',
-      event_theme: 'green'
-    }
-  ];
-  filteredEvents: CalendarEvent[];
-
-  constructor() {
+  constructor(private dashboardService: DashboardService) {
   }
 
   ngOnInit() {
@@ -89,13 +71,5 @@ export class CalendarComponent implements OnInit {
 
   showDayModal(day) {
     console.log(this.month, day);
-  }
-
-  filterEvents(date): CalendarEvent[] {
-    this.filteredEvents = this.events.filter(
-      e => new Date(e.event_date).toDateString() ===  new Date(this.year, this.month, date).toDateString()
-    );
-    console.log(this.filteredEvents);
-    return this.filteredEvents;
   }
 }

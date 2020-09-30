@@ -1,5 +1,5 @@
 export interface CalendarEvent {
-  event_date: Date;
-  event_title: string;
-  event_theme: string;
+  date: number; // unix timestamp
+  title: string;
+  theme: string;
 }

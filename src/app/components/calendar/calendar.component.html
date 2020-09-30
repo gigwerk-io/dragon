@@ -1,4 +1,4 @@
-<div class="bg-white rounded-lg shadow overflow-hidden">
+<div class="bg-white rounded-lg shadow overflow-hidden" *ngIf="events">
   <div class="flex items-center justify-between py-2 px-6">
     <div>
       <span class="text-lg font-bold text-gray-800">{{months[month]}}</span>
@@ -33,23 +33,23 @@
   </div>
   <div class="-mx-1 -mb-1">
     <div class="flex flex-wrap -mb-8" style="margin-bottom: -40px;">
-      <div *ngFor="let day of days">
+      <ng-container *ngFor="let day of days">
         <div class="px-2 py-2 w-1/7">
           <div
             class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center">
             {{day}}
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
 
     <div class="flex flex-wrap border-t border-l">
-      <div *ngFor="let blankday of blankdays">
+      <ng-container *ngFor="let blankday of blankdays">
         <div
           class="text-center border-r border-b px-4 pt-2 h-32 w-1/7"
-        >{{blankday}}</div>
-      </div>
-      <div *ngFor="let date of no_of_days">
+        ></div>
+      </ng-container>
+      <ng-container *ngFor="let date of no_of_days">
         <div class="px-4 pt-2 border-r border-b relative h-32 w-1/7">
           <div
             (click)="showDayModal(date)"
@@ -60,25 +60,23 @@
           </div>
           <div class="overflow-y-auto mt-1 h-20">
 
-            <ng-container *ngIf="filterEvents(date)">
-              <div *ngFor="let event of filteredEvents">
-                <div
-                  class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
-                  [ngClass]="{
-												'border-blue-200 text-blue-800 bg-blue-100': event.event_theme === 'blue',
-												'border-red-200 text-red-800 bg-red-100': event.event_theme === 'red',
-												'border-yellow-200 text-yellow-800 bg-yellow-100': event.event_theme === 'yellow',
-												'border-green-200 text-green-800 bg-green-100': event.event_theme === 'green',
-												'border-purple-200 text-purple-800 bg-purple-100': event.event_theme === 'purple'
+            <ng-container *ngFor="let event of events |calendarFilter:{year: year, month: month, date: date}">
+              <div
+                class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
+                [ngClass]="{
+												'border-blue-200 text-blue-800 bg-blue-100': event.theme === 'blue',
+												'border-red-200 text-red-800 bg-red-100': event.theme === 'red',
+												'border-yellow-200 text-yellow-800 bg-yellow-100': event.theme === 'yellow',
+												'border-green-200 text-green-800 bg-green-100': event.theme === 'green',
+												'border-purple-200 text-purple-800 bg-purple-100': event.theme === 'purple'
 											}"
-                >
-                  <p class="text-sm truncate leading-tight">{{event.event_title}}</p>
-                </div>
+              >
+                <p class="text-sm truncate leading-tight">{{event.title}}</p>
               </div>
             </ng-container>
           </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
 </div>

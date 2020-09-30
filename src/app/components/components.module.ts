@@ -53,6 +53,7 @@ import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
 
 @NgModule({
   imports: [
@@ -62,11 +63,11 @@ import { CalendarComponent } from './calendar/calendar.component';
     ReactiveFormsModule,
     NgxStripeModule,
     IonicModule,
-
   ],
   declarations: [
     SidebarComponent,
     TimeAgoPipe,
+    CalendarFilterPipe,
     FooterComponent,
     BarChartComponent,
     LineChartComponent,
