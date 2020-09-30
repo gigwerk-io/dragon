@@ -54,6 +54,7 @@ import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
+import { MetricCardComponent } from './cards/metric-card/metric-card.component';
 
 @NgModule({
   imports: [
@@ -115,6 +116,7 @@ import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
     SelectComponent,
     SubmitComponent,
     CalendarComponent,
+    MetricCardComponent,
   ],
   exports: [
     FooterComponent,
@@ -162,6 +164,7 @@ import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
     JobFormComponent,
     WorkersGridComponent,
     CalendarComponent,
+    MetricCardComponent,
   ]
 })
 export class ComponentsModule {
