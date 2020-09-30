@@ -1,29 +1,22 @@
 import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
 import {DashboardService} from '../../utils/services/dashboard.service';
 import {Storage} from '@ionic/storage';
-import {StatsResponse} from '../../utils/interfaces/responses/StatsResponse';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {User} from '../../utils/interfaces/models/User';
-import {Stats} from '../../utils/interfaces/models/Stats';
 import {GuidedTour, GuidedTourService, Orientation, TourStep} from 'ngx-guided-tour';
-import {StorageKeys} from "../../utils/interfaces/enum/constants";
+import {StorageKeys} from '../../utils/interfaces/enum/constants';
 import {CalendarEvent} from '../../utils/interfaces/models/CalendarEvent';
+import {Metrics} from '../../utils/interfaces/models/Metrics';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent implements OnInit, AfterContentInit {
-  userStats: StatsResponse;
-  profitStats: StatsResponse;
-  trafficStats: StatsResponse;
   date = new Date().getFullYear();
-  totalHoursWorked: number;
   paymentsChart;
   jobsChart;
-  stats: Stats;
   events: CalendarEvent[];
-  topWorkers: User[];
+  metrics: Metrics;
 
   constructor(
     private dashboardService: DashboardService,
@@ -35,9 +28,8 @@ export class DashboardComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     this.getGraphs();
-    this.getStats();
-    this.getLeaderboard();
     this.getEvents();
+    this.getMetrics();
   }
 
   ngAfterContentInit() {
@@ -128,10 +120,10 @@ export class DashboardComponent implements OnInit, AfterContentInit {
       });
   }
 
-  getStats() {
-    this.dashboardService.getStats().then(res => {
-      this.stats = res.data;
-      console.log(this.stats);
+  getMetrics() {
+    this.dashboardService.getMetrics().then(res => {
+      this.metrics = res.data;
+      console.log(this.metrics);
     });
   }
 
@@ -145,12 +137,6 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     this.dashboardService.getGraphs().then(res => {
       this.paymentsChart = res.data.payments;
       this.jobsChart = res.data.jobs;
-    });
-  }
-
-  getLeaderboard() {
-    this.dashboardService.getLeaderboard().then(res => {
-      this.topWorkers = res.data;
     });
   }
 }

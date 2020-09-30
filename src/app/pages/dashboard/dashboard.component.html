@@ -1,96 +1,74 @@
-<ngx-spinner></ngx-spinner>
-<!--<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">-->
-<!--  <h1 class="text-2xl font-semibold text-gray-900" *ngIf="stats; else skeletonDashboard">Dashboard</h1>-->
-<!--  <ng-template #skeletonDashboard>-->
-<!--    <div class="h-5"></div>-->
-<!--  </ng-template>-->
-<!--  <div class="hidden sm:block">-->
-<!--    <div class="py-5">-->
-<!--      <div class="border-t border-gray-200"></div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-  <!-- Replace with your content -->
-  <div id="stats_at_a_glance">
-    <div class="py-4">
-      <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="stats; else skeletonStats">
-        <app-stats-card title="Applicants" [value]="stats.applicants" href="#">
-          <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path
-              d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-          </svg>
-        </app-stats-card>
+  <div class="py-4" id="stats_at_a_glance">
+    <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="metrics; else skeletonMetrics">
 
-        <app-stats-card title="Jobs" [value]="stats.jobs" href="#">
-          <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path
-              d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-            <path
-              stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>
-          </svg>
-        </app-stats-card>
+      <app-metric-card [name]="'Workers'"
+                       [labels]="metrics.workers.labels"
+                       [datasets]="metrics.workers.dataset"
+                       [total]="metrics.workers.total"
+                       [percentage]="metrics.workers.percentage"></app-metric-card>
 
-        <app-stats-card title="Payouts" [value]="'$' + stats.payments.toFixed(2)" href="#">
-          <svg class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd"
-                  d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z"
-                  clip-rule="evenodd"></path>
-          </svg>
-        </app-stats-card>
+      <app-metric-card [name]="'Applicants'"
+                       [labels]="metrics.applications.labels"
+                       [datasets]="metrics.applications.dataset"
+                       [total]="metrics.applications.total"
+                       [percentage]="metrics.applications.percentage"></app-metric-card>
 
-        <app-stats-card title="Users" [value]="stats.users" href="#">
-          <svg class="h-6 w-6 text-white" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-          </svg>
-        </app-stats-card>
+      <app-metric-card [name]="'Jobs'"
+                       [labels]="metrics.jobs.labels"
+                       [datasets]="metrics.jobs.dataset"
+                       [total]="metrics.jobs.total"
+                       [percentage]="metrics.jobs.percentage"></app-metric-card>
+
+      <app-metric-card [name]="'Hiring Rate'"
+                       [labels]="metrics.hiring.labels"
+                       [datasets]="metrics.hiring.dataset"
+                       [total]="metrics.hiring.total | percent"
+                       [percentage]="metrics.hiring.percentage"></app-metric-card>
+    </div>
+    <ng-template #skeletonMetrics>
+      <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
+        <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
+
+        <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
+
+        <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
+        <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
       </div>
-      <ng-template #skeletonStats>
-        <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
-          <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
+    </ng-template>
+  </div>
+  <div class="container py-4" id="charts">
+    <div class="items-center flex flex-col md:flex-row">
+      <div class="w-full md:w-8/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
+        <app-line-chart [labels]="paymentsChart.labels" [datasets]="paymentsChart.datasets"></app-line-chart>
+      </div>
+      <ng-template #skeletonPaymentsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0"
+                           style="height: 26rem"></ion-skeleton-text>
+      </ng-template>
 
-          <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
-
-          <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
-
-          <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
-        </div>
+      <div class="w-full md:w-4/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
+        <app-bar-chart [labels]="jobsChart.labels" [datasets]="jobsChart.datasets"></app-bar-chart>
+      </div>
+      <ng-template #skeletonJobsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0"
+                           style="height: 26rem"></ion-skeleton-text>
       </ng-template>
     </div>
-    <div class="container py-4">
-      <div class="items-center flex flex-col md:flex-row">
-        <div class="w-full md:w-8/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
-          <app-line-chart [labels]="paymentsChart.labels" [datasets]="paymentsChart.datasets"></app-line-chart>
-        </div>
-        <ng-template #skeletonPaymentsChart>
-          <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0" style="height: 26rem"></ion-skeleton-text>
-        </ng-template>
+  </div>
+</div>
 
-        <div class="w-full md:w-4/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
-          <app-bar-chart [labels]="jobsChart.labels" [datasets]="jobsChart.datasets"></app-bar-chart>
-        </div>
-        <ng-template #skeletonJobsChart>
-          <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0" style="height: 26rem"></ion-skeleton-text>
-        </ng-template>
-      </div>
+<div id="calendar">
+  <ng-container *ngIf="events; else skeletonCalendar">
+    <div class="container mx-auto py-4">
+      <app-calendar [events]="events"></app-calendar>
     </div>
-  </div>
-  <div id="calendar">
-    <ng-container *ngIf="events; else skeletonCalendar">
-      <div class="container mx-auto py-4">
-        <app-calendar [events]="events"></app-calendar>
+  </ng-container>
+  <ng-template #skeletonCalendar>
+    <div class="container py-4">
+      <div class="h-4">
       </div>
-    </ng-container>
-   <ng-template #skeletonCalendar>
-     <div class="container py-4">
-       <div class="h-4">
-       </div>
-       <ion-skeleton-text [animated]="true" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
-     </div>
-   </ng-template>
-  </div>
+      <ion-skeleton-text [animated]="true" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
+    </div>
+  </ng-template>
 </div>
