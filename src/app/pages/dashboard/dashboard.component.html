@@ -79,19 +79,18 @@
       </div>
     </div>
   </div>
-  <div id="leaderboard">
-    <div class="container" *ngIf="topWorkers; else skeletonTopWorkers">
-      <h3 class="text-lg leading-6 font-medium text-gray-900 mb-2">
-        Leaderboard
-      </h3>
-      <app-leaderboard-list [topWorkers]="topWorkers"></app-leaderboard-list>
-    </div>
-    <ng-template #skeletonTopWorkers>
-      <div class="container py-4">
-        <div class="h-4">
-        </div>
-        <ion-skeleton-text animated="false" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
+  <div id="calendar">
+    <ng-container *ngIf="events; else skeletonCalendar">
+      <div class="container mx-auto py-4">
+        <app-calendar [events]="events"></app-calendar>
       </div>
-    </ng-template>
+    </ng-container>
+   <ng-template #skeletonCalendar>
+     <div class="container py-4">
+       <div class="h-4">
+       </div>
+       <ion-skeleton-text [animated]="true" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
+     </div>
+   </ng-template>
   </div>
 </div>

@@ -52,6 +52,8 @@ import { CheckboxComponent } from './form-builder/checkbox/checkbox.component';
 import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
 
 @NgModule({
   imports: [
@@ -61,11 +63,11 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     ReactiveFormsModule,
     NgxStripeModule,
     IonicModule,
-
   ],
   declarations: [
     SidebarComponent,
     TimeAgoPipe,
+    CalendarFilterPipe,
     FooterComponent,
     BarChartComponent,
     LineChartComponent,
@@ -112,6 +114,7 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     RadioComponent,
     SelectComponent,
     SubmitComponent,
+    CalendarComponent,
   ],
   exports: [
     FooterComponent,
@@ -158,6 +161,7 @@ import { SubmitComponent } from './form-builder/submit/submit.component';
     NewJobSlideoverComponent,
     JobFormComponent,
     WorkersGridComponent,
+    CalendarComponent,
   ]
 })
 export class ComponentsModule {

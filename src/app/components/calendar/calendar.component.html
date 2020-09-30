@@ -1,0 +1,82 @@
+<div class="bg-white rounded-lg shadow overflow-hidden" *ngIf="events">
+  <div class="flex items-center justify-between py-2 px-6">
+    <div>
+      <span class="text-lg font-bold text-gray-800">{{months[month]}}</span>
+      <span  class="ml-1 text-lg text-gray-600 font-normal">{{year}}</span>
+    </div>
+    <div class="border rounded-lg px-1 pt-1">
+      <button
+        type="button"
+        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center focus:outline-none"
+        [ngClass]="{'cursor-not-allowed opacity-25': month === 0 }"
+        [disabled]="month === 0"
+        (click)="subtractMonth()"
+      >
+        <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <div class="border-r inline-flex h-6"></div>
+      <button
+        type="button"
+        class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1 focus:outline-none"
+        [ngClass]="{'cursor-not-allowed opacity-25': month === 11 }"
+        [disabled]="month === 11"
+        (click)="addMonth()">
+        <svg class="h-6 w-6 text-gray-500 inline-flex leading-none" fill="none" viewBox="0 0 24 24"
+             stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="-mx-1 -mb-1">
+    <div class="flex flex-wrap -mb-8" style="margin-bottom: -40px;">
+      <ng-container *ngFor="let day of days">
+        <div class="px-2 py-2 w-1/7">
+          <div
+            class="text-gray-600 text-sm uppercase tracking-wide font-bold text-center">
+            {{day}}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="flex flex-wrap border-t border-l">
+      <ng-container *ngFor="let blankday of blankdays">
+        <div
+          class="text-center border-r border-b px-4 pt-2 h-32 w-1/7"
+        ></div>
+      </ng-container>
+      <ng-container *ngFor="let date of no_of_days">
+        <div class="px-4 pt-2 border-r border-b relative h-32 w-1/7">
+          <div
+            (click)="showDayModal(date)"
+            class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
+            [ngClass]="{'bg-blue-500 text-white': isToday(date) === true, 'text-gray-700 hover:bg-blue-200': isToday(date) === false }"
+          >
+            {{date}}
+          </div>
+          <div class="overflow-y-auto mt-1 h-20">
+
+            <ng-container *ngFor="let event of events |calendarFilter:{year: year, month: month, date: date}">
+              <div
+                class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
+                [ngClass]="{
+												'border-blue-200 text-blue-800 bg-blue-100': event.theme === 'blue',
+												'border-red-200 text-red-800 bg-red-100': event.theme === 'red',
+												'border-yellow-200 text-yellow-800 bg-yellow-100': event.theme === 'yellow',
+												'border-green-200 text-green-800 bg-green-100': event.theme === 'green',
+												'border-purple-200 text-purple-800 bg-purple-100': event.theme === 'purple'
+											}"
+              >
+                <p class="text-sm truncate leading-tight">{{event.title}}</p>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

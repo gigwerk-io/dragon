@@ -7,6 +7,7 @@ import {User} from '../../utils/interfaces/models/User';
 import {Stats} from '../../utils/interfaces/models/Stats';
 import {GuidedTour, GuidedTourService, Orientation, TourStep} from 'ngx-guided-tour';
 import {StorageKeys} from "../../utils/interfaces/enum/constants";
+import {CalendarEvent} from '../../utils/interfaces/models/CalendarEvent';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,6 +22,7 @@ export class DashboardComponent implements OnInit, AfterContentInit {
   paymentsChart;
   jobsChart;
   stats: Stats;
+  events: CalendarEvent[];
   topWorkers: User[];
 
   constructor(
@@ -35,6 +37,7 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     this.getGraphs();
     this.getStats();
     this.getLeaderboard();
+    this.getEvents();
   }
 
   ngAfterContentInit() {
@@ -129,6 +132,12 @@ export class DashboardComponent implements OnInit, AfterContentInit {
     this.dashboardService.getStats().then(res => {
       this.stats = res.data;
       console.log(this.stats);
+    });
+  }
+
+  getEvents() {
+    this.dashboardService.getCalendar().then(res => {
+      this.events = res.data;
     });
   }
 
