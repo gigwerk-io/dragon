@@ -53,8 +53,10 @@ import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
+import { CalendarFilterPipe } from '../utils/pipe/calendar-filter.pipe';
 import { MetricCardComponent } from './cards/metric-card/metric-card.component';
+import { ApplicantBreakdownComponent } from './charts/applicant-breakdown/applicant-breakdown.component';
+import { JobBreakdownComponent } from './charts/job-breakdown/job-breakdown.component';
 
 @NgModule({
   imports: [
@@ -117,6 +119,8 @@ import { MetricCardComponent } from './cards/metric-card/metric-card.component';
     SubmitComponent,
     CalendarComponent,
     MetricCardComponent,
+    ApplicantBreakdownComponent,
+    JobBreakdownComponent,
   ],
   exports: [
     FooterComponent,
@@ -165,6 +169,8 @@ import { MetricCardComponent } from './cards/metric-card/metric-card.component';
     WorkersGridComponent,
     CalendarComponent,
     MetricCardComponent,
+    ApplicantBreakdownComponent,
+    JobBreakdownComponent
   ]
 })
 export class ComponentsModule {

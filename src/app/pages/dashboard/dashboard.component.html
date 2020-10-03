@@ -2,29 +2,18 @@
   <div class="py-4" id="stats_at_a_glance">
     <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="metrics; else skeletonMetrics">
 
-      <app-metric-card [name]="'Workers'"
-                       [labels]="metrics.workers.labels"
-                       [datasets]="metrics.workers.dataset"
-                       [total]="metrics.workers.total"
-                       [percentage]="metrics.workers.percentage"></app-metric-card>
+      <app-metric-card [name]="'Workers'" [labels]="metrics.workers.labels" [datasets]="metrics.workers.dataset"
+        [total]="metrics.workers.total" [percentage]="metrics.workers.percentage"></app-metric-card>
 
-      <app-metric-card [name]="'Applicants'"
-                       [labels]="metrics.applications.labels"
-                       [datasets]="metrics.applications.dataset"
-                       [total]="metrics.applications.total"
-                       [percentage]="metrics.applications.percentage"></app-metric-card>
+      <app-metric-card [name]="'Applicants'" [labels]="metrics.applications.labels"
+        [datasets]="metrics.applications.dataset" [total]="metrics.applications.total"
+        [percentage]="metrics.applications.percentage"></app-metric-card>
 
-      <app-metric-card [name]="'Jobs'"
-                       [labels]="metrics.jobs.labels"
-                       [datasets]="metrics.jobs.dataset"
-                       [total]="metrics.jobs.total"
-                       [percentage]="metrics.jobs.percentage"></app-metric-card>
+      <app-metric-card [name]="'Jobs'" [labels]="metrics.jobs.labels" [datasets]="metrics.jobs.dataset"
+        [total]="metrics.jobs.total" [percentage]="metrics.jobs.percentage"></app-metric-card>
 
-      <app-metric-card [name]="'Hiring Rate'"
-                       [labels]="metrics.hiring.labels"
-                       [datasets]="metrics.hiring.dataset"
-                       [total]="metrics.hiring.total | percent"
-                       [percentage]="metrics.hiring.percentage"></app-metric-card>
+      <app-metric-card [name]="'Hiring Rate'" [labels]="metrics.hiring.labels" [datasets]="metrics.hiring.dataset"
+        [total]="metrics.hiring.total | percent" [percentage]="metrics.hiring.percentage"></app-metric-card>
     </div>
     <ng-template #skeletonMetrics>
       <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
@@ -43,22 +32,23 @@
         <app-line-chart [labels]="paymentsChart.labels" [datasets]="paymentsChart.datasets"></app-line-chart>
       </div>
       <ng-template #skeletonPaymentsChart>
-        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0"
-                           style="height: 26rem"></ion-skeleton-text>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:mr-1 sm:mr-0" style="height: 26rem">
+        </ion-skeleton-text>
       </ng-template>
 
       <div class="w-full md:w-4/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
         <app-bar-chart [labels]="jobsChart.labels" [datasets]="jobsChart.datasets"></app-bar-chart>
       </div>
       <ng-template #skeletonJobsChart>
-        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0"
-                           style="height: 26rem"></ion-skeleton-text>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:ml-2 sm:ml-0" style="height: 26rem">
+        </ion-skeleton-text>
       </ng-template>
     </div>
   </div>
+
 </div>
 
-<div id="calendar">
+<div id="calendar" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
   <ng-container *ngIf="events; else skeletonCalendar">
     <div class="container mx-auto py-4">
       <app-calendar [events]="events"></app-calendar>
@@ -71,4 +61,27 @@
       <ion-skeleton-text [animated]="true" class="rounded-lg w-full" style="height: 26rem"></ion-skeleton-text>
     </div>
   </ng-template>
+</div>
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+  <div class="container py-4" id="charts">
+    <div class="items-center flex flex-col md:flex-row">
+      <div class="w-full md:w-4/12 lg:mr-1 sm:mr-0" *ngIf="paymentsChart; else skeletonPaymentsChart">
+        <app-applicant-breakdown>
+        </app-applicant-breakdown>
+      </div>
+      <ng-template #skeletonPaymentsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-4/12 lg:mr-1 sm:mr-0" style="height: 26rem">
+        </ion-skeleton-text>
+      </ng-template>
+
+      <div class="w-full md:w-8/12 lg:ml-2 sm:ml-0" *ngIf="jobsChart; else skeletonJobsChart">
+        <app-job-breakdown></app-job-breakdown>
+      </div>
+      <ng-template #skeletonJobsChart>
+        <ion-skeleton-text animated="false" class="rounded-lg w-full md:w-8/12 lg:ml-2 sm:ml-0" style="height: 26rem">
+        </ion-skeleton-text>
+      </ng-template>
+    </div>
+  </div>
 </div>
