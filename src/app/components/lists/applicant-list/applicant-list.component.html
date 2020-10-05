@@ -1,10 +1,11 @@
 <div class="overflow-hidden my-4">
-  <div class="container mx-auto flex justify-center items-center" *ngIf="applicants && applicants.length < 1">
-    <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="w-full" alt="no results">
+  <div class="text-center" *ngIf="applicants && applicants.length < 1">
+    <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="mx-auto h-48 w-auto mt-8 block" alt="no results">
+    <label class="text-gray-800 block text-sm">No data to display</label>
   </div>
   <ul class="space-y-4 mb-8">
     <ng-container *ngIf="applicants; else skeletonApplicants">
-    <li class="bg-white shadow-lg rounded-lg sm:rounded-md"
+    <li class="bg-white shadow rounded"
         *ngFor="let applicant of applicants | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
       <div class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out cursor-pointer">
         <div class="flex items-center px-4 py-4 sm:px-6">
@@ -69,7 +70,9 @@
     </li>
     </ng-container>
     <ng-template #skeletonApplicants>
-      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
     </ng-template>
   </ul>
   <ng-container
