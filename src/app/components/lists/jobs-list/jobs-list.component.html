@@ -1,6 +1,7 @@
 <div class="overflow-hidden my-4">
-  <div class="container mx-auto flex justify-center items-center" *ngIf="jobs && jobs.length < 1">
-    <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="w-full" alt="no results">
+  <div class="text-center" *ngIf="jobs && jobs.length < 1">
+    <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="mx-auto h-48 w-auto mt-8 block" alt="no results">
+    <label class="text-gray-800 block text-sm">No data to display</label>
   </div>
   <ul class="space-y-4 mb-8">
     <ng-container *ngIf="jobs; else skeletonJob">
@@ -78,7 +79,9 @@
       </li>
     </ng-container>
     <ng-template #skeletonJob>
-      <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
+      <ion-skeleton-text class="h-24 rounded" animated></ion-skeleton-text>
     </ng-template>
   </ul>
   <ng-container
