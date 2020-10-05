@@ -8,7 +8,7 @@
       <li
         *ngFor="let job of jobs | slice: (paginationService.activePage - 1) * windowSize : (paginationService.activePage - 1) * windowSize + windowSize;  let i = index">
         <div (click)="displayJob(i)"
-             class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out bg-white rounded-md shadow-md cursor-pointer">
+             class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out bg-white rounded-md shadow cursor-pointer">
           <div class="px-4 py-4 sm:px-6">
             <div class="flex items-center justify-between">
               <div class="text-sm leading-5 font-medium text-primary-dominant truncate">
