@@ -1,6 +1,6 @@
-<nav class="bg-white shadow-lg rounded-lg divide-y border-gray-50">
+<nav class="bg-white shadow rounded-lg divide-y border-gray-50">
   <a routerLink="/settings/general"
-     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     class="rounded-t group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
      [ngClass]="router.isActive('/settings/general', true) ? active(): inactive()"
      aria-current="page">
     <p class="truncate">
@@ -40,7 +40,7 @@
     </p>
   </a>
   <a routerLink="/settings/team"
-     class="group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
+     class="rounded-b group flex items-center px-3 py-2 leading-5 focus:outline-none transition ease-in-out duration-150"
      [ngClass]="router.isActive('/settings/forms', true) ? active(): inactive()"
      aria-current="page">
     <p class="truncate">

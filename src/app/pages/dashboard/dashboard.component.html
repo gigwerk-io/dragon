@@ -1,6 +1,6 @@
 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-  <div class="py-4" id="stats_at_a_glance">
-    <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="metrics; else skeletonMetrics">
+  <div class="py-8" id="stats_at_a_glance">
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4" *ngIf="metrics; else skeletonMetrics">
 
       <app-metric-card [name]="'Workers'"
                        [labels]="metrics.workers.labels"
@@ -27,7 +27,7 @@
                        [percentage]="metrics.hiring.percentage"></app-metric-card>
     </div>
     <ng-template #skeletonMetrics>
-      <div class="mt-5 grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols lg:grid-cols-4">
         <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
 
         <ion-skeleton-text animated="true" class="rounded-lg h-40 w-full bg-gray-100"></ion-skeleton-text>
