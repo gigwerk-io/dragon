@@ -10,7 +10,7 @@ import { User } from '../../../utils/interfaces/models/User';
 })
 export class ProfileSlideOverComponent implements OnInit, OnChanges {
 
-  transition: boolean;
+  openSlider: boolean;
   profile: User;
   showDropdown = false;
   // tslint:disable-next-line: no-input-rename
@@ -21,18 +21,18 @@ export class ProfileSlideOverComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnInit() {
-    this.transition = false;
+    this.openSlider = false;
   }
 
   ngOnChanges() {
     if (this.UserID !== undefined) {
       this.profile = this.peopleService.searchForUser(this.UserID);
-      this.profile ? setTimeout(() => this.transition = true, 50) : this.transition = false;
+      this.profile ? setTimeout(() => this.openSlider = true, 50) : this.openSlider = false;
     }
   }
 
   clear() {
-    this.transition = false;
+    this.openSlider = false;
   }
 
 

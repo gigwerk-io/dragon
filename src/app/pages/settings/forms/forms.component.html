@@ -1,7 +1,6 @@
 <div
-  class="col-span-3 bg-white py-3"
-  *ngIf="formBuilderService.formHeader && formBuilderService.form"
->
+  class="col-span-3 rounded bg-white shadow py-3"
+  *ngIf="formBuilderService.formHeader && formBuilderService.form; else skeletonForm">
   <div class="ml-5">
     <label for="hiring block">Accepting Applicants</label>
     <!-- On: "bg-indigo-600", Off: "bg-gray-200" -->
@@ -12,7 +11,7 @@
       (click)="acceptingApplicants = !acceptingApplicants"
       aria-checked="false"
       [ngClass]="{
-        'bg-indigo-600': acceptingApplicants,
+        'bg-green-600': acceptingApplicants,
         'bg-gray-200': !acceptingApplicants
       }"
       class="block bg-gray-200 relative flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:shadow-outline"
@@ -120,3 +119,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #skeletonForm>
+  <ion-skeleton-text class="rounded col-span-3 py-3" style="height: 500px;" animated></ion-skeleton-text>
+</ng-template>

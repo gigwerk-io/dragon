@@ -54,7 +54,7 @@
           <div
             (click)="showDayModal(date)"
             class="inline-flex w-6 h-6 items-center justify-center cursor-pointer text-center leading-none rounded-full transition ease-in-out duration-100"
-            [ngClass]="{'bg-blue-500 text-white': isToday(date) === true, 'text-gray-700 hover:bg-blue-200': isToday(date) === false }"
+            [ngClass]="{'bg-green-500 text-white': isToday(date) === true, 'text-gray-700 hover:bg-green-200': isToday(date) === false }"
           >
             {{date}}
           </div>
@@ -64,7 +64,7 @@
               <div
                 class="px-2 py-1 rounded-lg mt-1 overflow-hidden border"
                 [ngClass]="{
-												'border-blue-200 text-blue-800 bg-blue-100': event.theme === 'blue',
+												'border-green-200 text-green-800 bg-green-100': event.theme === 'green',
 												'border-red-200 text-red-800 bg-red-100': event.theme === 'red',
 												'border-yellow-200 text-yellow-800 bg-yellow-100': event.theme === 'yellow',
 												'border-green-200 text-green-800 bg-green-100': event.theme === 'green',

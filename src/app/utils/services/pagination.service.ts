@@ -23,7 +23,7 @@ export class PaginationService {
   }
 
 
-  setActivePage(page: number, list: any[]) {
+  setActivePage(page: number, list?: any[]) {
     this.activePage = page;
     if (this.maxPages > 19) {
       this.pagination = [1];

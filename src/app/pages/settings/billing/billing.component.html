@@ -37,7 +37,7 @@
   </div>
 </ng-container>
 <ng-template #subscriptionSkeleton>
-  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg shadow-lg" [animated]="true"></ion-skeleton-text>
+  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg " [animated]="true"></ion-skeleton-text>
 </ng-template>
 
 <ng-container *ngIf="paymentMethods; else paymentMethodsSkeleton">
@@ -108,7 +108,7 @@
   </div>
 </ng-container>
 <ng-template #paymentMethodsSkeleton>
-  <ion-skeleton-text class="w-full h-64 px-4 py-5 sm:p-6 rounded-lg shadow-lg mt-5" [animated]="true"></ion-skeleton-text>
+  <ion-skeleton-text class="w-full h-64 px-4 py-5 sm:p-6 rounded-lg mt-5" [animated]="true"></ion-skeleton-text>
 </ng-template>
 
 <ng-container *ngIf="paymentMethods; else invoiceSkeleton">
@@ -182,7 +182,7 @@
   </div>
 </ng-container>
 <ng-template #invoiceSkeleton>
-  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg shadow-lg mt-5" [animated]="true"></ion-skeleton-text>
+  <ion-skeleton-text class="w-full h-28 px-4 py-5 sm:p-6 rounded-lg mt-5" [animated]="true"></ion-skeleton-text>
 </ng-template>
 
 <app-payment-method-modal [show]="showPaymentModal" (close)="showPaymentModal = false"></app-payment-method-modal>

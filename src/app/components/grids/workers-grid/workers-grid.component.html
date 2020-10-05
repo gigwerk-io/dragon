@@ -1,11 +1,10 @@
-<ng-container *ngIf="workers; else SkeletonWorkers">
+<ng-container *ngIf="workers; else skeletonWorkers">
   <div
     class="pb-5 border-b border-gray-200 space-y-3 sm:flex sm:items-center sm:justify-between sm:space-x-4 sm:space-y-0">
     <h3 class="text-lg leading-6 font-medium text-primary-dominant">
       All Workers
     </h3>
     <div>
-      <label for="search" class="block text-sm font-medium leading-5 text-gray-700">Search</label>
       <div class="mt-1 flex rounded-md shadow-sm">
         <div class="relative flex-grow focus-within:z-10">
           <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -21,7 +20,7 @@
         </div>
         <!-- <button
           class="-ml-px relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-r-md text-gray-700 bg-white hover:text-gray-500 hover:bg-white focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-        
+
           <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
             <path
               d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
@@ -68,15 +67,10 @@
   </ul>
   <ul class="" *ngIf="!workers.length">
 
-    <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow">
+    <li class="col-span-1 flex flex-col text-center my-12">
+      <img src="https://gigwerk-disk.s3.amazonaws.com/illustrations/no-data.svg" class="mx-auto text-gray-400 h-48"  alt="No data"/>
 
-      <svg class="mx-auto text-gray-400" fill="currentColor" viewBox="0 0 20 20" style="height: 290px;">
-        <path
-          d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z">
-        </path>
-      </svg>
-
-      <h4 class="text-gray-500 mt-0 mb-2 ">No Freelancers Found...</h4>
+      <label class="text-gray-800 text-sm mt-0 mb-2">No workers found...</label>
 
     </li>
   </ul>
@@ -87,7 +81,7 @@
   </app-pagination>
 </ng-container>
 
-<ng-template #SkeletonWorkers>
+<ng-template #skeletonWorkers>
   <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-no-wrap">
     <div class="ml-4 mt-2">
       <h3 class="h-5 pt-2 text-lg leading-6 font-medium text-gray-900">
@@ -98,19 +92,11 @@
   </div>
   <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
 
-    <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow"
+    <li class="col-span-1 flex flex-col text-center bg-white rounded-lg shadow h-64"
       *ngFor="let workers of [1,2,3,4,5,6,7,8,9,10,11,12];  let i = index"
       [ngClass]="(i > 0) ? 'border-t border-gray-200' : ''">
       <div class="flex-1 flex flex-col p-8">
         <ion-skeleton-text class="w-32 h-32 flex-shrink-0 mx-auto rounded-full"></ion-skeleton-text>
-        <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">
-          <ion-skeleton-text></ion-skeleton-text>
-        </h3>
-        <dl class="mt-1 flex-grow flex flex-col items-center justify-between">
-          <dd class="text-gray-500 text-sm leading-5">
-            <ion-skeleton-text class="w-40"></ion-skeleton-text>
-          </dd>
-        </dl>
       </div>
     </li>
 
