@@ -13,7 +13,7 @@
                     <input id="client_name" name="client_name" [(ngModel)]="createJobRequest.client_name"
                         #client_name="ngModel"
                         class="form-input block w-full sm:text-sm sm:leading-5 focus:outline-none focus:shadow-outline-green focus:border-primary-active"
-                        placeholder="Jim Jones" required>
+                        placeholder="Enter Name" required>
                 </div>
                 <small class="text-red-500 text-xs mt-1"
                     *ngIf="client_name.invalid && (client_name.dirty || client_name.touched)">
