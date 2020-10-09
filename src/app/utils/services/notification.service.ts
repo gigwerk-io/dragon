@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { RESTService } from './rest.service';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Response } from '../interfaces/responses/GenericResponse';
 import { Notification } from '../interfaces/models/Notification';
 
@@ -11,8 +11,17 @@ import { Notification } from '../interfaces/models/Notification';
 })
 export class NotificationService extends RESTService {
 
+
+  openDropdown = false;
+  isThereNewNotifications = false;
+
   constructor(http: HttpClient, storage: Storage) {
     super(http, storage);
+  }
+
+  toggleNotificationDropdown() {
+    this.isThereNewNotifications = false;
+    this.openDropdown = !this.openDropdown;
   }
 
   getAllNotifications(): Promise<Response<Notification[]>> {
