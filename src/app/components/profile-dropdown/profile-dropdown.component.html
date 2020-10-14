@@ -1,13 +1,16 @@
 <!--Desktop Menu Profile Dropdown-->
-<div class="ml-3 relative hidden md:block">
+<div class="ml-3 relative hidden md:block  z-40">
+
+  <div class="fixed inset-0 bottom-0 z-20 " *ngIf="showDropdown " (click)="showDropdown = !showDropdown">
+  </div>
+
   <div>
     <button class="max-w-xs flex items-center text-sm rounded-full focus:outline-none focus:shadow-outline"
-      id="user-menu" aria-label="User menu" aria-haspopup="true" (click)="showDropdown = !showDropdown"
-      (blur)="showDropdown = false">
+      id="user-menu" aria-label="User menu" aria-haspopup="true" (click)="showDropdown = !showDropdown">
       <img class="h-8 w-8 rounded-full" src="{{image}}" alt="user avatar" />
     </button>
   </div>
-  <div class="z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg"
+  <div class="z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black"
     [ngClass]="showDropdown ? 'transform opacity-100 scale-100': 'transform opacity-0 scale-95 hidden'">
     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
       <a routerLink="/settings"

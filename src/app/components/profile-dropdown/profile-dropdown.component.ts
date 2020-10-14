@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Storage} from '@ionic/storage';
-import {StorageKeys} from '../../utils/interfaces/enum/constants';
-import {Router} from '@angular/router';
-import {AuthenticationService} from '../../utils/services/authentication.service';
-import {User} from '../../utils/interfaces/models/User';
+import { Storage } from '@ionic/storage';
+import { StorageKeys } from '../../utils/interfaces/enum/constants';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../../utils/services/authentication.service';
+import { User } from '../../utils/interfaces/models/User';
 
 @Component({
   selector: 'app-profile-dropdown',
@@ -33,7 +33,6 @@ export class ProfileDropdownComponent implements OnInit {
 
   onLogout() {
     this.auth.logout().then(res => {
-      console.log(res);
       this.router.navigateByUrl('/login');
     });
   }
