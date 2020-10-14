@@ -19,7 +19,7 @@ import { environment } from '../environments/environment';
 import { CreditCardDirectivesModule } from 'angular-cc-library';
 import { SentryErrorHandler } from './utils/handlers/SentryErrorHandler';
 import { GuidedTourModule, GuidedTourService } from 'ngx-guided-tour';
-import {NotyfModule} from 'ng-notyf';
+import { NotyfModule } from 'ng-notyf';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
@@ -39,7 +39,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     NgxStripeModule.forRoot(environment.stripePublicKey),
     CreditCardDirectivesModule,
     GuidedTourModule,
-    NotyfModule
+    NotyfModule,
   ],
   declarations: [
     AppComponent,

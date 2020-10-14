@@ -8,15 +8,16 @@ import { StorageKeys } from '../interfaces/enum/constants';
 import { ValidateTokenResponse } from '../interfaces/responses/ValidateTokenResponse';
 import { GenericResponse, Response } from '../interfaces/responses/GenericResponse';
 import { ToastrService } from 'ngx-toastr';
-import {LoginResponse} from '../interfaces/responses/LoginResponse';
-import {LoginRequest} from '../interfaces/requests/LoginRequest';
-import {RESTService} from './rest.service';
+import { LoginResponse } from '../interfaces/responses/LoginResponse';
+import { LoginRequest } from '../interfaces/requests/LoginRequest';
+import { RESTService } from './rest.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService extends RESTService {
   authSubject = new BehaviorSubject(false);
+  showForgotPasswordModal = true;
 
   constructor(public http: HttpClient, public storage: Storage, public toast: ToastrService) {
     super(http, storage);
@@ -66,4 +67,10 @@ export class AuthenticationService extends RESTService {
       })
     );
   }
+
+  resetPassword() {
+    return this.makeHttpRequest(`forgot-password`, 'GET')
+      .then((res) => res.toPromise());
+  }
+
 }

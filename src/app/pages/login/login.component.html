@@ -45,10 +45,14 @@
 
       <div class="flex items-center mb-6 -mt-4">
         <div class="flex ml-auto">
-          <a href="#" class="inline-flex text-xs sm:text-sm text-primary-dominant hover:text-primary-hover">Forgot Your
+          <a (click)="auth.showForgotPasswordModal = true"
+            class="cursor-pointer inline-flex text-xs sm:text-sm text-primary-dominant hover:text-primary-hover">Forgot
+            Your
             Password?</a>
         </div>
       </div>
+
+      <app-forgot-password-modal [showModal]="auth.showForgotPasswordModal"></app-forgot-password-modal>
 
       <div class="flex w-full">
         <button type="submit" (click)="onLogin(loginForm)" id="login-button"
@@ -65,7 +69,8 @@
     </form>
   </div>
   <div class="flex justify-center items-center mt-6">
-    <a href="#" class="inline-flex items-center font-bold text-primary-dominant hover:text-primary-hover text-sm text-center">
+    <a href="#"
+      class="inline-flex items-center font-bold text-primary-dominant hover:text-primary-hover text-sm text-center">
       <span>
         <svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           viewBox="0 0 24 24" stroke="currentColor">

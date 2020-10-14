@@ -53,8 +53,9 @@ import { RadioComponent } from './form-builder/radio/radio.component';
 import { SelectComponent } from './form-builder/select/select.component';
 import { SubmitComponent } from './form-builder/submit/submit.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import {CalendarFilterPipe} from '../utils/pipe/calendar-filter.pipe';
+import { CalendarFilterPipe } from '../utils/pipe/calendar-filter.pipe';
 import { MetricCardComponent } from './cards/metric-card/metric-card.component';
+import { ForgotPasswordModalComponent } from './modal/forgot-password-modal/forgot-password-modal.component';
 
 @NgModule({
   imports: [
@@ -117,6 +118,7 @@ import { MetricCardComponent } from './cards/metric-card/metric-card.component';
     SubmitComponent,
     CalendarComponent,
     MetricCardComponent,
+    ForgotPasswordModalComponent,
   ],
   exports: [
     FooterComponent,
@@ -165,6 +167,7 @@ import { MetricCardComponent } from './cards/metric-card/metric-card.component';
     WorkersGridComponent,
     CalendarComponent,
     MetricCardComponent,
+    ForgotPasswordModalComponent
   ]
 })
 export class ComponentsModule {

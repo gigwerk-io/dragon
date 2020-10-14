@@ -10,8 +10,6 @@
       <img class="h-8 w-8 rounded-full" src="{{image}}" alt="user avatar" />
     </button>
   </div>
-
-
   <div class="z-50 origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black"
     [ngClass]="showDropdown ? 'transform opacity-100 scale-100': 'transform opacity-0 scale-95 hidden'">
     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
@@ -19,7 +17,7 @@
         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
         role="menuitem">Settings</a>
       <a (click)="onLogout()"
-        class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150 "
+        class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150"
         role="menuitem">Sign out</a>
     </div>
   </div>
